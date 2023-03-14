@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { getByRole, render, screen } from '@testing-library/react';
 
 import App from './App';
 
