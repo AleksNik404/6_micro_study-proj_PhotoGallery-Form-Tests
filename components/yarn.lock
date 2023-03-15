@@ -1752,6 +1752,7 @@ __metadata:
     eslint-plugin-react: 7.28.0
     eslint-plugin-react-hooks: 4.3.0
     jsdom: ^21.1.1
+    normalize.css: ^8.0.1
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.9.0
@@ -4036,6 +4037,13 @@ __metadata:
   bin:
     nopt: bin/nopt.js
   checksum: 82149371f8be0c4b9ec2f863cc6509a7fd0fa729929c009f3a58e4eb0c9e4cae9920e8f1f8eb46e7d032fec8fb01bede7f0f41a67eb3553b7b8e14fa53de1dac
+  languageName: node
+  linkType: hard
+
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: 4698cae88ec35e3f3e82f9f9402e6ffb906c27ccd6373cad88e6b3f5634fc7a043cb38702472299e5edb73825cf8b18d5fd9283f58829eddda79ea97453049a2
   languageName: node
   linkType: hard
 
