@@ -8,7 +8,7 @@ class ErrorPage extends Component<Props, State> {
   state = {};
 
   render() {
-    return <div>ErrorPage</div>;
+    return <div className="container">ErrorPage</div>;
   }
 }
 
