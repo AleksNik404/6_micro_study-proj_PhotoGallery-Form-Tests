@@ -8,7 +8,7 @@ class About extends Component<Props, State> {
   state = {};
 
   render() {
-    return <div>About</div>;
+    return <main className="container">About</main>;
   }
 }
 

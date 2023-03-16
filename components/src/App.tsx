@@ -7,7 +7,7 @@ import SharedLayout from './pages/SharedLayout/SharedLayout';
 class App extends React.Component {
   render() {
     return (
-      <>
+      <div className="wrapper">
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
@@ -15,7 +15,7 @@ class App extends React.Component {
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
-      </>
+      </div>
     );
   }
 }

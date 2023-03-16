@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Outlet } from 'react-router-dom';
-import Nav from './common/Nav';
+
+import Header from './common/Header';
 
 type Props = {};
 
@@ -12,7 +13,7 @@ class SharedLayout extends Component<Props, State> {
   render() {
     return (
       <>
-        <Nav />
+        <Header />
         <Outlet />
       </>
     );
