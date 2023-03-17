@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import { BsSearch } from 'react-icons/bs';
 
 type Props = {
+  searchValue: string;
   placeholder?: string;
+  handlerSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type State = {};
@@ -13,17 +15,21 @@ export default class InputSearch extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
   }
-  state = {};
 
   render() {
-    const { placeholder = 'Search' } = this.props;
+    const { searchValue, handlerSearchValue, placeholder = 'Search' } = this.props;
 
     return (
       <SearchContainer className="pole">
         <IconContainer>
           <BsSearch />
         </IconContainer>
-        <Input type="text" placeholder={placeholder} />
+        <Input
+          type="search"
+          placeholder={placeholder}
+          value={searchValue}
+          onChange={handlerSearchValue}
+        />
       </SearchContainer>
     );
   }
@@ -31,19 +37,20 @@ export default class InputSearch extends Component<Props, State> {
 
 const Input = styled.input`
   width: 100%;
-  background-color: transparent;
-
+  padding: 10px;
   outline: 0;
+
+  background-color: transparent;
   color: var(--text-color-hover);
 `;
 
 const IconContainer = styled.div`
-  margin: 0.8em;
-  display: flex;
-  place-items: center;
-
+  margin-left: 0.7em;
   height: 0.7em;
   width: 0.7em;
+
+  display: flex;
+  place-items: center;
 
   cursor: pointer;
 `;
@@ -51,12 +58,11 @@ const IconContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+
   width: 100%;
-
-  background-color: var(--primary-color-400);
   border-radius: 2rem;
-
   padding-right: 1.4em;
+  background-color: var(--primary-color-400);
 
   transition: all 0.3s;
 

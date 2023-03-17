@@ -1,31 +1,46 @@
 import React, { Component } from 'react';
+import styled from '@emotion/styled';
 
 import CardsContainer from './components/CardsContainer';
 import InputSearch from './components/InputSearch';
+
 import { data } from '../../../assets/data';
-import styled from '@emotion/styled';
-// import { css } from '@emotion/react';
-import { css } from '@emotion/react';
+import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../../utils/utils';
 
-const AppStyles = css`
-  background-color: red;
-`;
+type State = {
+  searchValue: string;
+};
 
-class Home extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {};
-  // }
+type Props = {};
+
+class Home extends Component<Props, State> {
+  state: State = {
+    searchValue: getSearchValueFromLocalStorage(),
+  };
+
+  componentDidMount() {
+    window.onunload = () => addSearchValueToLocalStorage(this.state.searchValue);
+  }
+
+  componentWillUnmount() {
+    addSearchValueToLocalStorage(this.state.searchValue);
+  }
+
+  handlerSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ searchValue: e.target.value });
+  };
+
   render() {
     return (
-      <main>
-        <section className="container">
-          <InputContainer>
-            <InputSearch />
-          </InputContainer>
-          <CardsContainer data={data} />
-        </section>
-      </main>
+      <section className="container">
+        <InputContainer>
+          <InputSearch
+            searchValue={this.state.searchValue}
+            handlerSearchValue={this.handlerSearchValue}
+          />
+        </InputContainer>
+        <CardsContainer data={data} />
+      </section>
     );
   }
 }

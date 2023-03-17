@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import React, { Component } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -14,10 +15,16 @@ class SharedLayout extends Component<Props, State> {
     return (
       <>
         <Header />
-        <Outlet />
+        <Main>
+          <Outlet />
+        </Main>
       </>
     );
   }
 }
+
+const Main = styled.main`
+  flex: 1 1 auto;
+`;
 
 export default SharedLayout;

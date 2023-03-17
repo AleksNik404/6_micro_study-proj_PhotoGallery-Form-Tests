@@ -18,6 +18,7 @@
   --secondary-color-700: #379aff;
   --secondary-color-800: #59abff;
   --secondary-color-900: #7bbcff;
+  --secondary-color-1000: #93c5fd;
 
   --text-color: #cccccc;
   --text-color-hover: #f5f5f5;
@@ -57,7 +58,7 @@ body {
   overflow-y: overlay;
 
   color: var(--text-color);
-  background-color: var(--primary-color-100);
+  background-color: var(--primary-color-200);
 }
 
 a {
@@ -72,6 +73,9 @@ li {
 .wrapper {
   min-height: 100vh;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .container {

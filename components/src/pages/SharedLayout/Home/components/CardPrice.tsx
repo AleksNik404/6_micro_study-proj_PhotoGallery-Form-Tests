@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import React from 'react';
-import { formatter } from '../../../../utils/utils';
+
+import { formatPrice } from '../../../../utils/utils';
 
 interface PriceProps {
   price: number;
@@ -15,11 +15,11 @@ const CardPrice = ({ price, discountPercentage = 0 }: PriceProps) => {
       {discountPercentage > 0 && (
         <>
           <Discount>-{discountPercentage}%</Discount>
-          <OldPrice>{formatter.format(price)}</OldPrice>
+          <OldPrice>{formatPrice(price)}</OldPrice>
         </>
       )}
 
-      <Price>{formatter.format(countedPrice)}</Price>
+      <Price>{formatPrice(countedPrice)}</Price>
     </PriceBlock>
   );
 };
@@ -49,6 +49,9 @@ const OldPrice = styled.span`
 
 const Price = styled.span`
   margin-left: auto;
+
+  font-weight: 600;
+  letter-spacing: 0.5px;
 `;
 
 export default CardPrice;

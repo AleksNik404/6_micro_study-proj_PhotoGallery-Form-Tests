@@ -1,11 +1,8 @@
-import styled from '@emotion/styled';
 import React, { Component } from 'react';
-import { GameCard } from '../../../../assets/types';
-import { Cards } from './CardsContainer';
-
+import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { formatter } from '../../../../utils/utils';
-import Price from './CardPrice';
+
+import { GameCard } from '../../../../assets/types';
 import CardPrice from './CardPrice';
 
 type Props = {
@@ -20,7 +17,7 @@ class Card extends Component<Props, State> {
   }
 
   render() {
-    const { image, name, price, rating, Developer, discountPercentage, ReleaseDate } =
+    const { image, name, price, Developer, discountPercentage, ReleaseDate } =
       this.props.oneCardData;
 
     return (
@@ -34,9 +31,8 @@ class Card extends Component<Props, State> {
             <p className="maker">{Developer}</p>
             <h1 className="name">{name}</h1>
           </div>
-          <div>
-            <CardPrice price={price} discountPercentage={discountPercentage} />
-          </div>
+
+          <CardPrice price={price} discountPercentage={discountPercentage} />
         </div>
       </StyledCard>
     );
@@ -62,7 +58,6 @@ const StyledCard = styled.article`
   .image-box {
     width: 100%;
     overflow: hidden;
-
     position: relative;
     transition: all 0.5s;
 
@@ -73,7 +68,6 @@ const StyledCard = styled.article`
 
       background-color: rgba(255, 255, 255, 0);
       border-radius: 0.3em;
-
       transition: all 0.3s;
     }
 
@@ -91,10 +85,7 @@ const StyledCard = styled.article`
     right: 0.7em;
     top: 0.7em;
 
-    stroke: red;
-    fill: var(--text-color-hover);
-
-    filter: drop-shadow(0px 0px 6px #000);
+    color: var(--secondary-color-1000);
 
     transition: all 0.3s;
     opacity: 0;
