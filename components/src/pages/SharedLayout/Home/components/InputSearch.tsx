@@ -9,7 +9,7 @@ type Props = {
   handlerSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-type State = {};
+type State = unknown;
 
 export default class InputSearch extends Component<Props, State> {
   constructor(props: Props) {

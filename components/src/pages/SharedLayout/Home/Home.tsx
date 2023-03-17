@@ -11,12 +11,15 @@ type State = {
   searchValue: string;
 };
 
-type Props = {};
+type Props = unknown;
 
 class Home extends Component<Props, State> {
-  state: State = {
-    searchValue: getSearchValueFromLocalStorage(),
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      searchValue: getSearchValueFromLocalStorage(),
+    };
+  }
 
   componentDidMount() {
     window.onunload = () => addSearchValueToLocalStorage(this.state.searchValue);
