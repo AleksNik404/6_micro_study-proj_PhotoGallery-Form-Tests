@@ -9,16 +9,9 @@ type Props = {
   oneCardData: GameCard;
 };
 
-type State = {};
-
-class Card extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+class Card extends Component<Props> {
   render() {
-    const { image, name, price, Developer, discountPercentage, ReleaseDate } =
-      this.props.oneCardData;
+    const { image, name, price, Developer, discountPercentage } = this.props.oneCardData;
 
     return (
       <StyledCard>
@@ -56,7 +49,7 @@ const StyledCard = styled.article`
   cursor: pointer;
 
   .image-box {
-    width: 100%;
+    /* width: 100%; */
     overflow: hidden;
     position: relative;
     transition: all 0.5s;
@@ -94,7 +87,7 @@ const StyledCard = styled.article`
   .image {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    /* max-height: 100%; */
 
     border-radius: 0.3em;
   }

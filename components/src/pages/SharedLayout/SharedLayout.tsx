@@ -4,13 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import Header from './common/Header';
 
-type Props = {};
-
-type State = {};
-
-class SharedLayout extends Component<Props, State> {
-  state = {};
-
+class SharedLayout extends Component {
   render() {
     return (
       <>

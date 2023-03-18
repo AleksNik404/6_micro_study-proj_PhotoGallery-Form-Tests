@@ -7,7 +7,9 @@ export interface Cards {
   data: GameCard[];
 }
 
-const CardsContainer = ({ data }: Cards) => {
+const CardsContainer = ({ data = [] }: Cards) => {
+  if (!data.length) return null;
+
   return (
     <Container>
       {data.map((oneCardData) => (
@@ -22,7 +24,9 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
 
   justify-items: center;
-  gap: 1.2em;
+  justify-content: center;
+  row-gap: 3rem;
+  column-gap: 1rem;
 `;
 
 export default CardsContainer;

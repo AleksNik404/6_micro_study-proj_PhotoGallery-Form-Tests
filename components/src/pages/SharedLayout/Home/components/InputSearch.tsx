@@ -9,13 +9,7 @@ type Props = {
   handlerSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-type State = unknown;
-
-export default class InputSearch extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+export default class InputSearch extends Component<Props> {
   render() {
     const { searchValue, handlerSearchValue, placeholder = 'Search' } = this.props;
 

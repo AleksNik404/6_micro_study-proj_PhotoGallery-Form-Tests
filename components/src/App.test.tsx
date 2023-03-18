@@ -2,15 +2,16 @@ import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 describe.skip('App', () => {
-  it('Renders hello world', () => {
-    render(<App />);
+  it('Renders App', () => {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
 
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      })
-    ).toHaveTextContent('Hello World');
+    screen.debug();
   });
 });

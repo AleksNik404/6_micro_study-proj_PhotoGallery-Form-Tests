@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 
-type Props = {};
-
-type State = {};
-
-class ErrorPage extends Component<Props, State> {
-  state = {};
-
+class ErrorPage extends Component {
   render() {
     return <div className="container">ErrorPage</div>;
   }
