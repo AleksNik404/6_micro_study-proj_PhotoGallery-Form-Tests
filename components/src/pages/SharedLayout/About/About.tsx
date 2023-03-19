@@ -1,15 +1,23 @@
+import styled from '@emotion/styled';
 import React, { Component } from 'react';
+import { Main } from '../../../styled/Main';
+import Header from '../common/Header';
 
-type Props = {};
-
-type State = {};
-
-class About extends Component<Props, State> {
-  state = {};
-
+class About extends Component {
   render() {
-    return <div className="container">About</div>;
+    return (
+      <>
+        <Header />
+        <Main>
+          <Heading className="container">{window.history.state.usr}</Heading>
+        </Main>
+      </>
+    );
   }
 }
+
+const Heading = styled.h1`
+  text-align: center;
+`;
 
 export default About;

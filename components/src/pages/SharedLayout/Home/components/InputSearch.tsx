@@ -36,6 +36,10 @@ const Input = styled.input`
 
   background-color: transparent;
   color: var(--text-color-hover);
+
+  &::-webkit-search-cancel-button:hover {
+    cursor: pointer;
+  }
 `;
 
 const IconContainer = styled.div`

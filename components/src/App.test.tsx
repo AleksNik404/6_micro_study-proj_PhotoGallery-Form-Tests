@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
-describe.skip('App', () => {
+describe('App', () => {
   it('Renders App', () => {
     render(
       <BrowserRouter>
@@ -12,6 +12,7 @@ describe.skip('App', () => {
       </BrowserRouter>
     );
 
-    screen.debug();
+    expect(screen.getByRole('banner')).toBeInTheDocument(); // <header></header>
+    expect(screen.getByRole('main')).toBeInTheDocument();
   });
 });

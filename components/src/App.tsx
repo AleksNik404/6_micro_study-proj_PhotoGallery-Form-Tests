@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { About, ErrorPage, Home } from './pages';
+import { About, Home, NotFoundPage } from './pages';
 import SharedLayout from './pages/SharedLayout/SharedLayout';
 
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </div>

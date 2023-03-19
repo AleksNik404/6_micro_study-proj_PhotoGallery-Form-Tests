@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
-import { GameCard } from '../../../../assets/types';
 import CardPrice from './CardPrice';
 
 type Props = {
-  oneCardData: GameCard;
+  data: {
+    image: string;
+    name: string;
+    price: number;
+    developer: string;
+    discountPercentage: number;
+  };
 };
 
 class Card extends Component<Props> {
   render() {
-    const { image, name, price, Developer, discountPercentage } = this.props.oneCardData;
+    const { image, name, price, developer, discountPercentage } = this.props.data;
 
     return (
       <StyledCard>
@@ -21,7 +26,7 @@ class Card extends Component<Props> {
         </div>
         <div className="text-box">
           <div>
-            <p className="maker">{Developer}</p>
+            <p className="maker">{developer}</p>
             <h1 className="name">{name}</h1>
           </div>
 

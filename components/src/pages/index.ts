@@ -1,5 +1,5 @@
 import About from './SharedLayout/About/About';
-import ErrorPage from './SharedLayout/ErrorPage/ErrorPage';
+import NotFoundPage from './SharedLayout/ErrorPage/NotFoundPage';
 import Home from './SharedLayout/Home/Home';
 
-export { Home, ErrorPage, About };
+export { Home, NotFoundPage, About };

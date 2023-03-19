@@ -4,8 +4,14 @@ import styled from '@emotion/styled';
 import CardsContainer from './components/CardsContainer';
 import InputSearch from './components/InputSearch';
 
+import Header from '../common/Header';
+import { Main } from '../../../styled/Main';
+import {
+  addSearchValueToLocalStorage,
+  getNamePageFromHistory,
+  getSearchValueFromLocalStorage,
+} from '../../../utils/utils';
 import { data } from '../../../assets/data';
-import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../../utils/utils';
 
 type State = {
   searchValue: string;
@@ -35,19 +41,28 @@ class Home extends Component<Props, State> {
 
   render() {
     return (
-      <section className="container">
-        <InputContainer>
-          <InputSearch
-            searchValue={this.state.searchValue}
-            handlerSearchValue={this.handlerSearchValue}
-          />
-        </InputContainer>
-        <CardsContainer data={data} />
-      </section>
+      <>
+        <Header />
+        <Main>
+          <Heading>{getNamePageFromHistory()}</Heading>
+          <section className="container">
+            <InputContainer>
+              <InputSearch
+                searchValue={this.state.searchValue}
+                handlerSearchValue={this.handlerSearchValue}
+              />
+            </InputContainer>
+            <CardsContainer data={data} />
+          </section>
+        </Main>
+      </>
     );
   }
 }
 
+const Heading = styled.h1`
+  text-align: center;
+`;
 const InputContainer = styled.div`
   display: flex;
   justify-content: center;

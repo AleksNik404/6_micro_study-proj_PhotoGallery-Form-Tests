@@ -2,30 +2,35 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const NavLinks = [
-  { path: '/', title: 'Home' },
-  { path: '/about', title: 'About' },
+  { path: '/', title: 'Home', name: 'Home Page' },
+  { path: '/about', title: 'About', name: 'About Us Page' },
 ];
 
-const Navigation = () => {
+const Header = () => {
   return (
-    <Header>
+    <HeaderStyled>
       <div className="container">
         <nav>
           <List>
-            {NavLinks.map(({ path, title }) => (
+            {NavLinks.map(({ path, title, name }) => (
               <li key={title}>
-                <NavLink to={path}>{title}</NavLink>
+                <NavLink to={path} state={name}>
+                  {title}
+                </NavLink>
               </li>
             ))}
           </List>
         </nav>
       </div>
-    </Header>
+    </HeaderStyled>
   );
 };
 
-const Header = styled.header`
+const HeaderStyled = styled.header`
   background-color: var(--secondary-color-200);
+
+  margin-bottom: 2rem;
+  padding: 0.4rem 0;
 `;
 
 const List = styled.ul`
@@ -50,4 +55,4 @@ const List = styled.ul`
   }
 `;
 
-export default Navigation;
+export default Header;

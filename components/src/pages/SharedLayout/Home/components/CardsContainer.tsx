@@ -7,14 +7,12 @@ export interface Cards {
   data: GameCard[];
 }
 
-const CardsContainer = ({ data = [] }: Cards) => {
-  if (!data.length) return null;
-
+const CardsContainer = ({ data }: Cards) => {
   return (
     <Container>
-      {data.map((oneCardData) => (
-        <Card key={oneCardData.id} oneCardData={oneCardData} />
-      ))}
+      {data.map((oneCardData) => {
+        return <Card key={oneCardData.id} data={oneCardData} />;
+      })}
     </Container>
   );
 };
@@ -27,6 +25,8 @@ const Container = styled.div`
   justify-content: center;
   row-gap: 3rem;
   column-gap: 1rem;
+
+  margin-bottom: 10rem;
 `;
 
 export default CardsContainer;
