@@ -6,11 +6,7 @@ import InputSearch from './components/InputSearch';
 
 import Header from '../common/Header';
 import { Main } from '../../../styled/Main';
-import {
-  addSearchValueToLocalStorage,
-  getNamePageFromHistory,
-  getSearchValueFromLocalStorage,
-} from '../../../utils/utils';
+import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../../utils/utils';
 import { data } from '../../../assets/data';
 
 type State = {
@@ -42,9 +38,8 @@ class Home extends Component<Props, State> {
   render() {
     return (
       <>
-        <Header />
+        <Header namePage="Home Page" />
         <Main>
-          <Heading>{getNamePageFromHistory()}</Heading>
           <section className="container">
             <InputContainer>
               <InputSearch
@@ -60,9 +55,6 @@ class Home extends Component<Props, State> {
   }
 }
 
-const Heading = styled.h1`
-  text-align: center;
-`;
 const InputContainer = styled.div`
   display: flex;
   justify-content: center;

@@ -17,7 +17,3 @@ export const getSearchValueFromLocalStorage = () => {
 
   return searchValue;
 };
-
-export const getNamePageFromHistory = () => {
-  return window.history.state.usr;
-};

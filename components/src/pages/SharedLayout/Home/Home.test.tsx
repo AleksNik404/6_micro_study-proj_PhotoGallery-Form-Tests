@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { BrowserRouter } from 'react-router-dom';
 import { describe } from 'vitest';
 import Home from './Home';
@@ -22,9 +23,10 @@ describe('inputSearch', () => {
       </BrowserRouter>
     );
 
-    const text = 'await???';
+    const text = `why it doesn't work without await`;
+    const input = screen.getByRole('searchbox');
 
-    await userEvent.type(screen.getByRole('searchbox'), text);
-    expect(screen.getByRole('searchbox')).toHaveValue(text);
+    await userEvent.type(input, text);
+    expect(input).toHaveValue(text);
   });
 });

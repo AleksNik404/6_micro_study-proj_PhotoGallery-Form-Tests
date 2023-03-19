@@ -13,7 +13,8 @@ class NotFoundPage extends Component {
         <Main>
           <div className="container">
             <ErrorBox>
-              <h1>Ops... error</h1>
+              <p>Ops... </p>
+              <Heading>Page not found</Heading>
               <Link to="/">
                 <Button>Go Home</Button>
               </Link>
@@ -25,10 +26,18 @@ class NotFoundPage extends Component {
   }
 }
 
+const Heading = styled.h1`
+  text-align: center;
+  margin-bottom: 1rem;
+`;
+
 const ErrorBox = styled.article`
   display: flex;
   flex-direction: column;
   place-items: center;
+  place-content: center;
+
+  min-height: var(--min-height-block);
 `;
 
 const Button = styled.button`

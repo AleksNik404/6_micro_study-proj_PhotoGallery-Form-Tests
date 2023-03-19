@@ -3,14 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe } from 'vitest';
 import About from './About';
 
-describe('inputSearch', () => {
+describe('About', () => {
   it('check render About', () => {
     render(
       <BrowserRouter>
         <About />
       </BrowserRouter>
     );
-    screen.debug();
-    // expect(screen.getByText(/About Us Page/i)).toBeInTheDocument();
+
+    expect(screen.getByText(/About Us Page/i)).toBeInTheDocument();
   });
 });

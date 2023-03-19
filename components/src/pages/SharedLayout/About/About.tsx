@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
 import React, { Component } from 'react';
+import styled from '@emotion/styled';
+import { GiDeathNote } from 'react-icons/gi';
+
 import { Main } from '../../../styled/Main';
 import Header from '../common/Header';
 
@@ -7,14 +9,29 @@ class About extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header namePage="About us Page" />
         <Main>
-          <Heading className="container">{window.history.state.usr}</Heading>
+          <TextBlock className="container">
+            <Heading>
+              <GiDeathNote />
+            </Heading>
+            <p>This page is empty</p>
+          </TextBlock>
         </Main>
       </>
     );
   }
 }
+
+const TextBlock = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  place-items: center;
+  place-content: center;
+
+  min-height: var(--min-height-block);
+`;
 
 const Heading = styled.h1`
   text-align: center;

@@ -12,8 +12,8 @@ class App extends React.Component {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="*" element={<NotFoundPage />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     );

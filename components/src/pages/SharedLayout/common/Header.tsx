@@ -6,7 +6,11 @@ const NavLinks = [
   { path: '/about', title: 'About', name: 'About Us Page' },
 ];
 
-const Header = () => {
+interface HeaderProps {
+  namePage?: string;
+}
+
+const Header = ({ namePage }: HeaderProps) => {
   return (
     <HeaderStyled>
       <div className="container">
@@ -22,9 +26,16 @@ const Header = () => {
           </List>
         </nav>
       </div>
+      <Heading>{namePage}</Heading>
     </HeaderStyled>
   );
 };
+
+export default Header;
+
+const Heading = styled.h1`
+  text-align: center;
+`;
 
 const HeaderStyled = styled.header`
   background-color: var(--secondary-color-200);
@@ -54,5 +65,3 @@ const List = styled.ul`
     color: var(--text-color-hover);
   }
 `;
-
-export default Header;
