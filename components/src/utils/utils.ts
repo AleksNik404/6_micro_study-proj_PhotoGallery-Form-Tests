@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_SEARCH } from './constants';
+
 export const formatPrice = (price: number, regionCurency = 'EUR') => {
   return Intl.NumberFormat('ru', {
     style: 'currency',
@@ -6,12 +8,16 @@ export const formatPrice = (price: number, regionCurency = 'EUR') => {
 };
 
 export const addSearchValueToLocalStorage = (value: string) => {
-  localStorage.setItem('griz-search', JSON.stringify(value));
+  localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(value));
 };
 
 export const getSearchValueFromLocalStorage = () => {
-  const result = localStorage.getItem('griz-search');
+  const result = localStorage.getItem(LOCAL_STORAGE_SEARCH);
   const searchValue = result ? JSON.parse(result) : '';
 
   return searchValue;
+};
+
+export const getNamePageFromHistory = () => {
+  return window.history.state.usr;
 };

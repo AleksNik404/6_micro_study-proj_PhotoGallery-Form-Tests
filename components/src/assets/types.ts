@@ -1,13 +1,11 @@
 export interface GameCard {
   id: string;
   name: string;
-  Developer: string;
-  rating: number;
-  image: string;
-  description: string;
+  developer: string;
   price: number;
-  discountPercentage?: number;
-  ReleaseDate: string;
+  image: string;
+  discountPercentage: number;
+  description?: string;
+  ReleaseDate?: string;
+  rating?: number;
 }
-
-// export type Cards = GameCard[];
