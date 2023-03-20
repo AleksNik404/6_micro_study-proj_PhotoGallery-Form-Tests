@@ -17,3 +17,6 @@ export const getSearchValueFromLocalStorage = () => {
 
   return searchValue;
 };
+
+export const subtractPercentage = (price: number, percent: number) =>
+  price - (price / 100) * percent;

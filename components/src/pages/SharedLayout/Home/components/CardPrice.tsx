@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { formatPrice } from '../../../../utils/utils';
+import { formatPrice, subtractPercentage } from '../../../../utils/utils';
 
 interface PriceProps {
   price: number;
@@ -8,7 +8,7 @@ interface PriceProps {
 }
 
 const CardPrice = ({ price, discountPercentage = 0 }: PriceProps) => {
-  const countedPrice = discountPercentage ? price * (discountPercentage / 100) : price;
+  const countedPrice = discountPercentage ? subtractPercentage(price, discountPercentage) : price;
 
   return (
     <PriceBlock>
