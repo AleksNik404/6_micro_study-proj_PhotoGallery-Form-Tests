@@ -1,5 +1,6 @@
-import About from './SharedLayout/About/About';
-import NotFoundPage from './SharedLayout/ErrorPage/NotFoundPage';
-import Home from './SharedLayout/Home/Home';
+import About from './About/About';
+import NotFoundPage from './NotFoundPage/NotFoundPage';
+import FormPage from './FormPage/FormPage';
+import Home from './Home/Home';
 
-export { Home, NotFoundPage, About };
+export { Home, NotFoundPage, About, FormPage };

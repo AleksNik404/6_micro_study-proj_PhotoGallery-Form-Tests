@@ -9,8 +9,6 @@ import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <App />
   </React.StrictMode>
 );

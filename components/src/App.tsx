@@ -1,18 +1,17 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { About, Home, NotFoundPage } from './pages';
-import SharedLayout from './pages/SharedLayout/SharedLayout';
+import { About, FormPage, Home, NotFoundPage } from './pages';
 
 class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
         <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="form" element={<FormPage />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
@@ -20,4 +19,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
+
+export default AppWrapper;

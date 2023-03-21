@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { describe } from 'vitest';
+
 import NotFoundPage from './NotFoundPage';
 
 describe('NotFound', () => {

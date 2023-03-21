@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Card from './Card';
-import { GameCard } from '../../../../assets/types';
+import { GameCard } from '../../../types/types';
 
 export interface Cards {
   data: GameCard[];

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Main } from '../../../styled/Main';
+import { Main } from '../../styled/Main';
 import Header from '../common/Header';
 
 class NotFoundPage extends Component {

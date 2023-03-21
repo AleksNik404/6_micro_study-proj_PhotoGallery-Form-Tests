@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
-import CardsContainer from './components/CardsContainer';
-import InputSearch from './components/InputSearch';
-
 import Header from '../common/Header';
-import { Main } from '../../../styled/Main';
-import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../../utils/utils';
-import { data } from '../../../assets/data';
+import { CardsContainer, InputSearch } from './components';
+
+import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../utils/utils';
+import { data } from '../../data/data';
+import { Main } from '../../styled/Main';
 
 type State = {
   searchValue: string;
