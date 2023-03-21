@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 
 import Card from './Card';
@@ -20,7 +19,7 @@ const CardsContainer = ({ data }: Cards) => {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 
   justify-items: center;
   row-gap: 3rem;

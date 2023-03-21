@@ -29,6 +29,22 @@ export default class InputSearch extends Component<Props> {
   }
 }
 
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  border-radius: 2rem;
+  padding-right: 1.4em;
+  background-color: var(--primary-color-400);
+
+  transition: all 0.3s;
+
+  &:focus-within {
+    background-color: var(--primary-color-500);
+  }
+`;
+
 const Input = styled.input`
   width: 100%;
   padding: 10px;
@@ -51,20 +67,4 @@ const IconContainer = styled.div`
   place-items: center;
 
   cursor: pointer;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  border-radius: 2rem;
-  padding-right: 1.4em;
-  background-color: var(--primary-color-400);
-
-  transition: all 0.3s;
-
-  &:focus-within {
-    background-color: var(--primary-color-500);
-  }
 `;

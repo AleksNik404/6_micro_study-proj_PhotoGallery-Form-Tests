@@ -39,8 +39,7 @@ class Card extends Component<Props> {
 
 const StyledCard = styled.article`
   width: 100%;
-
-  max-width: 13rem;
+  max-width: 15rem;
   overflow: hidden;
 
   display: flex;
@@ -60,8 +59,6 @@ const StyledCard = styled.article`
     transition: all 0.5s;
 
     padding-bottom: calc(4 / 3 * 100%);
-
-    /* flex: 1; */
 
     &::after {
       content: '';
@@ -108,7 +105,7 @@ const StyledCard = styled.article`
     flex-direction: column;
     justify-content: space-between;
 
-    flex: 1;
+    height: 100%;
     gap: 20px;
   }
 

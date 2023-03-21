@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Main } from '../../styled/Main';
-import Header from '../common/Header';
+import Header from '../../components/Header';
 
 class NotFoundPage extends Component {
   render() {

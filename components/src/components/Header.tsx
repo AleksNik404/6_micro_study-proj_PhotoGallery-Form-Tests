@@ -1,10 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const NavLinks = [
-  { path: '/', title: 'Home', name: 'Home Page' },
-  { path: '/about', title: 'About', name: 'About Us Page' },
-];
+import { NavLinks } from '../data/LinksNav';
 
 interface HeaderProps {
   namePage?: string;
@@ -16,11 +13,9 @@ const Header = ({ namePage }: HeaderProps) => {
       <div className="container">
         <nav>
           <List>
-            {NavLinks.map(({ path, title, name }) => (
+            {NavLinks.map(({ path, title }) => (
               <li key={title}>
-                <NavLink to={path} state={name}>
-                  {title}
-                </NavLink>
+                <NavLink to={path}>{title}</NavLink>
               </li>
             ))}
           </List>

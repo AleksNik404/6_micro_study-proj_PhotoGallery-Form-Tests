@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
-import Header from '../common/Header';
+import Header from '../../components/Header';
 import { CardsContainer, InputSearch } from './components';
 
 import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../utils/utils';
@@ -55,9 +55,6 @@ class Home extends Component<Props, State> {
 }
 
 const InputContainer = styled.div`
-  display: flex;
-  justify-content: center;
-
   padding: 20px 0;
   max-width: 20em;
 `;
