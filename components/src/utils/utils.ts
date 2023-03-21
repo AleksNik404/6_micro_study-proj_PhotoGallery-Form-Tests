@@ -12,8 +12,12 @@ export const addSearchValueToLocalStorage = (value: string) => {
 };
 
 export const getSearchValueFromLocalStorage = () => {
-  const result = localStorage.getItem(LOCAL_STORAGE_SEARCH);
-  return result || '';
+  const data = localStorage.getItem(LOCAL_STORAGE_SEARCH);
+  if (!data) return '';
+
+  const parsedResult = JSON.parse(data);
+
+  return typeof parsedResult === 'string' ? parsedResult : '';
 };
 
 export const subtractPercentage = (price: number, percent: number) =>
