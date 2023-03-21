@@ -38,13 +38,13 @@ class Card extends Component<Props> {
 }
 
 const StyledCard = styled.article`
-  max-width: 16rem;
-
-  position: relative;
+  width: 100%;
+  max-width: 14rem;
   overflow: hidden;
 
-  display: grid;
-  grid-template-rows: max-content;
+  display: flex;
+  flex-direction: column;
+
   gap: 0.5em;
 
   &:hover .add-icon {
@@ -54,10 +54,11 @@ const StyledCard = styled.article`
   cursor: pointer;
 
   .image-box {
-    /* width: 100%; */
     overflow: hidden;
     position: relative;
     transition: all 0.5s;
+
+    /* padding-bottom: 100%; */
 
     &::after {
       content: '';
@@ -72,6 +73,15 @@ const StyledCard = styled.article`
     &:hover::after {
       background-color: rgba(255, 255, 255, 0.1);
     }
+  }
+
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    /* position: absolute; */
+
+    border-radius: 0.3em;
   }
 
   .add-icon {
@@ -89,29 +99,22 @@ const StyledCard = styled.article`
     opacity: 0;
   }
 
-  .image {
-    object-fit: cover;
-    width: 100%;
-    /* max-height: 100%; */
-
-    border-radius: 0.3em;
-  }
-
   .text-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+    flex: 1;
     gap: 20px;
   }
 
   .maker {
-    font-size: 0.7rem;
     opacity: 0.7;
+    font-size: calc(0.55rem + 0.1vw);
   }
 
   .name {
-    font-size: 1rem;
+    font-size: calc(0.75rem + 0.15vw);
   }
 `;
 

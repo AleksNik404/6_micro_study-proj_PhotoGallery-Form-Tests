@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
 import React from 'react';
-import { GameCard } from '../../../../assets/types';
+import styled from '@emotion/styled';
+
 import Card from './Card';
+import { GameCard } from '../../../../assets/types';
 
 export interface Cards {
   data: GameCard[];
@@ -19,7 +20,7 @@ const CardsContainer = ({ data }: Cards) => {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 
   justify-items: center;
   justify-content: center;
