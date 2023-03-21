@@ -39,7 +39,8 @@ class Card extends Component<Props> {
 
 const StyledCard = styled.article`
   width: 100%;
-  max-width: 14rem;
+
+  max-width: 13rem;
   overflow: hidden;
 
   display: flex;
@@ -58,7 +59,9 @@ const StyledCard = styled.article`
     position: relative;
     transition: all 0.5s;
 
-    /* padding-bottom: 100%; */
+    padding-bottom: calc(4 / 3 * 100%);
+
+    /* flex: 1; */
 
     &::after {
       content: '';
@@ -76,10 +79,11 @@ const StyledCard = styled.article`
   }
 
   .image {
-    object-fit: cover;
     width: 100%;
     height: 100%;
-    /* position: absolute; */
+    object-fit: cover;
+
+    position: absolute;
 
     border-radius: 0.3em;
   }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { GiDeathNote } from 'react-icons/gi';
 
-import { Main } from '../../../styled/Main';
 import Header from '../common/Header';
+import { Main } from '../../styled/Main';
 
 class About extends Component {
   render() {
