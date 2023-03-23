@@ -1892,6 +1892,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.55.0
     "@vitejs/plugin-react": ^3.1.0
     "@vitest/coverage-c8": ^0.29.3
+    dayjs: ^1.11.7
     eslint: 8.2.0
     eslint-config-prettier: ^8.7.0
     eslint-import-resolver-typescript: ^3.5.3
@@ -2004,6 +2005,13 @@ __metadata:
     whatwg-mimetype: ^3.0.0
     whatwg-url: ^12.0.0
   checksum: 006e869b5bf079647949a3e9b1dd69d84b2d5d26e6b01c265485699bc96e83817d4b5aae758b2910a4c58c0601913f3a0034121c1ca2da268e9a244c57515b15
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.7":
+  version: 1.11.7
+  resolution: "dayjs@npm:1.11.7"
+  checksum: 5003a7c1dd9ed51385beb658231c3548700b82d3548c0cfbe549d85f2d08e90e972510282b7506941452c58d32136d6362f009c77ca55381a09c704e9f177ebb
   languageName: node
   linkType: hard
 

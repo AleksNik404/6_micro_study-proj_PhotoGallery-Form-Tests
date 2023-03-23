@@ -4,7 +4,7 @@ import { FormInputField, FormSelectFiled } from '.';
 import { CardItem } from '../../Home/components/Card';
 
 import { INPUT_OPTIONS } from '../../../utils/constants';
-import { isEmpty } from '../../../utils/utils';
+import { isEmpty as isEmpty } from '../../../utils/utils';
 import { dateValidate, discountValidate, termValidate } from '../../../utils/validations';
 import { fileValidate, selectValidate, textValidate } from '../../../utils/validations';
 
@@ -23,6 +23,7 @@ const initialState = {
 class Form extends Component<Props, State> {
   state: State = initialState;
 
+  tata = React.createRef<State>();
   inputNameRef = React.createRef<HTMLInputElement>();
   inputReleaseDateRef = React.createRef<HTMLInputElement>();
   inputFileRef = React.createRef<HTMLInputElement>();
@@ -34,74 +35,53 @@ class Form extends Component<Props, State> {
   inputCurrencyRef = React.createRef<HTMLSelectElement>();
   formRef = React.createRef<HTMLFormElement>();
 
-  resetStateErrors() {
-    this.setState(initialState);
-  }
+  onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
 
-  hah = () => {
-    if (
-      !this.inputNameRef.current ||
-      !this.inputReleaseDateRef.current ||
-      !this.inputCurrencyRef.current ||
-      !this.inputCheckboxPSRef.current ||
-      !this.inputDiscountTrueRef.current ||
-      !this.inputFileRef.current
-    ) {
-      return true;
+    this.resetStateErrors();
+    const errors = this.validateRefs();
+
+    if (!isEmpty(errors)) {
+      this.setState({ errors });
+      return;
     }
 
-    this.inputNameRef.current;
-    this.inputReleaseDateRef.current;
-    this.inputCurrencyRef.current;
-    this.inputCheckboxPSRef.current;
-    this.inputDiscountTrueRef.current;
-    this.inputFileRef.current;
-    return false;
+    this._addCard();
+    this.formRef.current?.reset();
   };
 
-  onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    this.resetStateErrors();
-
-    if (this.hah()) return;
-
+  validateRefs() {
     const errors: Record<string, string> = {};
 
+    termValidate(this.inputCheckboxPSRef.current, errors);
     textValidate(this.inputNameRef.current, errors);
     dateValidate(this.inputReleaseDateRef.current, errors);
     selectValidate(this.inputCurrencyRef.current, errors);
-    termValidate(this.inputCheckboxPSRef.current, errors);
-    discountValidate(this.inputDiscountTrueRef.current, this.inputDiscountFalseRef.current, errors);
     fileValidate(this.inputFileRef.current, errors);
+    discountValidate(this.inputDiscountTrueRef.current, this.inputDiscountFalseRef.current, errors);
 
-    if (isEmpty(errors)) {
-      this.submitCard();
-      this.formRef.current?.reset();
-    } else this.setState({ errors });
-  };
+    return errors;
+  }
 
-  submitCard = () => {
-    let url = '';
-    if (this.inputFileRef.current?.files) {
-      const file = this.inputFileRef.current.files[0];
-      url = URL.createObjectURL(file);
-    }
-
-    const discountPercentage = this.inputDiscountTrueRef.current?.checked
-      ? Number(this.inputDiscountTrueRef.current?.value)
+  _addCard() {
+    const image = this.inputFileRef.current!.files![0];
+    const discountPercentage = this.inputDiscountTrueRef.current!.checked
+      ? Number(this.inputDiscountTrueRef.current!.value)
       : 0;
 
-    const cardData = {
+    this.props.addOneCard({
       id: crypto.randomUUID(),
-      name: this.inputNameRef.current?.value || 'test',
-      image: url,
-      price: Number(this.inputCurrencyRef.current?.value),
+      name: this.inputNameRef.current!.value,
+      releaseDate: this.inputReleaseDateRef.current!.value,
+      price: Number(this.inputCurrencyRef.current!.value),
+      image: URL.createObjectURL(image),
       discountPercentage,
-      releaseDate: this.inputReleaseDateRef.current?.value,
-    };
+    });
+  }
 
-    this.props.addOneCard(cardData);
-  };
+  resetStateErrors() {
+    this.setState(initialState);
+  }
 
   render() {
     const { name, releaseDate, price, check, discount, image } = this.state.errors;

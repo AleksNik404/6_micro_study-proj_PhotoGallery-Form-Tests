@@ -1,7 +1,12 @@
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import { VALIDATION_ERROR } from './constants';
+dayjs.extend(isBetween);
+
 type SetMessage = Record<string, string>;
 
 export const textValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error('net inputa');
+  if (!input) throw new Error(VALIDATION_ERROR);
 
   const { name, value } = input;
 
@@ -19,20 +24,31 @@ export const textValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
 };
 
 export const dateValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error('net inputa');
+  if (!input) throw new Error(VALIDATION_ERROR);
 
   const { name, value } = input;
-  // console.log(value, name);
 
   const isEmpty = !value.length;
   if (isEmpty) {
     errorsMap[name] = 'date required';
     return;
   }
+
+  const isValidDate = dayjs(value).isValid();
+  if (!isValidDate) {
+    errorsMap[name] = 'date isValid';
+    return;
+  }
+
+  const isValidYear = dayjs(value).isBetween('1980-01-01', dayjs('2025-12-31'));
+  if (!isValidYear) {
+    errorsMap[name] = 'specify the year between 1980 and 2025';
+    return;
+  }
 };
 
 export const selectValidate = (input: HTMLSelectElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error('net inputa');
+  if (!input) throw new Error(VALIDATION_ERROR);
 
   const { name, value } = input;
 
@@ -44,11 +60,9 @@ export const selectValidate = (input: HTMLSelectElement | null, errorsMap: SetMe
 };
 
 export const fileValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error('net inputa');
+  if (!input?.files) throw new Error(VALIDATION_ERROR);
 
   const { name, files } = input;
-  // console.log(value, name);
-  // console.log(files);
 
   const isEmpty = !files?.length;
   if (isEmpty) {
@@ -62,7 +76,7 @@ export const discountValidate = (
   input2: HTMLInputElement | null,
   errorsMap: SetMessage
 ) => {
-  if (!input1 || !input2) throw new Error('net inputa');
+  if (!input1 || !input2) throw new Error(VALIDATION_ERROR);
 
   const { name, checked } = input1;
   const { checked: checked2 } = input2;
@@ -75,7 +89,7 @@ export const discountValidate = (
 };
 
 export const termValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error('net inputa');
+  if (!input) throw new Error(VALIDATION_ERROR);
 
   const { name, checked } = input;
 
