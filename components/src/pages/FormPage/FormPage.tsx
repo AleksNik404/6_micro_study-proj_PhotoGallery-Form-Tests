@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from '../../components/Header';
+import Form from './components/Form';
 
 const FormPage = () => {
   return (
@@ -8,7 +9,7 @@ const FormPage = () => {
       <Header namePage="Form Page" />
       <main>
         <section className="container">
-          <h1>Форма</h1>
+          <Form />
           <h1>Карточки</h1>
         </section>
       </main>
