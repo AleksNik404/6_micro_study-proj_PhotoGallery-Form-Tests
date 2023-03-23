@@ -1,23 +1,22 @@
 import styled from '@emotion/styled';
 
-import Card from './Card';
-import { GameCard } from '../../../types/types';
+import Card, { CardItem } from './Card';
 
 export interface Cards {
-  data: GameCard[];
+  cards: CardItem[];
 }
 
-const CardsContainer = ({ data }: Cards) => {
+const CardsContainer = ({ cards }: Cards) => {
   return (
-    <Container>
-      {data.map((oneCardData) => {
-        return <Card key={oneCardData.id} data={oneCardData} />;
+    <Grid>
+      {cards.map((oneCardData) => {
+        return <Card key={oneCardData.id} cardData={oneCardData} />;
       })}
-    </Container>
+    </Grid>
   );
 };
 
-const Container = styled.div`
+const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 

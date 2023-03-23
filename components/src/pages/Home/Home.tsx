@@ -46,7 +46,7 @@ class Home extends Component<Props, State> {
                 handlerSearchValue={this.handlerSearchValue}
               />
             </InputContainer>
-            <CardsContainer data={data} />
+            <CardsContainer cards={data} />
           </section>
         </Main>
       </>

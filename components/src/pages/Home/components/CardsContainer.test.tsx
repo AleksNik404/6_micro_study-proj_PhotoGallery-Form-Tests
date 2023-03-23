@@ -18,7 +18,7 @@ const testDataCards = Array.from({ length: 10 }, (_, index) => {
 
 describe('CardsContainer', () => {
   it('Render ten cards', () => {
-    render(<CardsContainer data={testDataCards} />);
+    render(<CardsContainer cards={testDataCards} />);
 
     expect(screen.getAllByRole('heading', { level: 1, name: 'TestCard' }).length).toBe(10);
   });

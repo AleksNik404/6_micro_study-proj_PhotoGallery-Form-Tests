@@ -10,7 +10,7 @@ export const data = [
       'Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition includes the full base game and all its add-on expansions, plus modern enhancements like remastered art and visual effects, volumetric god rays and more',
     price: 39.99,
     discountPercentage: 67,
-    ReleaseDate: '11/11/11',
+    releaseDate: '11/11/11',
   },
   {
     id: '2',

@@ -4,40 +4,45 @@ import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 import CardPrice from './CardPrice';
 
-type Props = {
-  data: {
-    image: string;
-    name: string;
-    price: number;
-    developer: string;
-    discountPercentage: number;
-  };
+export interface CardItem {
+  id: string;
+  image: string;
+  name: string;
+  price: number;
+  discountPercentage: number;
+
+  developer?: string;
+  releaseDate?: string;
+}
+
+export type CardItemProps = {
+  cardData: CardItem;
 };
 
-class Card extends Component<Props> {
+class Card extends Component<CardItemProps> {
   render() {
-    const { image, name, price, developer, discountPercentage } = this.props.data;
+    const { image, name, price, developer, discountPercentage, releaseDate } = this.props.cardData;
 
     return (
-      <StyledCard>
+      <GridItem>
         <div className="image-box">
           <img className="image" src={image} alt={name} />
           <AiOutlinePlusCircle className="add-icon" />
         </div>
         <div className="text-box">
           <div>
-            <p className="maker">{developer}</p>
+            <p className="maker">{developer || releaseDate}</p>
             <h1 className="name">{name}</h1>
           </div>
 
           <CardPrice price={price} discountPercentage={discountPercentage} />
         </div>
-      </StyledCard>
+      </GridItem>
     );
   }
 }
 
-const StyledCard = styled.article`
+export const GridItem = styled.article`
   width: 100%;
   max-width: 15rem;
   overflow: hidden;
@@ -116,6 +121,7 @@ const StyledCard = styled.article`
 
   .name {
     font-size: calc(0.75rem + 0.15vw);
+    overflow-wrap: break-word;
   }
 `;
 

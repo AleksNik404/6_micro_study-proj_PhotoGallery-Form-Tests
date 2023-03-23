@@ -1,88 +1,117 @@
 import React, { Component } from 'react';
 
-import {
-  dateValidate,
-  fileValidate,
-  selectValidate,
-  textValidate,
-} from '../../../utils/validations';
-import FormInputField from './FormInputField';
-import FormSelectFiled from './FormSelectFiled';
+import { FormInputField, FormSelectFiled } from '.';
+import { CardItem } from '../../Home/components/Card';
 
-const options = ['EUR', '$', 'RUB'];
+import { INPUT_OPTIONS } from '../../../utils/constants';
+import { isEmpty } from '../../../utils/utils';
+import { dateValidate, discountValidate, termValidate } from '../../../utils/validations';
+import { fileValidate, selectValidate, textValidate } from '../../../utils/validations';
 
-const enum nameFields {
-  TITLE = 'name',
-  DATE = 'releaseDate',
-  CURRENCY = 'currency',
-  PC = 'PC',
-  PS = 'PS',
-  DISCOUNT = 'discount',
-}
-
-type Props = Record<string, never>;
 type State = {
-  errors: Partial<Record<string, string>>;
+  errors: Record<string, string>;
+};
+
+type Props = {
+  addOneCard: (data: CardItem) => void;
+};
+
+const initialState = {
+  errors: {},
 };
 
 class Form extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      errors: {},
-    };
-  }
+  state: State = initialState;
 
   inputNameRef = React.createRef<HTMLInputElement>();
-  inputCurrencyRef = React.createRef<HTMLSelectElement>();
   inputReleaseDateRef = React.createRef<HTMLInputElement>();
-
-  inputCheckboxPCRef = React.createRef<HTMLInputElement>();
-  inputCheckboxPSRef = React.createRef<HTMLInputElement>();
-
-  inputDiscountTrueRef = React.createRef<HTMLInputElement>();
-  inputDiscountFalseRef = React.createRef<HTMLInputElement>();
   inputFileRef = React.createRef<HTMLInputElement>();
 
-  updateState = (name: string, message: string) => {
-    this.setState((prevState) => ({
-      ...prevState,
-      errors: {
-        ...prevState.errors,
-        [name]: message,
-      },
-    }));
+  inputCheckboxPSRef = React.createRef<HTMLInputElement>();
+  inputDiscountTrueRef = React.createRef<HTMLInputElement>();
+  inputDiscountFalseRef = React.createRef<HTMLInputElement>();
 
-    // this.setState({ errors: { [lolg]: message } });
-  };
+  inputCurrencyRef = React.createRef<HTMLSelectElement>();
+  formRef = React.createRef<HTMLFormElement>();
 
-  resetState() {
-    this.setState((prev) => ({ errors: {} }));
+  resetStateErrors() {
+    this.setState(initialState);
   }
+
+  hah = () => {
+    if (
+      !this.inputNameRef.current ||
+      !this.inputReleaseDateRef.current ||
+      !this.inputCurrencyRef.current ||
+      !this.inputCheckboxPSRef.current ||
+      !this.inputDiscountTrueRef.current ||
+      !this.inputFileRef.current
+    ) {
+      return true;
+    }
+
+    this.inputNameRef.current;
+    this.inputReleaseDateRef.current;
+    this.inputCurrencyRef.current;
+    this.inputCheckboxPSRef.current;
+    this.inputDiscountTrueRef.current;
+    this.inputFileRef.current;
+    return false;
+  };
 
   onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    this.resetStateErrors();
 
-    this.resetState();
+    if (this.hah()) return;
 
-    textValidate(this.inputNameRef.current, this.updateState);
-    dateValidate(this.inputReleaseDateRef.current, this.updateState);
-    selectValidate(this.inputCurrencyRef.current, this.updateState);
-    // console.log(this.inputCheckboxPCRef);
-    // console.log(this.inputCheckboxPSRef);
-    // console.log(this.inputDiscountTrueRef);
-    // console.log(this.inputDiscountFalseRef);
-    fileValidate(this.inputFileRef.current, this.updateState);
-    console.log(this.inputFileRef);
+    const errors: Record<string, string> = {};
+
+    textValidate(this.inputNameRef.current, errors);
+    dateValidate(this.inputReleaseDateRef.current, errors);
+    selectValidate(this.inputCurrencyRef.current, errors);
+    termValidate(this.inputCheckboxPSRef.current, errors);
+    discountValidate(this.inputDiscountTrueRef.current, this.inputDiscountFalseRef.current, errors);
+    fileValidate(this.inputFileRef.current, errors);
+
+    if (isEmpty(errors)) {
+      this.submitCard();
+      this.formRef.current?.reset();
+    } else this.setState({ errors });
+  };
+
+  submitCard = () => {
+    let url = '';
+    if (this.inputFileRef.current?.files) {
+      const file = this.inputFileRef.current.files[0];
+      url = URL.createObjectURL(file);
+    }
+
+    const discountPercentage = this.inputDiscountTrueRef.current?.checked
+      ? Number(this.inputDiscountTrueRef.current?.value)
+      : 0;
+
+    const cardData = {
+      id: crypto.randomUUID(),
+      name: this.inputNameRef.current?.value || 'test',
+      image: url,
+      price: Number(this.inputCurrencyRef.current?.value),
+      discountPercentage,
+      releaseDate: this.inputReleaseDateRef.current?.value,
+    };
+
+    this.props.addOneCard(cardData);
   };
 
   render() {
-    const { name, releaseDate, currency, PC, PS, discount, image } = this.state.errors;
+    const { name, releaseDate, price, check, discount, image } = this.state.errors;
+
     return (
       <form
         style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
         onSubmit={this.onSubmit}
         noValidate
+        ref={this.formRef}
       >
         <FormInputField type="text" name="name" InputRef={this.inputNameRef} ErrorMessage={name} />
         <FormInputField
@@ -92,37 +121,34 @@ class Form extends Component<Props, State> {
           ErrorMessage={releaseDate}
         />
         <FormSelectFiled
-          name="currency"
-          defaultValue="Select currency"
+          name="price"
+          defaultValue="Select price"
           InputRef={this.inputCurrencyRef}
-          list={options}
-          ErrorMessage={currency}
+          list={INPUT_OPTIONS}
+          ErrorMessage={price}
         />
         <FormInputField
           type="checkbox"
-          name="PC"
-          InputRef={this.inputCheckboxPCRef}
-          ErrorMessage={PC}
-        />
-        <FormInputField
-          type="checkbox"
-          name="PS"
+          name="check"
           InputRef={this.inputCheckboxPSRef}
-          ErrorMessage={PS}
+          ErrorMessage={check}
         />
         <FormInputField
           type="radio"
           name="discount"
-          InputRef={this.inputDiscountTrueRef}
-          ErrorMessage={discount}
-        />
-        <FormInputField
-          type="radio"
-          name="discount"
+          label="None"
           InputRef={this.inputDiscountFalseRef}
           ErrorMessage={discount}
         />
-        {/* <FormInputField type="file" name="ReleaseDate" ref={this.inputReleaseDateRef} /> */}
+        <FormInputField
+          type="radio"
+          name="discount"
+          value={25}
+          label="25%"
+          InputRef={this.inputDiscountTrueRef}
+          ErrorMessage={discount}
+        />
+
         <label htmlFor="image">SELECT FILE</label>
         <input
           id="image"
@@ -130,7 +156,7 @@ class Form extends Component<Props, State> {
           name="image"
           accept="image/*"
           ref={this.inputFileRef}
-          hidden
+          // hidden
         />
         {image}
         <input type="submit" />

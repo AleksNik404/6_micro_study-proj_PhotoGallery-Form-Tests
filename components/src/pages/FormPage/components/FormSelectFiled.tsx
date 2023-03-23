@@ -4,7 +4,7 @@ interface InputProps {
   name: string;
   InputRef: React.Ref<HTMLSelectElement>;
   label?: string;
-  list: string[];
+  list: number[];
   defaultValue: string;
 
   ErrorMessage?: string;
