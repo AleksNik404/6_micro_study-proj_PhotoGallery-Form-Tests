@@ -3,17 +3,16 @@ import React from 'react';
 interface InputProps {
   name: string;
   InputRef: React.Ref<HTMLInputElement>;
-  type: string;
   label?: string;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type?: string;
   value?: number;
   ErrorMessage?: string;
   placeholder?: string;
 }
 
 const FormInputField = (props: InputProps) => {
-  const { name, InputRef, type, value, ErrorMessage = '', label = name } = props;
+  const { name, InputRef, value, type = 'text', ErrorMessage = '', label = name } = props;
 
   return (
     <div>
