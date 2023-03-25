@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../../components/Header';
+import { Main } from '../../styled/Main';
 import { CardsContainer } from '../Home/components';
 import { CardItem } from '../Home/components/Card';
 import { Cards } from '../Home/components/CardsContainer';
@@ -15,6 +16,8 @@ class FormPage extends Component<Props, State> {
   };
 
   addOneCard = (data: CardItem) => {
+    console.log(data);
+
     this.setState((prev) => {
       return {
         cards: [...prev.cards, data],
@@ -26,12 +29,12 @@ class FormPage extends Component<Props, State> {
     return (
       <>
         <Header namePage="Form Page" />
-        <main>
+        <Main>
           <section className="container">
             <Form addOneCard={this.addOneCard} />
             <CardsContainer cards={this.state.cards} />
           </section>
-        </main>
+        </Main>
       </>
     );
   }

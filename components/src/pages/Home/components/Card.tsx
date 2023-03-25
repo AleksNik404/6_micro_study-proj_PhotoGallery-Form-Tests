@@ -45,6 +45,7 @@ class Card extends Component<CardItemProps> {
 export const GridItem = styled.article`
   width: 100%;
   max-width: 15rem;
+
   overflow: hidden;
 
   display: flex;

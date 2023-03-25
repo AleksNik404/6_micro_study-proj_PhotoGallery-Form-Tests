@@ -1,5 +1,5 @@
 import Form from './Form';
-import FormInputField from './FormInputField';
-import FormSelectFiled from './FormSelectFiled';
+import FormInput from './FormInput';
+import FormSelect from './FormSelect';
 
-export { FormInputField, Form, FormSelectFiled };
+export { Form, FormInput, FormSelect };

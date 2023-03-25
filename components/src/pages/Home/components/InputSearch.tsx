@@ -14,7 +14,7 @@ export default class InputSearch extends Component<Props> {
     const { searchValue, handlerSearchValue, placeholder = 'Search' } = this.props;
 
     return (
-      <SearchContainer className="pole">
+      <SearchContainer>
         <IconContainer>
           <BsSearch />
         </IconContainer>
@@ -31,9 +31,11 @@ export default class InputSearch extends Component<Props> {
 
 const SearchContainer = styled.div`
   display: flex;
-  align-items: center;
+  place-items: center;
 
   width: 100%;
+  gap: 10px;
+
   border-radius: 2rem;
   padding-right: 1.4em;
   background-color: var(--primary-color-400);
@@ -47,9 +49,9 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  padding: 10px;
-  outline: 0;
+  height: 40px;
 
+  outline: 0;
   background-color: transparent;
   color: var(--text-color-hover);
 
@@ -59,12 +61,13 @@ const Input = styled.input`
 `;
 
 const IconContainer = styled.div`
-  margin-left: 0.7em;
-  height: 0.7em;
-  width: 0.7em;
+  margin-left: 0.8em;
 
-  display: flex;
-  place-items: center;
+  svg {
+    display: flex;
+    position: relative;
+    transform: translateY(1px);
+  }
 
   cursor: pointer;
 `;

@@ -56,6 +56,7 @@ class Home extends Component<Props, State> {
 
 const InputContainer = styled.div`
   padding: 20px 0;
+
   max-width: 20em;
 `;
 

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
-import { FormInputField, FormSelectFiled } from '.';
+import { FormInput, FormSelect } from '.';
 import { CardItem } from '../../Home/components/Card';
 
 import { INPUT_OPTIONS } from '../../../utils/constants';
-import { isEmpty as isEmpty } from '../../../utils/utils';
+import { isEmpty } from '../../../utils/utils';
 import { dateValidate, discountValidate, termValidate } from '../../../utils/validations';
 import { fileValidate, selectValidate, textValidate } from '../../../utils/validations';
+import FormSwitcher from './FormSwitcher';
+import FormFile from './FormFile';
+import FormCheckBox from './FormCheckBox';
 
 type State = {
   errors: Record<string, string>;
@@ -73,6 +76,8 @@ class Form extends Component<Props, State> {
     fileValidate(this.inputFile.current, errors);
     discountValidate(this.inputDiscountNone.current, this.inputDiscountTrue.current, errors);
 
+    console.log(errors);
+
     return errors;
   }
 
@@ -100,63 +105,112 @@ class Form extends Component<Props, State> {
     const { name, releaseDate, price, check, discount, image } = this.state.errors;
 
     return (
-      <FormStyled onSubmit={this.onSubmit} noValidate ref={this.formRef}>
-        {/* <input type="text" name="jaja" ref={this.setRef} /> */}
-        <FormInputField name="name" InputRef={this.inputName} ErrorMessage={name} />
-        <FormInputField
-          type="date"
-          name="releaseDate"
-          InputRef={this.inputReleaseDate}
-          ErrorMessage={releaseDate}
-        />
-        <FormSelectFiled
-          name="price"
-          defaultValue="Select price"
-          InputRef={this.inputCurrency}
-          list={INPUT_OPTIONS}
-          ErrorMessage={price}
-        />
-        <FormInputField
-          type="checkbox"
-          name="check"
-          InputRef={this.inputCheckboxPrice}
-          ErrorMessage={check}
-        />
-        <FormInputField
-          type="radio"
-          name="discount"
-          label="None"
-          InputRef={this.inputDiscountTrue}
-          ErrorMessage={discount}
-        />
-        <FormInputField
-          type="radio"
-          name="discount"
-          value={25}
-          label="25%"
-          InputRef={this.inputDiscountNone}
-          ErrorMessage={discount}
-        />
+      <Wrapper>
+        <FormStyled onSubmit={this.onSubmit} noValidate ref={this.formRef}>
+          {/* <input type="text" name="jaja" ref={this.setRef} /> */}
+          <h1 style={{ gridColumn: '1 / -1', textAlign: 'center' }}>Form</h1>
+          <FormInput
+            name="name"
+            InputRef={this.inputName}
+            label="Title"
+            placeholder="Set title"
+            ErrorMessage={name}
+          />
+          <FormInput
+            type="date"
+            name="releaseDate"
+            label="Release Date"
+            InputRef={this.inputReleaseDate}
+            ErrorMessage={releaseDate}
+          />
+          <FormSelect
+            name="price"
+            defaultValue="Select rice"
+            label="Select a price"
+            InputRef={this.inputCurrency}
+            list={INPUT_OPTIONS}
+            ErrorMessage={price}
+          />
+          <FormSwitcher
+            refNone={this.inputDiscountNone}
+            refTrue={this.inputDiscountTrue}
+            label="Choise discount"
+            name="discount"
+            value={25}
+            ErrorMessage={discount}
+          />
 
-        <label htmlFor="image">SELECT FILE</label>
-        <input
-          id="image"
-          type="file"
-          name="image"
-          accept="image/*"
-          ref={this.inputFile}
-          // hidden
-        />
-        {image}
-        <input type="submit" />
-        <input type="reset" />
-      </FormStyled>
+          <FormFile
+            name="image"
+            fileRef={this.inputFile}
+            label="select file"
+            ErrorMessage={image}
+          />
+
+          <FormCheckBox
+            name="check"
+            label="i agree to the xdd Terms"
+            checkboxRef={this.inputCheckboxPrice}
+            ErrorMessage={check}
+          />
+
+          <Button type="submit">Submit</Button>
+        </FormStyled>
+        {/* <Card
+          cardData={{
+            id: 'test',
+            image: 'awdaw',
+            name: this.inputName.current?.value || '',
+            price: 39,
+            discountPercentage: 10,
+          }}
+        /> */}
+      </Wrapper>
     );
   }
 }
 
 export default Form;
 
+const Wrapper = styled.div`
+  max-width: 650px;
+  margin: 0 auto;
+`;
+
 const FormStyled = styled.form`
-  display: flex;
+  display: grid;
+  padding: 15px 20px;
+
+  gap: 20px;
+  grid-template-columns: repeat(3, calc((100% - 2 * 20px) / 3));
+
+  row-gap: 20px;
+
+  border-radius: 2px;
+  background-color: purple;
+
+  & > * {
+    /* padding: 0 12px; */
+  }
+
+  input,
+  select {
+    padding: 0 15px;
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(2, calc((100% - 20px) / 2));
+    padding: 50px 15px;
+  }
+  /* color-scheme: dark; */
+`;
+
+const Button = styled.button`
+  height: 30px;
+  padding: 0 10px;
+  grid-column: 1 / -1;
+
+  cursor: pointer;
+  /* display: flex;
+  flex-direction: column; */
 `;
