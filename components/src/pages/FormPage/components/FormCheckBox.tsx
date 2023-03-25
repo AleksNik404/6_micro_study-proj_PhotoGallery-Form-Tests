@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
-import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from 'react-icons/md';
+import { ErrorMesage } from '../../../styled/styledComponents';
 
 interface CheckBoxProps {
   checkboxRef: React.Ref<HTMLInputElement>;
@@ -13,7 +13,7 @@ interface CheckBoxProps {
 }
 
 const FormCheckBox = (props: CheckBoxProps) => {
-  const { checkboxRef, name, label, value, ErrorMessage } = props;
+  const { checkboxRef, name, label, ErrorMessage } = props;
 
   return (
     <CheckBoxBlock>
@@ -24,6 +24,7 @@ const FormCheckBox = (props: CheckBoxProps) => {
         <ImCheckboxChecked className="icon  icon--active" />
 
         {label}
+        {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
       </label>
     </CheckBoxBlock>
   );
@@ -32,23 +33,27 @@ const FormCheckBox = (props: CheckBoxProps) => {
 const CheckBoxBlock = styled.div`
   display: flex;
   place-items: center;
+  position: relative;
 
-  grid-column: span 2;
+  justify-content: center;
+  align-self: stretch;
+
+  @media (max-width: 510px) {
+    grid-column: 1 / -1;
+  }
 
   label {
     display: flex;
     place-items: center;
+    padding-left: 30px;
 
     position: relative;
-
-    padding-left: 30px;
   }
 
   .icon {
     cursor: pointer;
-    font-size: 20px;
-
     color: #ff6433;
+    font-size: 20px;
 
     position: absolute;
     left: 0;
@@ -56,7 +61,6 @@ const CheckBoxBlock = styled.div`
     transition: all 0.2s;
 
     &--active {
-      /* display: none; */
       opacity: 0;
       color: #2196f3;
     }
@@ -65,6 +69,7 @@ const CheckBoxBlock = styled.div`
   input:checked + label .icon {
     opacity: 0;
   }
+
   input:checked + label .icon--active {
     display: block;
     opacity: 1;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ErrorMesage } from '../../../styled/styledComponents';
 
 interface SwitchProps {
   refNone: React.Ref<HTMLInputElement>;
@@ -12,10 +13,10 @@ interface SwitchProps {
 }
 
 const FormSwitcher = (props: SwitchProps) => {
-  const { refNone, refTrue, name, label, value, ErrorMessage } = props;
+  const { refNone, refTrue, name, ErrorMessage } = props;
   return (
     <SwitchBlock>
-      <h3>25% discount</h3>
+      <p>25% discount</p>
 
       <div className="switch">
         <input
@@ -36,7 +37,10 @@ const FormSwitcher = (props: SwitchProps) => {
           name={name}
           className="hide-behind-page"
         />
-        <label htmlFor="yes">yes</label>
+        <label htmlFor="yes">
+          yes
+          {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        </label>
       </div>
     </SwitchBlock>
   );
@@ -45,18 +49,15 @@ const FormSwitcher = (props: SwitchProps) => {
 const SwitchBlock = styled.div`
   display: flex;
   flex-direction: column;
-
   place-items: center;
-  overflow: hidden;
+
+  padding: 5px 10px;
 
   .switch {
-    overflow: hidden;
     border-radius: 6px;
     text-transform: capitalize;
-  }
 
-  input:checked + label {
-    background-color: blue;
+    position: relative;
   }
 
   label {
@@ -64,22 +65,22 @@ const SwitchBlock = styled.div`
     cursor: pointer;
 
     height: 30px;
-    width: 50px;
+    width: 60px;
 
     place-items: center;
     place-content: center;
 
-    background-color: #e4e4e4;
-    color: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.2s;
+
+    color: inherit;
+    background-color: #10181f;
   }
 
-  /* @media (max-width: 550px) { */
-  grid-column: 1 / -1;
-  /* } */
+  input:checked + label {
+    background-color: #1e3a8a;
+  }
 `;
 
 export default FormSwitcher;

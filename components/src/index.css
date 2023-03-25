@@ -127,3 +127,16 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-thumb:hover {
   background: #70d6ff;
 } */
+
+@keyframes toBottom {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(100%);
+    left: 0;
+  }
+}

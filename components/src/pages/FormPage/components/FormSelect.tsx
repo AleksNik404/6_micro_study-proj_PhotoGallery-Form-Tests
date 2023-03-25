@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { ErrorMesage } from '../../../styled/styledComponents';
 
 interface InputProps {
   name: string;
@@ -16,7 +17,9 @@ const FormSelect = (props: InputProps) => {
 
   return (
     <InputBlock>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>
+        {label} {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+      </label>
       <select ref={InputRef} name={name} id={name} defaultValue={defaultValue}>
         <option value="" hidden>
           {defaultValue}
@@ -27,7 +30,6 @@ const FormSelect = (props: InputProps) => {
           </option>
         ))}
       </select>
-      {ErrorMessage && <p>{ErrorMessage}</p>}
     </InputBlock>
   );
 };
@@ -38,37 +40,6 @@ const InputBlock = styled.div`
   gap: 5px;
 
   position: relative;
-
-  flex: 1 0 50%;
-
-  select {
-    height: 2rem;
-    padding: 0 20px;
-    /* -webkit-appearance: none; */
-    /* -moz-appearance: none; */
-  }
-
-  p {
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-
-    color: red;
-
-    animation: toBottom 0.2s forwards;
-  }
-
-  @keyframes toBottom {
-    from {
-      opacity: 0;
-      transform: translateY(0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(100%);
-    }
-  }
 `;
 
 export default FormSelect;

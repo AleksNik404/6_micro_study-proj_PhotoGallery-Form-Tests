@@ -6,7 +6,7 @@ import { CardsContainer, InputSearch } from './components';
 
 import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../utils/utils';
 import { data } from '../../data/data';
-import { Main } from '../../styled/Main';
+import { Main } from '../../styled/styledComponents';
 
 type State = {
   searchValue: string;

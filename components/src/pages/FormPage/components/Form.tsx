@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
-import { FormInput, FormSelect } from '.';
+import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
 import { CardItem } from '../../Home/components/Card';
 
 import { INPUT_OPTIONS } from '../../../utils/constants';
 import { isEmpty } from '../../../utils/utils';
 import { dateValidate, discountValidate, termValidate } from '../../../utils/validations';
 import { fileValidate, selectValidate, textValidate } from '../../../utils/validations';
-import FormSwitcher from './FormSwitcher';
-import FormFile from './FormFile';
-import FormCheckBox from './FormCheckBox';
 
 type State = {
   errors: Record<string, string>;
@@ -83,8 +80,8 @@ class Form extends Component<Props, State> {
 
   _addCard() {
     const image = this.inputFile.current!.files![0];
-    const discountPercentage = this.inputDiscountNone.current!.checked
-      ? Number(this.inputDiscountNone.current!.value)
+    const discountPercentage = this.inputDiscountTrue.current!.checked
+      ? Number(this.inputDiscountTrue.current!.value)
       : 0;
 
     this.props.addOneCard({
@@ -108,12 +105,11 @@ class Form extends Component<Props, State> {
       <Wrapper>
         <FormStyled onSubmit={this.onSubmit} noValidate ref={this.formRef}>
           {/* <input type="text" name="jaja" ref={this.setRef} /> */}
-          <h1 style={{ gridColumn: '1 / -1', textAlign: 'center' }}>Form</h1>
           <FormInput
             name="name"
             InputRef={this.inputName}
             label="Title"
-            placeholder="Set title"
+            placeholder="Product Name"
             ErrorMessage={name}
           />
           <FormInput
@@ -125,8 +121,8 @@ class Form extends Component<Props, State> {
           />
           <FormSelect
             name="price"
-            defaultValue="Select rice"
-            label="Select a price"
+            defaultValue="Select price"
+            label="Currency"
             InputRef={this.inputCurrency}
             list={INPUT_OPTIONS}
             ErrorMessage={price}
@@ -143,7 +139,7 @@ class Form extends Component<Props, State> {
           <FormFile
             name="image"
             fileRef={this.inputFile}
-            label="select file"
+            label="Select image"
             ErrorMessage={image}
           />
 
@@ -173,44 +169,49 @@ class Form extends Component<Props, State> {
 export default Form;
 
 const Wrapper = styled.div`
-  max-width: 650px;
+  max-width: 800px;
   margin: 0 auto;
+  margin-bottom: 30px;
 `;
 
 const FormStyled = styled.form`
   display: grid;
-  padding: 15px 20px;
+  gap: 30px 20px;
+  padding: 30px 20px;
 
-  gap: 20px;
-  grid-template-columns: repeat(3, calc((100% - 2 * 20px) / 3));
+  background-color: rgba(0, 70, 140, 0.1);
 
-  row-gap: 20px;
-
+  align-items: center;
   border-radius: 2px;
-  background-color: purple;
-
-  & > * {
-    /* padding: 0 12px; */
-  }
 
   input,
   select {
+    height: 2.5rem;
     padding: 0 15px;
+
+    color-scheme: dark;
+    color: inherit;
+    background-color: #10181f;
+    border: 1px solid #94a3b878;
+
+    cursor: pointer;
+    outline: none;
+    &:focus {
+      border-color: #60a5fa;
+    }
   }
 
-  @media (max-width: 650px) {
-    grid-template-columns: repeat(2, calc((100% - 20px) / 2));
-    padding: 50px 15px;
-  }
-  /* color-scheme: dark; */
+  /* grid-template-columns: repeat(3, calc((100% - 2 * 20px) / 3)); */
+  /* @media (max-width: 740px) { */
+  grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
+  /* } */
 `;
 
 const Button = styled.button`
-  height: 30px;
-  padding: 0 10px;
-  grid-column: 1 / -1;
+  min-width: 200px;
+  justify-self: center;
 
+  height: 30px;
+  grid-column: 1 / -1;
   cursor: pointer;
-  /* display: flex;
-  flex-direction: column; */
 `;

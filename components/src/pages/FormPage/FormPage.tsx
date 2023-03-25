@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../../components/Header';
-import { Main } from '../../styled/Main';
+import { Main } from '../../styled/styledComponents';
 import { CardsContainer } from '../Home/components';
 import { CardItem } from '../Home/components/Card';
 import { Cards } from '../Home/components/CardsContainer';
