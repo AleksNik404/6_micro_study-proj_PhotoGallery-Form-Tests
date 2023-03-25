@@ -44,17 +44,28 @@ class Card extends Component<CardItemProps> {
 
 export const GridItem = styled.article`
   width: 100%;
-  max-width: 15rem;
 
-  overflow: hidden;
+  /* for Grid container */
+  /* max-width: 15rem; */
 
   display: flex;
   flex-direction: column;
-
   gap: 0.5em;
+
+  overflow: hidden;
+  background-color: #18181b;
+  border-radius: 4px;
+
+  transition: all 0.2s;
 
   &:hover .add-icon {
     opacity: 1;
+  }
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
   }
 
   cursor: pointer;
@@ -78,6 +89,7 @@ export const GridItem = styled.article`
 
     &:hover::after {
       background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.15);
     }
   }
 
@@ -85,9 +97,7 @@ export const GridItem = styled.article`
     width: 100%;
     height: 100%;
     object-fit: cover;
-
     position: absolute;
-
     border-radius: 0.3em;
   }
 
@@ -96,14 +106,13 @@ export const GridItem = styled.article`
     height: 1.3em;
 
     position: absolute;
-    z-index: 2;
     right: 0.7em;
     top: 0.7em;
+    z-index: 2;
 
     color: var(--secondary-color-1000);
-
-    transition: all 0.3s;
     opacity: 0;
+    transition: all 0.3s;
   }
 
   .text-box {
@@ -111,8 +120,9 @@ export const GridItem = styled.article`
     flex-direction: column;
     justify-content: space-between;
 
-    height: 100%;
     gap: 20px;
+    height: 100%;
+    padding: 0px 10px 20px;
   }
 
   .maker {

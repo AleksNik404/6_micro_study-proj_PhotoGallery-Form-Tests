@@ -46,7 +46,7 @@ class Home extends Component<Props, State> {
                 handlerSearchValue={this.handlerSearchValue}
               />
             </InputContainer>
-            <CardsContainer cards={data} />
+            <CardsContainer cards={data.slice(0, 11)} />
           </section>
         </Main>
       </>
@@ -56,7 +56,6 @@ class Home extends Component<Props, State> {
 
 const InputContainer = styled.div`
   padding: 20px 0;
-
   max-width: 20em;
 `;
 

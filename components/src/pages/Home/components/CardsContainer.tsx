@@ -17,12 +17,22 @@ const CardsContainer = ({ cards }: Cards) => {
 };
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  /* if whant GRID */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); */
 
+  /* if want FLEX */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  & > * {
+    max-width: 250px;
+    flex: 1 0 190px;
+  }
+
+  /* Other */
   justify-items: center;
-  row-gap: 3rem;
-  column-gap: 1rem;
+  gap: 3rem 1rem;
 `;
 
 export default CardsContainer;
