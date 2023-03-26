@@ -1,4 +1,3 @@
-import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,12 +6,14 @@ import { Form } from '.';
 import { vitest } from 'vitest';
 
 describe('inputSearch', () => {
-  it('full form submission test', async () => {
-    const fileForUpload = new File(['hello'], 'hello.png', { type: 'image/png' });
-    const addOneCard = vitest.fn();
-
+  beforeEach(() => {
     window.URL.createObjectURL = vitest.fn(); // exists only in the web api
     crypto.randomUUID = vitest.fn(); // exists only in the web api
+  });
+
+  it('full form submission test', async () => {
+    const addOneCard = vitest.fn();
+    const fileForUpload = new File(['hello'], 'hello.png', { type: 'image/png' });
 
     render(<Form addOneCard={addOneCard} />, { wrapper: BrowserRouter });
 
@@ -53,5 +54,41 @@ describe('inputSearch', () => {
     await userEvent.click(submitButton);
     expect(screen.queryByText('maximum 24 characters')).not.toBeInTheDocument();
     expect(addOneCard).toBeCalledTimes(1);
+  });
+
+  it('text field validation messages', async () => {
+    const addOneCard = vitest.fn();
+
+    render(<Form addOneCard={addOneCard} />, { wrapper: BrowserRouter });
+
+    const textField = screen.getByLabelText('Title');
+    const submitButton = screen.getByRole('button', { name: /submit/i });
+
+    await userEvent.click(submitButton);
+    expect(screen.getByText('Title canot be empty')).toBeInTheDocument();
+
+    await userEvent.type(textField, 'lower case');
+    await userEvent.click(submitButton);
+    expect(screen.getByText('Please provide the title with a capital letter')).toBeInTheDocument();
+
+    expect(addOneCard).toBeCalledTimes(0);
+  });
+
+  it('date field validation messages', async () => {
+    const addOneCard = vitest.fn();
+
+    render(<Form addOneCard={addOneCard} />, { wrapper: BrowserRouter });
+
+    const dateField = screen.getByLabelText('Release Date');
+    const submitButton = screen.getByRole('button', { name: /submit/i });
+
+    await userEvent.click(submitButton);
+    expect(screen.getByText('Please fill in the date field')).toBeInTheDocument();
+
+    await userEvent.type(dateField, '2077-03-26');
+    await userEvent.click(submitButton);
+    expect(screen.queryByText('Specify the year between 1980 and 2025')).toBeInTheDocument();
+
+    expect(addOneCard).toBeCalledTimes(0);
   });
 });

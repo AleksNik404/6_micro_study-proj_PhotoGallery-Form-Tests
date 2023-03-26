@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import { ErrorMesage } from '../../../styled/styledComponents';
 
 interface InputProps {

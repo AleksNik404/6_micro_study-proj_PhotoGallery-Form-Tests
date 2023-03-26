@@ -24,19 +24,6 @@ const initialState = {
 class Form extends Component<Props, State> {
   state: State = initialState;
 
-  // testRef: React.RefObject<Record<string, HTMLInputElement>>;
-  // constructor(props: Props) {
-  //   super(props);
-  //   this.testRef = React.createRef<Record<string, HTMLInputElement>>();
-  //   this.testRef = { current: {} };
-  // }
-
-  // setRef = (el: HTMLInputElement | null) => {
-  //   if (this.testRef.current && el) {
-  //     this.testRef.current[el.name] = el;
-  //   }
-  // };
-
   inputName = React.createRef<HTMLInputElement>();
   inputReleaseDate = React.createRef<HTMLInputElement>();
   inputFile = React.createRef<HTMLInputElement>();
@@ -102,7 +89,6 @@ class Form extends Component<Props, State> {
     return (
       <Wrapper>
         <FormStyled onSubmit={this.onSubmit} noValidate ref={this.formRef}>
-          {/* <input type="text" name="jaja" ref={this.setRef} /> */}
           <FormInput
             name="name"
             InputRef={this.inputName}

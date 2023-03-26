@@ -59,13 +59,3 @@ const FormBlock = styled.div`
 `;
 
 export default FormPage;
-
-// type inputRefs = Record<string, HTMLInputElement>;
-
-//  manyInputRefs = React.createRef<inputRefs>();
-//  selectRef = React.createRef<HTMLSelectElement>();
-
-// setInputsRef = (input: HTMLInputElement) => {
-//   const current = { ...this.manyInputRefs.current, [input.name]: input };
-//   this.manyInputRefs = { current };
-// };

@@ -101,7 +101,6 @@ export const GridItem = styled.article`
     height: 100%;
     object-fit: cover;
     position: absolute;
-    border-radius: 0.3em;
   }
 
   .add-icon {
