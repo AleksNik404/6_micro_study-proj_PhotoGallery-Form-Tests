@@ -62,7 +62,7 @@ export const selectValidate = (input: HTMLSelectElement | null, errorsMap: SetMe
 export const fileValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
   if (!input?.files) throw new Error(VALIDATION_ERROR);
 
-  const { name, files, value } = input;
+  const { name, files } = input;
 
   const isEmpty = !files?.length;
   if (isEmpty) {

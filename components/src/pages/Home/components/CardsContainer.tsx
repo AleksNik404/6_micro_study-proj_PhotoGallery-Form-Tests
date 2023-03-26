@@ -17,7 +17,7 @@ const CardsContainer = ({ cards }: Cards) => {
 };
 
 const Grid = styled.div`
-  /* if whant GRID */
+  /* if want GRID */
   /* display: grid; */
   /* grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); */
 
@@ -25,10 +25,6 @@ const Grid = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  & > * {
-    max-width: 250px;
-    flex: 1 0 190px;
-  }
 
   /* Other */
   justify-items: center;

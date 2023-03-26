@@ -52,7 +52,7 @@ const CheckBoxBlock = styled.div`
 
   .icon {
     cursor: pointer;
-    color: #ff6433;
+    color: #c2410c;
     font-size: 20px;
 
     position: absolute;
@@ -62,7 +62,10 @@ const CheckBoxBlock = styled.div`
 
     &--active {
       opacity: 0;
-      color: #2196f3;
+      color: #1e3a8a;
+
+      box-shadow: inset 0px 0px 0px 3px rgba(0, 0, 0, 1);
+      background-color: white;
     }
   }
 

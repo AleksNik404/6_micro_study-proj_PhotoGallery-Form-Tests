@@ -23,7 +23,7 @@ export const data = [
       'Experience an atmospheric hunting game like no other in this realistic and visually breathtaking open world. Immerse yourself in the atmospheric single player campaign, or share the ultimate hunting experience with friends.',
     price: 19.99,
     discountPercentage: 75,
-    ReleaseDate: '02/16/17',
+    releaseDate: '02/16/17',
   },
   {
     id: '3',
@@ -36,7 +36,7 @@ export const data = [
       'Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, Red Dead Redemption 2 is an epic tale of honor and loyalty at the dawn of the modern age.',
     price: 59.99,
     discountPercentage: 0,
-    ReleaseDate: '11/05/19',
+    releaseDate: '11/05/19',
   },
   {
     id: '4',
@@ -49,7 +49,7 @@ export const data = [
       'A galaxy-spanning adventure awaits in STAR WARS Jedi: Fallen Order, a new 3rd person action-adventure title from Respawn Entertainment.',
     price: 39.99,
     discountPercentage: 90,
-    ReleaseDate: '11/14/19',
+    releaseDate: '11/14/19',
   },
   {
     id: '5',
@@ -62,7 +62,7 @@ export const data = [
       'Embark on a journey to a realm overrun by demons in a new epic RPG from the creators of Pathfinder: Kingmaker. Explore the nature of good and evil, learn the true cost of power, and rise as a Mythic Hero capable of deeds beyond mortal expectations.',
     price: 49.99,
     discountPercentage: 0,
-    ReleaseDate: '09/02/21',
+    releaseDate: '09/02/21',
   },
   {
     id: '6',
@@ -75,7 +75,7 @@ export const data = [
       'Isaac Clarke is an everyman engineer on a mission to repair the USG Ishimura, only to discover the ship`s crew has been slaughtered and his beloved partner, Nicole, is lost somewhere on board.',
     price: 59.99,
     discountPercentage: 15,
-    ReleaseDate: '01/27/23',
+    releaseDate: '01/27/23',
   },
   {
     id: '7',
@@ -88,7 +88,7 @@ export const data = [
       'The Outer Worlds: Spacer’s Choice Edition is the ultimate way to play the award-winning RPG from Obsidian Entertainment and Private Division.',
     price: 47.99,
     discountPercentage: 20,
-    ReleaseDate: '03/07/23',
+    releaseDate: '03/07/23',
   },
   {
     id: '8',
@@ -101,7 +101,7 @@ export const data = [
       'A Sci-fi 2D action-platformer, metroidvania, souls-like game. Explore the apocalypse cyberpunk world full of supernatural beings, some of them are only visible in the light source of your drones. Kill, gain, upgrade, get stronger in the dark world!',
     price: 13.99,
     discountPercentage: 26,
-    ReleaseDate: '09/30/22',
+    releaseDate: '09/30/22',
   },
   {
     id: '9',
@@ -114,7 +114,7 @@ export const data = [
       'Hogwarts Legacy is an immersive, open-world action RPG set in the world first introduced in the Harry Potter books. Now you can take control of the action and be at the center of your own adventure in the wizarding world. Your legacy is what you make of it. Live the Unwritten.',
     price: 59.99,
     discountPercentage: 0,
-    ReleaseDate: '02/10/23',
+    releaseDate: '02/10/23',
   },
 ];
 

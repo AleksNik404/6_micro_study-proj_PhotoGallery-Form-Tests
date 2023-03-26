@@ -71,7 +71,7 @@ const SwitchBlock = styled.div`
     place-content: center;
 
     border: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4), 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.2s;
 
     color: inherit;

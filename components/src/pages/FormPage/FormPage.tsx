@@ -1,6 +1,8 @@
+import styled from '@emotion/styled';
 import React, { Component } from 'react';
 
 import Header from '../../components/Header';
+import Toast from '../../components/Toast';
 import { Main } from '../../styled/styledComponents';
 import { CardsContainer } from '../Home/components';
 import { CardItem } from '../Home/components/Card';
@@ -8,20 +10,26 @@ import { Cards } from '../Home/components/CardsContainer';
 import Form from './components/Form';
 
 type Props = Record<string, never>;
-type State = Cards;
+type State = Cards & { toastMessage: string };
 
 class FormPage extends Component<Props, State> {
   state: State = {
     cards: [],
+    toastMessage: '',
   };
 
   addOneCard = (data: CardItem) => {
-    console.log(data);
-
     this.setState((prev) => {
       return {
         cards: [...prev.cards, data],
+        toastMessage: 'Success create card',
       };
+    });
+  };
+
+  deleteToast = () => {
+    this.setState({
+      toastMessage: '',
     });
   };
 
@@ -31,7 +39,12 @@ class FormPage extends Component<Props, State> {
         <Header namePage="Form Page" />
         <Main>
           <section className="container">
-            <Form addOneCard={this.addOneCard} />
+            <FormBlock>
+              <Form addOneCard={this.addOneCard} />
+              {this.state.toastMessage && (
+                <Toast message={this.state.toastMessage} deleteToast={this.deleteToast} />
+              )}
+            </FormBlock>
             <CardsContainer cards={this.state.cards} />
           </section>
         </Main>
@@ -39,6 +52,11 @@ class FormPage extends Component<Props, State> {
     );
   }
 }
+
+const FormBlock = styled.div`
+  margin-bottom: 5rem;
+  position: relative;
+`;
 
 export default FormPage;
 

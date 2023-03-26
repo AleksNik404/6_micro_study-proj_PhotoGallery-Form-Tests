@@ -43,19 +43,22 @@ class Card extends Component<CardItemProps> {
 }
 
 export const GridItem = styled.article`
-  width: 100%;
-
   /* for Grid container */
   /* max-width: 15rem; */
+  /* width: 100%; */
 
+  /* for Flex container */
+  max-width: 250px;
+  flex: 1 0 200px;
+
+  /* other */
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.4em;
 
   overflow: hidden;
-  background-color: #18181b;
   border-radius: 4px;
-
+  background-color: #18181b;
   transition: all 0.2s;
 
   &:hover .add-icon {
@@ -120,18 +123,18 @@ export const GridItem = styled.article`
     flex-direction: column;
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 10px;
     height: 100%;
-    padding: 0px 10px 20px;
+    padding: 0px 8px 10px;
   }
 
   .maker {
     opacity: 0.7;
-    font-size: calc(0.55rem + 0.1vw);
+    font-size: calc(0.55rem + 0.08vw);
   }
 
   .name {
-    font-size: calc(0.75rem + 0.15vw);
+    font-size: calc(0.65rem + 0.13vw);
     overflow-wrap: break-word;
   }
 `;

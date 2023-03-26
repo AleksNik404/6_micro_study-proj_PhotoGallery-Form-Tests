@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
-import { CardItem } from '../../Home/components/Card';
+import Card, { CardItem } from '../../Home/components/Card';
 
 import { INPUT_OPTIONS } from '../../../utils/constants';
 import { isEmpty } from '../../../utils/utils';
@@ -171,7 +171,7 @@ export default Form;
 const Wrapper = styled.div`
   max-width: 800px;
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const FormStyled = styled.form`
@@ -179,7 +179,8 @@ const FormStyled = styled.form`
   gap: 30px 20px;
   padding: 30px 20px;
 
-  background-color: rgba(0, 70, 140, 0.1);
+  background-color: #10171e;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   align-items: center;
   border-radius: 2px;
@@ -205,13 +206,52 @@ const FormStyled = styled.form`
   /* @media (max-width: 740px) { */
   grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
   /* } */
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Button = styled.button`
-  min-width: 200px;
-  justify-self: center;
+  height: 40px;
+  width: 100%;
+  max-width: 300px;
+  padding: 0 10px;
+  margin-top: 30px;
 
-  height: 30px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: inherit;
+
+  background: linear-gradient(
+    90deg,
+    rgba(135, 17, 43, 0.5) 0%,
+    rgba(225, 29, 71, 0.5) 37%,
+    rgba(180, 23, 58, 0.5) 65%,
+    rgba(135, 17, 43, 0.5) 100%
+  );
+
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 20px;
+
+    background: linear-gradient(
+      90deg,
+      rgba(135, 17, 43, 0.6) 0%,
+      rgba(225, 29, 71, 0.6) 37%,
+      rgba(180, 23, 58, 0.6) 65%,
+      rgba(135, 17, 43, 0.6) 100%
+    );
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 10px;
+  }
+
+  justify-self: center;
   grid-column: 1 / -1;
   cursor: pointer;
 `;
