@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
-import Card, { CardItem } from '../../Home/components/Card';
+import { CardItem } from '../../Home/components/Card';
 
 import { INPUT_OPTIONS } from '../../../utils/constants';
 import { isEmpty } from '../../../utils/utils';
@@ -73,8 +73,6 @@ class Form extends Component<Props, State> {
     fileValidate(this.inputFile.current, errors);
     discountValidate(this.inputDiscountNone.current, this.inputDiscountTrue.current, errors);
 
-    console.log(errors);
-
     return errors;
   }
 
@@ -122,7 +120,7 @@ class Form extends Component<Props, State> {
           <FormSelect
             name="price"
             defaultValue="Select price"
-            label="Currency"
+            label="Price"
             InputRef={this.inputCurrency}
             list={INPUT_OPTIONS}
             ErrorMessage={price}
@@ -152,15 +150,6 @@ class Form extends Component<Props, State> {
 
           <Button type="submit">Submit</Button>
         </FormStyled>
-        {/* <Card
-          cardData={{
-            id: 'test',
-            image: 'awdaw',
-            name: this.inputName.current?.value || '',
-            price: 39,
-            discountPercentage: 10,
-          }}
-        /> */}
       </Wrapper>
     );
   }
@@ -176,6 +165,7 @@ const Wrapper = styled.div`
 
 const FormStyled = styled.form`
   display: grid;
+  grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
   gap: 30px 20px;
   padding: 30px 20px;
 
@@ -201,11 +191,6 @@ const FormStyled = styled.form`
       border-color: #60a5fa;
     }
   }
-
-  /* grid-template-columns: repeat(3, calc((100% - 2 * 20px) / 3)); */
-  /* @media (max-width: 740px) { */
-  grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
-  /* } */
 
   @media (max-width: 710px) {
     grid-template-columns: 1fr;

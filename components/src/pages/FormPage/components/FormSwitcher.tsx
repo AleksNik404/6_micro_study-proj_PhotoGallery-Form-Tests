@@ -13,10 +13,10 @@ interface SwitchProps {
 }
 
 const FormSwitcher = (props: SwitchProps) => {
-  const { refNone, refTrue, name, ErrorMessage } = props;
+  const { refNone, refTrue, name, ErrorMessage, label } = props;
   return (
     <SwitchBlock>
-      <p>25% discount</p>
+      <p>{label}</p>
 
       <div className="switch">
         <input

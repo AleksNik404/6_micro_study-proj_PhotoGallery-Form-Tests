@@ -5,24 +5,16 @@ import { BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 
 describe('inputSearch', () => {
-  it('check render input', () => {
-    render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    );
+  it('сhecking the field search display', () => {
+    render(<Home />, { wrapper: BrowserRouter });
 
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument;
   });
 
   it('onChange InputSearch works', async () => {
-    render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    );
+    render(<Home />, { wrapper: BrowserRouter });
 
-    const text = `why it doesn't work without await`;
+    const text = `await await`;
     const input = screen.getByRole('searchbox');
 
     await userEvent.type(input, text);

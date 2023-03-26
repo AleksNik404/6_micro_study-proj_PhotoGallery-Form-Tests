@@ -22,7 +22,7 @@ class FormPage extends Component<Props, State> {
     this.setState((prev) => {
       return {
         cards: [...prev.cards, data],
-        toastMessage: 'Success create card',
+        toastMessage: 'Card successfully created',
       };
     });
   };

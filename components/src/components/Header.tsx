@@ -21,7 +21,7 @@ const Header = ({ namePage }: HeaderProps) => {
           </List>
         </nav>
       </div>
-      <Heading>{namePage}</Heading>
+      {namePage && <Heading>{namePage}</Heading>}
     </HeaderStyled>
   );
 };

@@ -5,11 +5,7 @@ import About from './About';
 
 describe('About', () => {
   it('check render About', () => {
-    render(
-      <BrowserRouter>
-        <About />
-      </BrowserRouter>
-    );
+    render(<About />, { wrapper: BrowserRouter });
 
     expect(screen.getByText(/About Us Page/i)).toBeInTheDocument();
   });

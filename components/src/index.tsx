@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom/client';
 import 'normalize.css';
 import './index.css';
 
-import App from './App';
+import { AppWrapper } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <AppWrapper />
   </React.StrictMode>
 );

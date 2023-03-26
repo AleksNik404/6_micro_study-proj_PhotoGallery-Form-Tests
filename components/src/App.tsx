@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { About, FormPage, Home, NotFoundPage } from './pages';
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
@@ -19,12 +19,10 @@ class App extends React.Component {
   }
 }
 
-const AppWrapper = () => {
+export const AppWrapper = () => {
   return (
     <Router>
       <App />
     </Router>
   );
 };
-
-export default AppWrapper;

@@ -31,7 +31,6 @@ const ToastBox = styled.aside`
   transform: translate(-50%, -200%);
 
   background-color: #15803d;
-
   animation: xdd 4s;
 
   @keyframes xdd {

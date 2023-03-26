@@ -29,6 +29,7 @@ const FormInput = (props: InputProps) => {
         {label} {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
       </label>
       <input
+        id={name}
         ref={InputRef}
         type={type}
         name={name}
