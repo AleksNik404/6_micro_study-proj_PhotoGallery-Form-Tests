@@ -12,13 +12,19 @@ export const textValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
 
   const isEmpty = !value.length;
   if (isEmpty) {
-    errorsMap[name] = 'value required';
+    errorsMap[name] = 'Title canot be empty';
+    return;
+  }
+
+  const tooLong = value.length > 24;
+  if (tooLong) {
+    errorsMap[name] = 'maximum 24 characters';
     return;
   }
 
   const notToUpperCase = value[0] !== value[0].toLocaleUpperCase();
   if (notToUpperCase) {
-    errorsMap[name] = 'S zaglavnoy ble';
+    errorsMap[name] = 'Please provide the title with a capital letter';
     return;
   }
 };
@@ -30,19 +36,19 @@ export const dateValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
 
   const isEmpty = !value.length;
   if (isEmpty) {
-    errorsMap[name] = 'date required';
+    errorsMap[name] = 'Please fill in the date field';
     return;
   }
 
   const isValidDate = dayjs(value).isValid();
   if (!isValidDate) {
-    errorsMap[name] = 'date isValid';
+    errorsMap[name] = 'Incorrect date';
     return;
   }
 
   const isValidYear = dayjs(value).isBetween('1980-01-01', dayjs('2025-12-31'));
   if (!isValidYear) {
-    errorsMap[name] = 'specify the year between 1980 and 2025';
+    errorsMap[name] = 'Specify the year between 1980 and 2025';
     return;
   }
 };
@@ -54,7 +60,7 @@ export const selectValidate = (input: HTMLSelectElement | null, errorsMap: SetMe
 
   const isEmpty = !value;
   if (isEmpty) {
-    errorsMap[name] = 'Choise currency';
+    errorsMap[name] = 'Please select a price option';
     return;
   }
 };
@@ -66,7 +72,7 @@ export const fileValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
 
   const isEmpty = !files?.length;
   if (isEmpty) {
-    errorsMap[name] = 'image is required';
+    errorsMap[name] = 'Please provide image';
     return;
   }
 };
@@ -83,7 +89,7 @@ export const discountValidate = (
 
   const isEmpty = !checked && !checked2;
   if (isEmpty) {
-    errorsMap[name] = 'choice doscoount plan';
+    errorsMap[name] = 'Choose a discount plan';
     return;
   }
 };
@@ -95,7 +101,7 @@ export const termValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
 
   const isEmpty = !checked;
   if (isEmpty) {
-    errorsMap[name] = 'SOGLASIS';
+    errorsMap[name] = `Just agree, it's not scary`;
     return;
   }
 };

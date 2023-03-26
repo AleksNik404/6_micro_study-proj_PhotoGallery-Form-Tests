@@ -130,7 +130,7 @@ class Form extends Component<Props, State> {
           <FormSwitcher
             refNone={this.inputDiscountNone}
             refTrue={this.inputDiscountTrue}
-            label="Choise discount"
+            label="Make a 25% discount"
             name="discount"
             value={25}
             ErrorMessage={discount}
@@ -207,7 +207,7 @@ const FormStyled = styled.form`
   grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
   /* } */
 
-  @media (max-width: 450px) {
+  @media (max-width: 710px) {
     grid-template-columns: 1fr;
   }
 `;

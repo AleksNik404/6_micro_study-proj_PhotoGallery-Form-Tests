@@ -39,7 +39,7 @@ const FileBlock = styled.div`
   justify-content: center;
   position: relative;
 
-  @media (max-width: 510px) {
+  @media (max-width: 700px) {
     grid-column: 1 / -1;
   }
 

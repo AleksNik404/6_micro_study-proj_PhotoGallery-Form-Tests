@@ -38,7 +38,7 @@ const CheckBoxBlock = styled.div`
   justify-content: center;
   align-self: stretch;
 
-  @media (max-width: 510px) {
+  @media (max-width: 700px) {
     grid-column: 1 / -1;
   }
 
