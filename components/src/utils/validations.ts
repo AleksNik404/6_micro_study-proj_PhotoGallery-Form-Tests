@@ -40,11 +40,11 @@ export const dateValidate = (input: HTMLInputElement | null, errorsMap: SetMessa
     return;
   }
 
-  // const isValidDate = dayjs(value).isValid();
-  // if (!isValidDate) {
-  //   errorsMap[name] = 'Incorrect date';
-  //   return;
-  // }
+  const isValidDate = dayjs(value).isValid();
+  if (!isValidDate) {
+    errorsMap[name] = 'Incorrect date';
+    return;
+  }
 
   const isValidYear = dayjs(value).isBetween('1980-01-01', dayjs('2025-12-31'));
   if (!isValidYear) {
