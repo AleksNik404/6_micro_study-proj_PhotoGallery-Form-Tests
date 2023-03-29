@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
@@ -9,137 +9,121 @@ import { isEmpty } from '../../../utils/utils';
 import { dateValidate, discountValidate, termValidate } from '../../../utils/validations';
 import { fileValidate, selectValidate, textValidate } from '../../../utils/validations';
 
-type State = {
-  errors: Record<string, string>;
-};
-
 type Props = {
   addOneCard: (data: CardItem) => void;
 };
 
-const initialState = {
-  errors: {},
-};
+const Form = ({ addOneCard }: Props) => {
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-class Form extends Component<Props, State> {
-  state: State = initialState;
+  const inputName = useRef<HTMLInputElement>(null);
+  const inputReleaseDate = useRef<HTMLInputElement>(null);
+  const inputFile = useRef<HTMLInputElement>(null);
 
-  inputName = React.createRef<HTMLInputElement>();
-  inputReleaseDate = React.createRef<HTMLInputElement>();
-  inputFile = React.createRef<HTMLInputElement>();
+  const inputCheckboxPrice = useRef<HTMLInputElement>(null);
+  const inputDiscountNone = useRef<HTMLInputElement>(null);
+  const inputDiscountTrue = useRef<HTMLInputElement>(null);
 
-  inputCheckboxPrice = React.createRef<HTMLInputElement>();
-  inputDiscountNone = React.createRef<HTMLInputElement>();
-  inputDiscountTrue = React.createRef<HTMLInputElement>();
+  const inputCurrency = useRef<HTMLSelectElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  inputCurrency = React.createRef<HTMLSelectElement>();
-  formRef = React.createRef<HTMLFormElement>();
-
-  onSubmit = (event: React.FormEvent) => {
+  const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    this.resetStateErrors();
-    const errors = this.validateRefs();
+    resetStateErrors();
+    const errors = validateRefs();
 
     if (!isEmpty(errors)) {
-      this.setState({ errors });
+      setErrors(errors);
       return;
     }
 
-    this._addCard();
-    this.formRef.current?.reset();
+    _addCard();
+    formRef.current?.reset();
   };
 
-  validateRefs() {
+  function validateRefs() {
     const errors: Record<string, string> = {};
 
-    termValidate(this.inputCheckboxPrice.current, errors);
-    textValidate(this.inputName.current, errors);
-    dateValidate(this.inputReleaseDate.current, errors);
-    selectValidate(this.inputCurrency.current, errors);
-    fileValidate(this.inputFile.current, errors);
-    discountValidate(this.inputDiscountNone.current, this.inputDiscountTrue.current, errors);
+    termValidate(inputCheckboxPrice.current, errors);
+    textValidate(inputName.current, errors);
+    dateValidate(inputReleaseDate.current, errors);
+    selectValidate(inputCurrency.current, errors);
+    fileValidate(inputFile.current, errors);
+    discountValidate(inputDiscountNone.current, inputDiscountTrue.current, errors);
 
     return errors;
   }
 
-  _addCard() {
-    const image = this.inputFile.current!.files![0];
-    const discountPercentage = this.inputDiscountTrue.current!.checked
-      ? Number(this.inputDiscountTrue.current!.value)
+  function _addCard() {
+    const image = inputFile.current!.files![0];
+    const discountPercentage = inputDiscountTrue.current!.checked
+      ? Number(inputDiscountTrue.current!.value)
       : 0;
 
-    this.props.addOneCard({
+    addOneCard({
       id: crypto.randomUUID(),
-      name: this.inputName.current!.value,
-      releaseDate: this.inputReleaseDate.current!.value,
-      price: Number(this.inputCurrency.current!.value),
+      name: inputName.current!.value,
+      releaseDate: inputReleaseDate.current!.value,
+      price: Number(inputCurrency.current!.value),
       image: URL.createObjectURL(image),
       discountPercentage,
     });
   }
 
-  resetStateErrors() {
-    this.setState(initialState);
+  function resetStateErrors() {
+    setErrors({});
   }
 
-  render() {
-    const { name, releaseDate, price, check, discount, image } = this.state.errors;
+  const { name, releaseDate, price, check, discount, image } = errors;
+  return (
+    <Wrapper>
+      <FormStyled onSubmit={onSubmit} noValidate ref={formRef}>
+        <FormInput
+          name="name"
+          InputRef={inputName}
+          label="Title"
+          placeholder="Product Name"
+          ErrorMessage={name}
+        />
+        <FormInput
+          type="date"
+          name="releaseDate"
+          label="Release Date"
+          InputRef={inputReleaseDate}
+          ErrorMessage={releaseDate}
+        />
+        <FormSelect
+          name="price"
+          defaultValue="Select price"
+          label="Price"
+          InputRef={inputCurrency}
+          list={INPUT_OPTIONS}
+          ErrorMessage={price}
+        />
+        <FormSwitcher
+          refNone={inputDiscountNone}
+          refTrue={inputDiscountTrue}
+          label="Make a 25% discount"
+          name="discount"
+          value={25}
+          ErrorMessage={discount}
+        />
 
-    return (
-      <Wrapper>
-        <FormStyled onSubmit={this.onSubmit} noValidate ref={this.formRef}>
-          <FormInput
-            name="name"
-            InputRef={this.inputName}
-            label="Title"
-            placeholder="Product Name"
-            ErrorMessage={name}
-          />
-          <FormInput
-            type="date"
-            name="releaseDate"
-            label="Release Date"
-            InputRef={this.inputReleaseDate}
-            ErrorMessage={releaseDate}
-          />
-          <FormSelect
-            name="price"
-            defaultValue="Select price"
-            label="Price"
-            InputRef={this.inputCurrency}
-            list={INPUT_OPTIONS}
-            ErrorMessage={price}
-          />
-          <FormSwitcher
-            refNone={this.inputDiscountNone}
-            refTrue={this.inputDiscountTrue}
-            label="Make a 25% discount"
-            name="discount"
-            value={25}
-            ErrorMessage={discount}
-          />
+        <FormFile name="image" fileRef={inputFile} label="Select image" ErrorMessage={image} />
 
-          <FormFile
-            name="image"
-            fileRef={this.inputFile}
-            label="Select image"
-            ErrorMessage={image}
-          />
+        <FormCheckBox
+          name="check"
+          label="i agree to the xdd Terms"
+          checkboxRef={inputCheckboxPrice}
+          ErrorMessage={check}
+        />
 
-          <FormCheckBox
-            name="check"
-            label="i agree to the xdd Terms"
-            checkboxRef={this.inputCheckboxPrice}
-            ErrorMessage={check}
-          />
-
-          <Button type="submit">Submit</Button>
-        </FormStyled>
-      </Wrapper>
-    );
-  }
-}
+        <Button type="submit">Submit</Button>
+      </FormStyled>
+    </Wrapper>
+  );
+};
 
 export default Form;
 

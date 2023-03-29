@@ -6,15 +6,9 @@ type NewType = {
   deleteToast: () => void;
 };
 
-class Toast extends Component<NewType> {
-  componentDidMount() {
-    setTimeout(() => this.props.deleteToast(), 4000);
-  }
-
-  render() {
-    return <ToastBox>{this.props.message}</ToastBox>;
-  }
-}
+const Toast = ({ deleteToast, message }: NewType) => {
+  return <ToastBox onAnimationEnd={() => deleteToast()}>{message}</ToastBox>;
+};
 
 export default Toast;
 

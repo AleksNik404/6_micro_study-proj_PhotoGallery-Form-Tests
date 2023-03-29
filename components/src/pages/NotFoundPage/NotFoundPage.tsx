@@ -1,30 +1,27 @@
 import styled from '@emotion/styled';
-import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Main } from '../../styled/styledComponents';
 import Header from '../../components/Header';
 
-class NotFoundPage extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Main>
-          <div className="container">
-            <ErrorBox>
-              <p>Ops... </p>
-              <Heading>Page not found</Heading>
-              <Link to="/">
-                <Button>Go Home</Button>
-              </Link>
-            </ErrorBox>
-          </div>
-        </Main>
-      </>
-    );
-  }
-}
+const NotFoundPage = () => {
+  return (
+    <>
+      <Header />
+      <Main>
+        <div className="container">
+          <ErrorBox>
+            <p>Ops... </p>
+            <Heading>Page not found</Heading>
+            <Link to="/">
+              <Button>Go Home</Button>
+            </Link>
+          </ErrorBox>
+        </div>
+      </Main>
+    </>
+  );
+};
 
 const Heading = styled.h1`
   text-align: center;

@@ -17,11 +17,11 @@ const CardsContainer = ({ cards }: Cards) => {
 };
 
 const Grid = styled.div`
-  /* if want GRID */
+  /* if want Grid */
   /* display: grid; */
   /* grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); */
 
-  /* if want FLEX */
+  /* if want Flex */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
