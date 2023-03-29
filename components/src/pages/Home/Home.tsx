@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import Header from '../../components/Header';
@@ -8,51 +8,35 @@ import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '..
 import { data } from '../../data/data';
 import { Main } from '../../styled/styledComponents';
 
-type State = {
-  searchValue: string;
-};
+const Home = () => {
+  const [searchValue, setSearchValue] = useState(getSearchValueFromLocalStorage());
+  const value = useRef(searchValue);
 
-type Props = unknown;
+  useEffect(() => {
+    window.onunload = () => addSearchValueToLocalStorage(value.current);
 
-class Home extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      searchValue: getSearchValueFromLocalStorage(),
-    };
-  }
+    return () => addSearchValueToLocalStorage(value.current);
+  }, []);
 
-  componentDidMount() {
-    window.onunload = () => addSearchValueToLocalStorage(this.state.searchValue);
-  }
-
-  componentWillUnmount() {
-    addSearchValueToLocalStorage(this.state.searchValue);
-  }
-
-  handlerSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchValue: e.target.value });
+  const handlerSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    value.current = e.target.value;
   };
 
-  render() {
-    return (
-      <>
-        <Header namePage="Home Page" />
-        <Main>
-          <section className="container">
-            <InputContainer>
-              <InputSearch
-                searchValue={this.state.searchValue}
-                handlerSearchValue={this.handlerSearchValue}
-              />
-            </InputContainer>
-            <CardsContainer cards={data.slice(0, 11)} />
-          </section>
-        </Main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header namePage="Home Page" />
+      <Main>
+        <section className="container">
+          <InputContainer>
+            <InputSearch searchValue={searchValue} handlerSearchValue={handlerSearchValue} />
+          </InputContainer>
+          <CardsContainer cards={data.slice(0, 11)} />
+        </section>
+      </Main>
+    </>
+  );
+};
 
 const InputContainer = styled.div`
   padding: 20px 0;
