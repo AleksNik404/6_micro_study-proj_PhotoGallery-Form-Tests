@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React, { Component } from 'react';
 
 type NewType = {
   message: string;

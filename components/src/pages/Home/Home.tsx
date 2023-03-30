@@ -1,27 +1,14 @@
-import React, { Component, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import Header from '../../components/Header';
 import { CardsContainer, InputSearch } from './components';
 
-import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from '../../utils/utils';
 import { data } from '../../data/data';
 import { Main } from '../../styled/styledComponents';
+import { useSearchValueStorage } from '../../utils/hooks';
 
 const Home = () => {
-  const [searchValue, setSearchValue] = useState(getSearchValueFromLocalStorage());
-  const value = useRef(searchValue);
-
-  useEffect(() => {
-    window.onunload = () => addSearchValueToLocalStorage(value.current);
-
-    return () => addSearchValueToLocalStorage(value.current);
-  }, []);
-
-  const handlerSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    value.current = e.target.value;
-  };
+  const [searchValue, setSearchValue] = useSearchValueStorage();
 
   return (
     <>
@@ -29,7 +16,7 @@ const Home = () => {
       <Main>
         <section className="container">
           <InputContainer>
-            <InputSearch searchValue={searchValue} handlerSearchValue={handlerSearchValue} />
+            <InputSearch searchValue={searchValue} handlerSearchValue={setSearchValue} />
           </InputContainer>
           <CardsContainer cards={data.slice(0, 11)} />
         </section>
