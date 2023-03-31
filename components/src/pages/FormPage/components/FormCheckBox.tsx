@@ -1,30 +1,38 @@
 import styled from '@emotion/styled';
+import { useFormContext } from 'react-hook-form';
 
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { ErrorMesage } from '../../../styled/styledComponents';
+import { FormData } from './Form';
 
 interface CheckBoxProps {
-  checkboxRef: React.Ref<HTMLInputElement>;
-
-  name: string;
+  name: keyof Pick<FormData, 'check'>;
   label?: string;
   value?: number;
-  ErrorMessage?: string;
+
+  validate: (value: string | undefined) => string | undefined;
 }
 
-const FormCheckBox = (props: CheckBoxProps) => {
-  const { checkboxRef, name, label, ErrorMessage } = props;
+const FormCheckBox = ({ name, label, validate }: CheckBoxProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
 
   return (
     <CheckBoxBlock>
-      <input ref={checkboxRef} name={name} id={name} type="checkbox" className="hide-behind-page" />
+      <input
+        {...register(name, { validate })}
+        name={name}
+        id={name}
+        type="checkbox"
+        className="hide-behind-page"
+      />
 
       <label htmlFor={name}>
         <ImCheckboxUnchecked className="icon" />
         <ImCheckboxChecked className="icon  icon--active" />
 
         {label}
-        {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
       </label>
     </CheckBoxBlock>
   );

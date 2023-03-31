@@ -1,39 +1,31 @@
-import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
 import { ErrorMesage, InputBlock } from '../../../styled/styledComponents';
+import { FormData } from './Form';
 
 interface InputProps {
-  name: string;
-  InputRef: React.Ref<HTMLInputElement>;
+  name: keyof Pick<FormData, 'name' | 'releaseDate'>;
   label?: string;
-
   type?: string;
-  value?: number;
-  ErrorMessage?: string;
   placeholder?: string;
+
+  validate: (value: string | undefined) => string | undefined;
 }
 
-const FormInput = (props: InputProps) => {
-  const {
-    name,
-    InputRef,
-    value,
-    placeholder,
-    type = 'text',
-    ErrorMessage = '',
-    label = name,
-  } = props;
+const FormInput = ({ name, label, placeholder, type = 'text', validate }: InputProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
 
   return (
     <InputBlock>
       <label htmlFor={name}>
-        {label} {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        {label} {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
       </label>
       <input
+        {...register(name, { validate })}
         id={name}
-        ref={InputRef}
         type={type}
         name={name}
-        value={value}
         placeholder={placeholder}
         autoComplete="off"
       />

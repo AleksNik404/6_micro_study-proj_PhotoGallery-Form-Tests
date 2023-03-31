@@ -19,7 +19,7 @@ export type CardItemProps = {
 };
 
 const Card = ({ cardData }: CardItemProps) => {
-  const { image, name, price, developer, discountPercentage, releaseDate } = cardData;
+  const { image, name, price, developer, discountPercentage, releaseDate = 'soon' } = cardData;
 
   return (
     <GridItem>
