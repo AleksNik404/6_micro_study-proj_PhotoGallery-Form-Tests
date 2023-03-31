@@ -9,7 +9,7 @@ interface FileProps {
   name: keyof Pick<FormData, 'image'>;
   label?: string;
 
-  validate: (value: FileList | undefined) => string | undefined;
+  validate?: (value: FileList | undefined) => string | undefined;
 }
 
 const FormFile = ({ name, label, validate }: FileProps) => {

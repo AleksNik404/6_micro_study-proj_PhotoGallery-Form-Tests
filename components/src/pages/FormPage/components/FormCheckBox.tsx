@@ -10,7 +10,7 @@ interface CheckBoxProps {
   label?: string;
   value?: number;
 
-  validate: (value: string | undefined) => string | undefined;
+  validate?: (value: string | undefined) => string | undefined;
 }
 
 const FormCheckBox = ({ name, label, validate }: CheckBoxProps) => {

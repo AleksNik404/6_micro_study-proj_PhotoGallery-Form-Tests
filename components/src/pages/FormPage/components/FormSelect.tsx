@@ -9,7 +9,7 @@ interface InputProps {
   list: number[];
   defaultValue: string;
 
-  validate: (value: number | undefined) => string | undefined;
+  validate?: (value: number | undefined) => string | undefined;
 }
 
 const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) => {
@@ -19,7 +19,8 @@ const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) =
   return (
     <InputBlock>
       <label htmlFor={name}>
-        {label} {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+        {label}
+        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
       </label>
       <select id={name} defaultValue={defaultValue} {...register(name, { validate })}>
         <option value="" hidden>

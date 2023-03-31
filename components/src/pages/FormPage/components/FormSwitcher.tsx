@@ -9,7 +9,7 @@ interface SwitchProps {
   label?: string;
   value?: number;
 
-  validate: (value: number | undefined) => string | undefined;
+  validate?: (value: number | undefined) => string | undefined;
 }
 
 const FormSwitcher = ({ name, label, validate }: SwitchProps) => {

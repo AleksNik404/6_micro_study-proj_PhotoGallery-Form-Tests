@@ -61,7 +61,11 @@ const Form = ({ addOneCard }: FormProps) => {
             validate={validation.discountPercentage}
           />
           <FormFile name="image" label="Select image" validate={validation.image} />
-          <FormCheckBox name="check" label="i agree to the xdd Terms" validate={validation.check} />
+          <FormCheckBox
+            name="check"
+            label="i agree to the xdd Terms"
+            // validate={validation.check}
+          />
 
           <SubmitButton type="submit">Submit</SubmitButton>
         </FormStyled>
