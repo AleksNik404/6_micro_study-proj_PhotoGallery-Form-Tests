@@ -26,6 +26,8 @@ const Form = ({ addOneCard }: FormProps) => {
   const { isSubmitSuccessful } = methods.formState;
 
   useEffect(() => {
+    if (!isSubmitSuccessful) return;
+
     methods.reset();
   }, [isSubmitSuccessful, methods]);
 
