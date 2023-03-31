@@ -98,13 +98,10 @@ label {
 .hide-behind-page {
   position: absolute;
 
-  /* top: 0;
-  left: 0; */
   height: 0;
   width: 0;
   border: 0;
   visibility: hidden;
-  /* pointer-events: none; */
   opacity: 0;
 }
 

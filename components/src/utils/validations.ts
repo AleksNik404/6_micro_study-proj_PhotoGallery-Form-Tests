@@ -3,7 +3,7 @@ import isBetween from 'dayjs/plugin/isBetween';
 dayjs.extend(isBetween);
 
 const textValidate = (value: string | undefined): string | undefined => {
-  if (!value) return 'required';
+  if (!value) return 'This field is required';
   const isEmpty = !value.length;
   if (isEmpty) {
     return 'Title canot be empty';
@@ -21,7 +21,7 @@ const textValidate = (value: string | undefined): string | undefined => {
 };
 
 const dateValidate = (value: string | undefined): string | undefined => {
-  if (!value) return 'data data data data dad';
+  if (!value) return 'This field is required';
 
   const isEmpty = !value.length;
   if (isEmpty) {
@@ -47,7 +47,7 @@ const selectValidate = (value: number | undefined): string | undefined => {
 };
 
 const fileValidate = (value: FileList | undefined): string | undefined => {
-  const isEmpty = !value;
+  const isEmpty = !value?.length;
   if (isEmpty) {
     return 'Please provide image';
   }

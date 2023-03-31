@@ -6,6 +6,7 @@ import { CardItem } from '../../Home/components/Card';
 import { INPUT_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
 import { SubmitButton } from '../../../styled/styledComponents';
+import { useEffect } from 'react';
 
 export type FormData = {
   name: string;
@@ -22,6 +23,11 @@ type FormProps = {
 
 const Form = ({ addOneCard }: FormProps) => {
   const methods = useForm<FormData>();
+  const { isSubmitSuccessful } = methods.formState;
+
+  useEffect(() => {
+    methods.reset();
+  }, [isSubmitSuccessful, methods]);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const { price, image: fileList } = data;
@@ -61,11 +67,7 @@ const Form = ({ addOneCard }: FormProps) => {
             validate={validation.discountPercentage}
           />
           <FormFile name="image" label="Select image" validate={validation.image} />
-          <FormCheckBox
-            name="check"
-            label="i agree to the xdd Terms"
-            // validate={validation.check}
-          />
+          <FormCheckBox name="check" label="i agree to the xdd Terms" validate={validation.check} />
 
           <SubmitButton type="submit">Submit</SubmitButton>
         </FormStyled>
