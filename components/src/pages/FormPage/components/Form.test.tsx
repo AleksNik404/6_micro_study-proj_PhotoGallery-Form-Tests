@@ -4,18 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Form } from '.';
 import { describe, vitest } from 'vitest';
+
 import {
   DATE_PERIOD_ERROR_MESSAGE,
   DATE_REQUIRED_ERROR_MESSAGE,
   DISCOUNT_REQUIRED_ERROR_MESSAGE,
   FILE_REQUIRED_ERROR_MESSAGE,
+  INPUT_OPTIONS,
   NAME_CAPITALIZE_ERROR_MESSAGE,
   NAME_REQUIRED_ERROR_MESSAGE,
   NAME_TOO_LONG_ERROR_MESSAGE,
   PRICE_REQUIRED_ERROR_MESSAGE,
   TERM_REQUIRED_ERROR_MESSAGE,
-} from '../../../utils/validations';
-import { INPUT_OPTIONS } from '../../../utils/constants';
+} from '../../../utils/constants';
 
 describe('Form submit', () => {
   beforeEach(() => {

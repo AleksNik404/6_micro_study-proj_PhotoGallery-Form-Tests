@@ -14,7 +14,7 @@ export type FormData = {
   price: number;
   discountPercentage: number;
   image: FileList;
-  check: string;
+  check: boolean;
 };
 
 type FormProps = {
@@ -22,7 +22,12 @@ type FormProps = {
 };
 
 const Form = ({ addOneCard }: FormProps) => {
-  const methods = useForm<FormData>({ reValidateMode: 'onSubmit' });
+  const methods = useForm<FormData>({
+    reValidateMode: 'onSubmit',
+    defaultValues: {
+      check: false,
+    },
+  });
   const { isSubmitSuccessful } = methods.formState;
 
   useEffect(() => {

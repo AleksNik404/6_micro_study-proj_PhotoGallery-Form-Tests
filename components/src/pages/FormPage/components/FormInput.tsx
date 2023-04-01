@@ -1,8 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 
-import { ErrorMessage, InputBlock } from '../../../styled/styledComponents';
 import { FormData } from './Form';
-import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/validations';
+import { ErrorMessage, InputBlock } from '../../../styled/styledComponents';
+import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/constants';
 
 interface InputProps {
   name: keyof Pick<FormData, 'name' | 'releaseDate'>;
