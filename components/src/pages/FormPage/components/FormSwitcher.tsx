@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/styledComponents';
 import { FormData } from './Form';
 
 interface SwitchProps {
@@ -40,7 +40,7 @@ const FormSwitcher = ({ name, label, validate }: SwitchProps) => {
         />
         <label htmlFor="yes">
           yes
-          {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+          {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
         </label>
       </div>
     </SwitchBlock>

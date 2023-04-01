@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/styledComponents';
 import { FormData } from './Form';
 
 interface InputProps {
@@ -20,7 +20,7 @@ const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) =
     <InputBlock>
       <label htmlFor={name}>
         {label}
-        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
       <select id={name} defaultValue={defaultValue} {...register(name, { validate })}>
         <option value="" hidden>

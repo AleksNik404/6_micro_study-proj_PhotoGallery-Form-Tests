@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/styledComponents';
 import { FormData } from './Form';
 
 interface CheckBoxProps {
@@ -32,7 +32,7 @@ const FormCheckBox = ({ name, label, validate }: CheckBoxProps) => {
         <ImCheckboxChecked className="icon  icon--active" />
 
         {label}
-        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
     </CheckBoxBlock>
   );

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 import { BiImageAdd } from 'react-icons/bi';
 
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/styledComponents';
 import { FormData } from './Form';
 
 interface FileProps {
@@ -33,7 +33,7 @@ const FormFile = ({ name, label, validate }: FileProps) => {
       <label htmlFor="image">
         <BiImageAdd size="1.7rem" />
         {label}
-        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
     </FileBlock>
   );

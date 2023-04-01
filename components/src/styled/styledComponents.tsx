@@ -5,7 +5,7 @@ export const Main = styled.main`
   margin-bottom: 10rem;
 `;
 
-export const ErrorMesage = styled.span`
+export const ErrorMessage = styled.span`
   position: absolute;
   bottom: 0;
   left: 20px;

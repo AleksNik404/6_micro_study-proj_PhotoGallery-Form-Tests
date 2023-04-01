@@ -1,7 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 
-import { ErrorMesage, InputBlock } from '../../../styled/styledComponents';
+import { ErrorMessage, InputBlock } from '../../../styled/styledComponents';
 import { FormData } from './Form';
+import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/validations';
 
 interface InputProps {
   name: keyof Pick<FormData, 'name' | 'releaseDate'>;
@@ -18,14 +19,14 @@ const FormInput = ({ name, label, placeholder, type = 'text', validate }: InputP
 
   const rules = {
     validate,
-    maxLength: { value: 15, message: 'Maximum length of 15 characters' },
+    maxLength: { value: 15, message: NAME_TOO_LONG_ERROR_MESSAGE },
   };
 
   return (
     <InputBlock>
       <label htmlFor={name}>
         {label}
-        {errors[name] && <ErrorMesage>{errors[name]?.message}</ErrorMesage>}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
       <input
         {...register(name, rules)}

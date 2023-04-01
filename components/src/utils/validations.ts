@@ -2,68 +2,53 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 dayjs.extend(isBetween);
 
-const textValidate = (value: string | undefined): string | undefined => {
-  if (!value) return 'This field is required';
-  const isEmpty = !value.length;
-  if (isEmpty) {
-    return 'Title canot be empty';
-  }
+export const REQUIRED_ERROR_MESSAGE = 'This field is required';
 
-  const tooLong = value.length > 24;
-  if (tooLong) {
-    return 'maximum 24 characters';
-  }
+export const DATE_REQUIRED_ERROR_MESSAGE = 'Please fill in the date field';
+export const DATE_PERIOD_ERROR_MESSAGE = 'Specify the year between 1990 and 2024';
+
+export const NAME_REQUIRED_ERROR_MESSAGE = 'Title cannot be empty';
+export const NAME_TOO_LONG_ERROR_MESSAGE = 'Maximum length of 15 characters';
+export const NAME_CAPITALIZE_ERROR_MESSAGE = 'Please capitalize the title';
+
+export const FILE_REQUIRED_ERROR_MESSAGE = 'Please provide image';
+export const DISCOUNT_REQUIRED_ERROR_MESSAGE = 'Choose a discount plan';
+export const PRICE_REQUIRED_ERROR_MESSAGE = 'Please select a price option';
+export const TERM_REQUIRED_ERROR_MESSAGE = 'Just agree, it`s not scary';
+
+const textValidate = (value: string | undefined): string | undefined => {
+  const isEmpty = !value?.length;
+  if (isEmpty) return NAME_REQUIRED_ERROR_MESSAGE;
 
   const notToUpperCase = value[0] !== value[0].toLocaleUpperCase();
-  if (notToUpperCase) {
-    return 'Please provide the title with a capital letter';
-  }
+  if (notToUpperCase) return NAME_CAPITALIZE_ERROR_MESSAGE;
 };
 
 const dateValidate = (value: string | undefined): string | undefined => {
-  if (!value) return 'This field is required';
+  const isEmpty = !value?.length;
+  if (isEmpty) return DATE_REQUIRED_ERROR_MESSAGE;
 
-  const isEmpty = !value.length;
-  if (isEmpty) {
-    return 'Please fill in the date field';
-  }
-
-  const isValidDate = dayjs(value).isValid();
-  if (!isValidDate) {
-    return 'Incorrect date';
-  }
-
-  const isValidYear = dayjs(value).isBetween('1980-01-01', dayjs('2025-12-31'));
-  if (!isValidYear) {
-    return 'Specify the year between 1980 and 2025';
-  }
+  const isValidYear = dayjs(value).isBetween('1990-01-01', dayjs('2024-12-31'));
+  if (!isValidYear) return DATE_PERIOD_ERROR_MESSAGE;
 };
 
 const selectValidate = (value: number | undefined): string | undefined => {
   const isEmpty = !value;
-  if (isEmpty) {
-    return 'Please select a price option';
-  }
+  if (isEmpty) return PRICE_REQUIRED_ERROR_MESSAGE;
 };
 
 const fileValidate = (value: FileList | undefined): string | undefined => {
   const isEmpty = !value?.length;
-  if (isEmpty) {
-    return 'Please provide image';
-  }
+  if (isEmpty) return FILE_REQUIRED_ERROR_MESSAGE;
 };
 
 const discountValidate = (value: number | undefined): string | undefined => {
-  if (!value) {
-    return 'Choose a discount plan';
-  }
+  if (!value) return DISCOUNT_REQUIRED_ERROR_MESSAGE;
 };
 
 const termValidate = (value: string | undefined): string | undefined => {
   const isEmpty = !value;
-  if (isEmpty) {
-    return `Just agree, it's not scary`;
-  }
+  if (isEmpty) return TERM_REQUIRED_ERROR_MESSAGE;
 };
 
 export const validation = {

@@ -22,7 +22,7 @@ type FormProps = {
 };
 
 const Form = ({ addOneCard }: FormProps) => {
-  const methods = useForm<FormData>();
+  const methods = useForm<FormData>({ reValidateMode: 'onSubmit' });
   const { isSubmitSuccessful } = methods.formState;
 
   useEffect(() => {
@@ -89,6 +89,7 @@ const Wrapper = styled.div`
 const FormStyled = styled.form`
   display: grid;
   grid-template-columns: repeat(2, calc((100% - 1 * 20px) / 2));
+
   gap: 30px 20px;
   padding: 30px 20px;
 
