@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
@@ -19,28 +18,26 @@ export type CardItemProps = {
   cardData: CardItem;
 };
 
-class Card extends Component<CardItemProps> {
-  render() {
-    const { image, name, price, developer, discountPercentage, releaseDate } = this.props.cardData;
+const Card = ({ cardData }: CardItemProps) => {
+  const { image, name, price, developer, discountPercentage, releaseDate = 'soon' } = cardData;
 
-    return (
-      <GridItem>
-        <div className="image-box">
-          <img className="image" src={image} alt={name} />
-          <AiOutlinePlusCircle className="add-icon" />
+  return (
+    <GridItem>
+      <div className="image-box">
+        <img className="image" src={image} alt={name} />
+        <AiOutlinePlusCircle className="add-icon" />
+      </div>
+      <div className="text-box">
+        <div>
+          <p className="maker">{developer || releaseDate}</p>
+          <h1 className="name">{name}</h1>
         </div>
-        <div className="text-box">
-          <div>
-            <p className="maker">{developer || releaseDate}</p>
-            <h1 className="name">{name}</h1>
-          </div>
 
-          <CardPrice price={price} discountPercentage={discountPercentage} />
-        </div>
-      </GridItem>
-    );
-  }
-}
+        <CardPrice price={price} discountPercentage={discountPercentage} />
+      </div>
+    </GridItem>
+  );
+};
 
 export const GridItem = styled.article`
   /* for Grid container */

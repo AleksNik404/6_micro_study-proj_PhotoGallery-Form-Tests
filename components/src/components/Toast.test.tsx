@@ -1,14 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
 import Toast from './Toast';
 
-describe('NotFound', () => {
-  it('check render heading error page', () => {
+describe('Toast component', () => {
+  it('calls the `deleteToast` prop function after the animation ends ', async () => {
     const deleteToast = vitest.fn();
-    render(<Toast deleteToast={deleteToast} message={'test'} />, { wrapper: BrowserRouter });
+    render(<Toast deleteToast={deleteToast} message="testToast" />);
 
-    expect(screen.getByText(/test/i)).toBeInTheDocument();
+    const toast = screen.getByText(/testToast/i);
+    expect(toast).toBeInTheDocument();
+
+    fireEvent.animationEnd(toast);
+    expect(deleteToast).toHaveBeenCalled();
   });
 });

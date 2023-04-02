@@ -1,26 +1,27 @@
 import styled from '@emotion/styled';
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { useFormContext } from 'react-hook-form';
+
+import { ErrorMessage } from '../../../styled/styledComponents';
+import { FormData } from './Form';
 
 interface SwitchProps {
-  refNone: React.Ref<HTMLInputElement>;
-  refTrue: React.Ref<HTMLInputElement>;
-
-  name: string;
+  name: keyof Pick<FormData, 'discountPercentage'>;
   label?: string;
   value?: number;
 
-  ErrorMessage?: string;
+  validate?: (value: number | undefined) => string | undefined;
 }
 
-const FormSwitcher = (props: SwitchProps) => {
-  const { refNone, refTrue, name, ErrorMessage, label } = props;
+const FormSwitcher = ({ name, label, validate }: SwitchProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
   return (
     <SwitchBlock>
       <p>{label}</p>
 
       <div className="switch">
         <input
-          ref={refNone}
+          {...register(name, { validate })}
           type="radio"
           id="no"
           value={0}
@@ -30,7 +31,7 @@ const FormSwitcher = (props: SwitchProps) => {
         <label htmlFor="no">no</label>
 
         <input
-          ref={refTrue}
+          {...register(name, { validate })}
           type="radio"
           id="yes"
           value={25}
@@ -39,7 +40,7 @@ const FormSwitcher = (props: SwitchProps) => {
         />
         <label htmlFor="yes">
           yes
-          {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+          {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
         </label>
       </div>
     </SwitchBlock>

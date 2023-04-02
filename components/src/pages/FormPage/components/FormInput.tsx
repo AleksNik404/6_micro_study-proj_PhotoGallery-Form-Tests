@@ -1,39 +1,38 @@
-import React from 'react';
-import { ErrorMesage, InputBlock } from '../../../styled/styledComponents';
+import { useFormContext } from 'react-hook-form';
+
+import { FormData } from './Form';
+import { ErrorMessage, InputBlock } from '../../../styled/styledComponents';
+import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/constants';
 
 interface InputProps {
-  name: string;
-  InputRef: React.Ref<HTMLInputElement>;
+  name: keyof Pick<FormData, 'name' | 'releaseDate'>;
   label?: string;
-
   type?: string;
-  value?: number;
-  ErrorMessage?: string;
   placeholder?: string;
+
+  validate?: (value: string | undefined) => string | undefined;
 }
 
-const FormInput = (props: InputProps) => {
-  const {
-    name,
-    InputRef,
-    value,
-    placeholder,
-    type = 'text',
-    ErrorMessage = '',
-    label = name,
-  } = props;
+const FormInput = ({ name, label, placeholder, type = 'text', validate }: InputProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
+
+  const rules = {
+    validate,
+    maxLength: { value: 15, message: NAME_TOO_LONG_ERROR_MESSAGE },
+  };
 
   return (
     <InputBlock>
       <label htmlFor={name}>
-        {label} {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        {label}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
       <input
+        {...register(name, rules)}
         id={name}
-        ref={InputRef}
         type={type}
         name={name}
-        value={value}
         placeholder={placeholder}
         autoComplete="off"
       />

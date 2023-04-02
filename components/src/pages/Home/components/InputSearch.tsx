@@ -1,33 +1,31 @@
+import { ChangeEvent } from 'react';
 import styled from '@emotion/styled';
-import React, { Component } from 'react';
 
 import { BsSearch } from 'react-icons/bs';
 
 type Props = {
   searchValue: string;
   placeholder?: string;
-  handlerSearchValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handlerSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default class InputSearch extends Component<Props> {
-  render() {
-    const { searchValue, handlerSearchValue, placeholder = 'Search' } = this.props;
+const InputSearch = ({ searchValue, handlerSearchValue, placeholder = 'Search' }: Props) => {
+  return (
+    <SearchContainer>
+      <IconContainer>
+        <BsSearch />
+      </IconContainer>
+      <Input
+        type="search"
+        placeholder={placeholder}
+        value={searchValue}
+        onChange={handlerSearchValue}
+      />
+    </SearchContainer>
+  );
+};
 
-    return (
-      <SearchContainer>
-        <IconContainer>
-          <BsSearch />
-        </IconContainer>
-        <Input
-          type="search"
-          placeholder={placeholder}
-          value={searchValue}
-          onChange={handlerSearchValue}
-        />
-      </SearchContainer>
-    );
-  }
-}
+export default InputSearch;
 
 const SearchContainer = styled.div`
   display: flex;

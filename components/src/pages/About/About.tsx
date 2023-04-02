@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { GiDeathNote } from 'react-icons/gi';
 
 import Header from '../../components/Header';
 import { Main } from '../../styled/styledComponents';
 
-class About extends Component {
-  render() {
-    return (
-      <>
-        <Header namePage="About us Page" />
-        <Main>
-          <TextBlock className="container">
-            <Heading>
-              <GiDeathNote />
-            </Heading>
-            <p>This page is empty</p>
-          </TextBlock>
-        </Main>
-      </>
-    );
-  }
-}
+const About = () => {
+  return (
+    <>
+      <Header namePage="About us Page" />
+      <Main>
+        <TextBlock className="container">
+          <Heading>
+            <GiDeathNote />
+          </Heading>
+          <p>This page is empty</p>
+        </TextBlock>
+      </Main>
+    </>
+  );
+};
 
 const TextBlock = styled.section`
   display: flex;

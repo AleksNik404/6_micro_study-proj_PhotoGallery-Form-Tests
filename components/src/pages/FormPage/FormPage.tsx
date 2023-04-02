@@ -1,57 +1,42 @@
 import styled from '@emotion/styled';
-import React, { Component } from 'react';
+import { useState } from 'react';
 
 import Header from '../../components/Header';
 import Toast from '../../components/Toast';
 import { Main } from '../../styled/styledComponents';
-import { CardsContainer } from '../Home/components';
 import { CardItem } from '../Home/components/Card';
-import { Cards } from '../Home/components/CardsContainer';
+import CardsContainer, { Cards } from '../Home/components/CardsContainer';
+
 import Form from './components/Form';
 
-type Props = Record<string, never>;
-type State = Cards & { toastMessage: string };
+const FormPage = () => {
+  const [cards, setCards] = useState<Cards['cards']>([]);
+  const [toastMessage, setToastMessage] = useState('');
 
-class FormPage extends Component<Props, State> {
-  state: State = {
-    cards: [],
-    toastMessage: '',
+  const addOneCard = (cardData: CardItem) => {
+    setCards((prev) => [...prev, cardData]);
+    setToastMessage('Card successfully created');
   };
 
-  addOneCard = (data: CardItem) => {
-    this.setState((prev) => {
-      return {
-        cards: [...prev.cards, data],
-        toastMessage: 'Card successfully created',
-      };
-    });
+  const deleteToast = () => {
+    setToastMessage('');
   };
 
-  deleteToast = () => {
-    this.setState({
-      toastMessage: '',
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <Header namePage="Form Page" />
-        <Main>
-          <section className="container">
-            <FormBlock>
-              <Form addOneCard={this.addOneCard} />
-              {this.state.toastMessage && (
-                <Toast message={this.state.toastMessage} deleteToast={this.deleteToast} />
-              )}
-            </FormBlock>
-            <CardsContainer cards={this.state.cards} />
-          </section>
-        </Main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header namePage="Form Page" />
+      <Main>
+        <section className="container">
+          <FormBlock>
+            <Form addOneCard={addOneCard} />
+            {toastMessage && <Toast message={toastMessage} deleteToast={deleteToast} />}
+          </FormBlock>
+          <CardsContainer cards={cards} />
+        </section>
+      </Main>
+    </>
+  );
+};
 
 const FormBlock = styled.div`
   margin-bottom: 5rem;

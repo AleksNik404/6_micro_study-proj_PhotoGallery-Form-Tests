@@ -1,25 +1,28 @@
 import styled from '@emotion/styled';
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { useFormContext } from 'react-hook-form';
+import { ErrorMessage } from '../../../styled/styledComponents';
+import { FormData } from './Form';
 
 interface InputProps {
-  name: string;
-  InputRef: React.Ref<HTMLSelectElement>;
+  name: keyof Pick<FormData, 'price'>;
   label?: string;
   list: number[];
   defaultValue: string;
 
-  ErrorMessage?: string;
+  validate?: (value: number | undefined) => string | undefined;
 }
 
-const FormSelect = (props: InputProps) => {
-  const { defaultValue, name, InputRef, list, ErrorMessage, label = name } = props;
+const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
 
   return (
     <InputBlock>
       <label htmlFor={name}>
-        {label} {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        {label}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
-      <select ref={InputRef} name={name} id={name} defaultValue={defaultValue}>
+      <select id={name} defaultValue={defaultValue} {...register(name, { validate })}>
         <option value="" hidden>
           {defaultValue}
         </option>

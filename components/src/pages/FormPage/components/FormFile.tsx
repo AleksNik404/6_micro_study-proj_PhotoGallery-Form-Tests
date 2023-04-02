@@ -1,34 +1,36 @@
 import styled from '@emotion/styled';
+import { useFormContext } from 'react-hook-form';
 import { BiImageAdd } from 'react-icons/bi';
 
-import { ErrorMesage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/styledComponents';
+import { FormData } from './Form';
 
 interface FileProps {
-  fileRef: React.Ref<HTMLInputElement>;
-
-  name: string;
+  name: keyof Pick<FormData, 'image'>;
   label?: string;
-  value?: number;
-  ErrorMessage?: string;
+
+  validate?: (value: FileList | undefined) => string | undefined;
 }
 
-const FormFile = (props: FileProps) => {
-  const { fileRef, name, label, ErrorMessage } = props;
+const FormFile = ({ name, label, validate }: FileProps) => {
+  const { register, formState } = useFormContext<FormData>();
+  const { errors } = formState;
 
   return (
     <FileBlock>
       <input
-        ref={fileRef}
+        {...register(name, { validate })}
         type="file"
         id="image"
         name={name}
         accept="image/*"
         className="hide-behind-page"
       />
+
       <label htmlFor="image">
         <BiImageAdd size="1.7rem" />
         {label}
-        {ErrorMessage && <ErrorMesage>{ErrorMessage}</ErrorMesage>}
+        {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
       </label>
     </FileBlock>
   );

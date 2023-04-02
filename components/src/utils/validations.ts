@@ -1,107 +1,58 @@
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
-import { VALIDATION_ERROR } from './constants';
 dayjs.extend(isBetween);
 
-type SetMessage = Record<string, string>;
+import {
+  NAME_REQUIRED_ERROR_MESSAGE,
+  NAME_CAPITALIZE_ERROR_MESSAGE,
+  DATE_REQUIRED_ERROR_MESSAGE,
+  DATE_PERIOD_ERROR_MESSAGE,
+  PRICE_REQUIRED_ERROR_MESSAGE,
+  FILE_REQUIRED_ERROR_MESSAGE,
+  DISCOUNT_REQUIRED_ERROR_MESSAGE,
+  TERM_REQUIRED_ERROR_MESSAGE,
+} from './constants';
 
-export const textValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error(VALIDATION_ERROR);
-
-  const { name, value } = input;
-
-  const isEmpty = !value.length;
-  if (isEmpty) {
-    errorsMap[name] = 'Title canot be empty';
-    return;
-  }
-
-  const tooLong = value.length > 24;
-  if (tooLong) {
-    errorsMap[name] = 'maximum 24 characters';
-    return;
-  }
+const textValidate = (value: string | undefined): string | undefined => {
+  const isEmpty = !value?.length;
+  if (isEmpty) return NAME_REQUIRED_ERROR_MESSAGE;
 
   const notToUpperCase = value[0] !== value[0].toLocaleUpperCase();
-  if (notToUpperCase) {
-    errorsMap[name] = 'Please provide the title with a capital letter';
-    return;
-  }
+  if (notToUpperCase) return NAME_CAPITALIZE_ERROR_MESSAGE;
 };
 
-export const dateValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error(VALIDATION_ERROR);
+const dateValidate = (value: string | undefined): string | undefined => {
+  const isEmpty = !value?.length;
+  if (isEmpty) return DATE_REQUIRED_ERROR_MESSAGE;
 
-  const { name, value } = input;
-
-  const isEmpty = !value.length;
-  if (isEmpty) {
-    errorsMap[name] = 'Please fill in the date field';
-    return;
-  }
-
-  const isValidDate = dayjs(value).isValid();
-  if (!isValidDate) {
-    errorsMap[name] = 'Incorrect date';
-    return;
-  }
-
-  const isValidYear = dayjs(value).isBetween('1980-01-01', dayjs('2025-12-31'));
-  if (!isValidYear) {
-    errorsMap[name] = 'Specify the year between 1980 and 2025';
-    return;
-  }
+  const isValidYear = dayjs(value).isBetween('1990-01-01', dayjs('2024-12-31'));
+  if (!isValidYear) return DATE_PERIOD_ERROR_MESSAGE;
 };
 
-export const selectValidate = (input: HTMLSelectElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error(VALIDATION_ERROR);
-
-  const { name, value } = input;
-
+const selectValidate = (value: number | undefined): string | undefined => {
   const isEmpty = !value;
-  if (isEmpty) {
-    errorsMap[name] = 'Please select a price option';
-    return;
-  }
+  if (isEmpty) return PRICE_REQUIRED_ERROR_MESSAGE;
 };
 
-export const fileValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input?.files) throw new Error(VALIDATION_ERROR);
-
-  const { name, files } = input;
-
-  const isEmpty = !files?.length;
-  if (isEmpty) {
-    errorsMap[name] = 'Please provide image';
-    return;
-  }
+const fileValidate = (value: FileList | undefined): string | undefined => {
+  const isEmpty = !value?.length;
+  if (isEmpty) return FILE_REQUIRED_ERROR_MESSAGE;
 };
 
-export const discountValidate = (
-  input1: HTMLInputElement | null,
-  input2: HTMLInputElement | null,
-  errorsMap: SetMessage
-) => {
-  if (!input1 || !input2) throw new Error(VALIDATION_ERROR);
-
-  const { name, checked } = input1;
-  const { checked: checked2 } = input2;
-
-  const isEmpty = !checked && !checked2;
-  if (isEmpty) {
-    errorsMap[name] = 'Choose a discount plan';
-    return;
-  }
+const discountValidate = (value: number | undefined): string | undefined => {
+  if (!value) return DISCOUNT_REQUIRED_ERROR_MESSAGE;
 };
 
-export const termValidate = (input: HTMLInputElement | null, errorsMap: SetMessage) => {
-  if (!input) throw new Error(VALIDATION_ERROR);
+const termValidate = (value: boolean | undefined): string | undefined => {
+  const isEmpty = !value;
+  if (isEmpty) return TERM_REQUIRED_ERROR_MESSAGE;
+};
 
-  const { name, checked } = input;
-
-  const isEmpty = !checked;
-  if (isEmpty) {
-    errorsMap[name] = `Just agree, it's not scary`;
-    return;
-  }
+export const validation = {
+  name: textValidate,
+  releaseDate: dateValidate,
+  price: selectValidate,
+  discountPercentage: discountValidate,
+  image: fileValidate,
+  check: termValidate,
 };
