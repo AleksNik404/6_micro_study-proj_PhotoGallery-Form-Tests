@@ -1,18 +1,23 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import App from './App';
+import { AppWrapper } from './App';
+import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {
-  it('Renders App', () => {
-    render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
+  it('сheck the main tags of the page', () => {
+    render(<AppWrapper />);
 
-    expect(screen.getByRole('banner')).toBeInTheDocument(); // <header></header>
+    expect(screen.getByRole('banner')).toBeInTheDocument(); // <header>
     expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+
+  it('сhecking the availability of links for routing', () => {
+    render(<Header />, { wrapper: BrowserRouter });
+
+    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Form' })).toBeInTheDocument();
   });
 });

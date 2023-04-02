@@ -7,6 +7,9 @@ export const formatPrice = (price: number, regionCurency = 'EUR') => {
   }).format(price);
 };
 
+export const subtractPercentage = (price: number, percent: number) =>
+  price - (price / 100) * percent;
+
 export const addSearchValueToLocalStorage = (value: string) => {
   localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(value));
 };
@@ -20,5 +23,6 @@ export const getSearchValueFromLocalStorage = () => {
   return typeof parsedResult === 'string' ? parsedResult : '';
 };
 
-export const subtractPercentage = (price: number, percent: number) =>
-  price - (price / 100) * percent;
+export const isEmpty = (obj: object) => {
+  return Object.keys(obj).length === 0;
+};
