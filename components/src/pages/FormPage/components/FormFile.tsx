@@ -19,10 +19,7 @@ const FormFile = ({ name, label, validate }: FileProps) => {
   return (
     <FileBlock>
       <input
-        {...register(name, {
-          validate,
-          // required: 'DTREbuets'
-        })}
+        {...register(name, { validate })}
         type="file"
         id="image"
         name={name}

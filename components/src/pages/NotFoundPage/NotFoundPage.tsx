@@ -39,7 +39,6 @@ const ErrorBox = styled.article`
 
 const Button = styled.button`
   padding: 5px 10px;
-
   background-color: var(--secondary-color-300);
   color: var(--text-color);
 

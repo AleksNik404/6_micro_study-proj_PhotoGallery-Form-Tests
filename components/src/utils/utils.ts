@@ -1,9 +1,9 @@
 import { LOCAL_STORAGE_SEARCH } from './constants';
 
-export const formatPrice = (price: number, regionCurency = 'EUR') => {
+export const formatPrice = (price: number, regionCurrency = 'EUR') => {
   return Intl.NumberFormat('ru', {
     style: 'currency',
-    currency: regionCurency,
+    currency: regionCurrency,
   }).format(price);
 };
 
@@ -21,8 +21,4 @@ export const getSearchValueFromLocalStorage = () => {
   const parsedResult = JSON.parse(data);
 
   return typeof parsedResult === 'string' ? parsedResult : '';
-};
-
-export const isEmpty = (obj: object) => {
-  return Object.keys(obj).length === 0;
 };

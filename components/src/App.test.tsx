@@ -6,14 +6,14 @@ import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {
-  it('сheck the main tags of the page', () => {
+  it('check the main tags of the page', () => {
     render(<AppWrapper />);
 
     expect(screen.getByRole('banner')).toBeInTheDocument(); // <header>
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
 
-  it('сhecking the availability of links for routing', () => {
+  it('checking the availability of links for routing', () => {
     render(<Header />, { wrapper: BrowserRouter });
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();

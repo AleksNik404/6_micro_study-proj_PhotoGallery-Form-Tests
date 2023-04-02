@@ -20,8 +20,8 @@ import {
 
 describe('Form submit', () => {
   beforeEach(() => {
-    window.URL.createObjectURL = vitest.fn(); // exists only in the web api
-    crypto.randomUUID = vitest.fn(); // exists only in the web api
+    window.URL.createObjectURL = vitest.fn();
+    crypto.randomUUID = vitest.fn();
   });
 
   it('full form submission test', async () => {
@@ -69,8 +69,8 @@ describe('che', () => {
   let submitButton: HTMLElement;
 
   beforeEach(() => {
-    window.URL.createObjectURL = vitest.fn(); // exists only in the web api
-    crypto.randomUUID = vitest.fn(); // exists only in the web api
+    window.URL.createObjectURL = vitest.fn();
+    crypto.randomUUID = vitest.fn();
 
     const addOneCard = vitest.fn();
     render(<Form addOneCard={addOneCard} />, { wrapper: BrowserRouter });
@@ -101,7 +101,7 @@ describe('che', () => {
 
   it('FILE field validation messages', async () => {
     const fileInput = screen.getByLabelText<HTMLInputElement>('Select image');
-    const fileForUpload = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const fileForUpload = new File(['Nuclear'], 'Nuclear.png', { type: 'image/png' });
 
     await userEvent.click(submitButton);
     expect(screen.getByText(FILE_REQUIRED_ERROR_MESSAGE)).toBeInTheDocument();
@@ -148,22 +148,3 @@ describe('che', () => {
     expect(screen.queryByText(TERM_REQUIRED_ERROR_MESSAGE)).not.toBeInTheDocument();
   });
 });
-
-// import React from 'react';
-// import userEvent from '@testing-library/user-event';
-// import { render, screen } from '@testing-library/react';
-// import { BrowserRouter } from 'react-router-dom';
-
-// import FormInput from './FormInput';
-
-// describe('inputSearch', () => {
-//   it('check FormInput component change value', async () => {
-//     const InputRef = React.createRef<HTMLInputElement>();
-//     render(<FormInput name="name" />, { wrapper: BrowserRouter });
-//     const text = `Nuclear - Mike Oldfield`;
-//     const input = screen.getByRole('textbox');
-//     expect(input).toBeInTheDocument();
-//     await userEvent.type(input, text);
-//     expect(input).toHaveValue(text);
-//   });
-// });

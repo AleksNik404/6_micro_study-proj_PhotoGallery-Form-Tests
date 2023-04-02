@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 
 describe('inputSearch', () => {
-  it('сhecking the field search display', () => {
+  it('checking the field search display', () => {
     render(<Home />, { wrapper: BrowserRouter });
 
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument;
