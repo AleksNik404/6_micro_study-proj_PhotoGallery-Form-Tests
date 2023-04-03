@@ -1,5 +1,5 @@
 {
-  "name": "components",
+  "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -47,6 +47,5 @@
     "vite": "^4.1.0",
     "vite-plugin-checker": "^0.5.6",
     "vitest": "^0.29.2"
-  },
-  "packageManager": "yarn@3.4.1"
+  }
 }
