@@ -16,9 +16,9 @@ export const useSearchValueStorage = (initialValue = '') => {
     };
   }, []);
 
-  const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    valueRef.current = event.target.value;
+  const updateValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    setValue(value);
+    valueRef.current = value;
   };
 
   return [value, updateValue] as const;
