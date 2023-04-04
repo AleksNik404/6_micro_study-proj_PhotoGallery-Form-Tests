@@ -28,7 +28,7 @@ const Grid = styled.div`
 
   /* Other */
   justify-items: center;
-  gap: 3rem 1rem;
+  gap: 3rem 1.6rem;
 `;
 
 export default CardsContainer;

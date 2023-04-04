@@ -45,8 +45,8 @@ export const GridItem = styled.article`
   /* width: 100%; */
 
   /* for Flex container */
-  max-width: 250px;
-  flex: 1 0 200px;
+  max-width: 450px;
+  flex: 1 1 330px;
 
   /* other */
   display: flex;
@@ -75,7 +75,7 @@ export const GridItem = styled.article`
     position: relative;
     transition: all 0.5s;
 
-    padding-bottom: calc(4 / 3 * 100%);
+    padding-bottom: calc(2 / 3 * 100%);
 
     &::after {
       content: '';
@@ -94,7 +94,10 @@ export const GridItem = styled.article`
   }
 
   .image {
+    top: 0;
+    left: 0;
     width: 100%;
+
     height: 100%;
     object-fit: cover;
     position: absolute;
@@ -119,18 +122,18 @@ export const GridItem = styled.article`
     flex-direction: column;
     justify-content: space-between;
 
-    gap: 10px;
+    gap: 30px;
     height: 100%;
     padding: 0px 8px 10px;
   }
 
   .maker {
     opacity: 0.7;
-    font-size: calc(0.55rem + 0.08vw);
+    font-size: calc(0.6rem + 0.1vw);
   }
 
   .name {
-    font-size: calc(0.65rem + 0.13vw);
+    font-size: calc(0.75rem + 0.2vw);
     overflow-wrap: break-word;
   }
 `;

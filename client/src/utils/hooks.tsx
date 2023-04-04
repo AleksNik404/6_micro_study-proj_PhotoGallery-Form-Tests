@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from './utils';
+import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from './localStorage';
 
 export const useSearchValueStorage = (initialValue = '') => {
   const [value, setValue] = useState(initialValue || getSearchValueFromLocalStorage());

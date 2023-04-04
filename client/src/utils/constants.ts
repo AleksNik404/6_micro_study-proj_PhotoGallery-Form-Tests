@@ -1,5 +1,5 @@
 export const LOCAL_STORAGE_SEARCH = 'griz-search';
-export const INPUT_OPTIONS = [19, 29, 49, 59];
+export const PRICE_OPTIONS = [39.9, 49.9, 54.9, 59.9, 70.0];
 
 export const REQUIRED_ERROR_MESSAGE = 'This field is required';
 

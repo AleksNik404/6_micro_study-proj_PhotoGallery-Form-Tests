@@ -3,7 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
 import { CardItem } from '../../Home/components/Card';
-import { INPUT_OPTIONS } from '../../../utils/constants';
+import { PRICE_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
 import { SubmitButton } from '../../../styled/styledComponents';
 import { useEffect } from 'react';
@@ -64,7 +64,7 @@ const Form = ({ addOneCard }: FormProps) => {
             name="price"
             label="Price"
             defaultValue="Select price"
-            list={INPUT_OPTIONS}
+            list={PRICE_OPTIONS}
             validate={validation.price}
           />
           <FormSwitcher

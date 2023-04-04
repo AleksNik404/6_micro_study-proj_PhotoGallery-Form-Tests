@@ -7,7 +7,7 @@ import './index.css';
 import { AppWrapper } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <AppWrapper />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <AppWrapper />
+  // {/* </React.StrictMode> */}
 );

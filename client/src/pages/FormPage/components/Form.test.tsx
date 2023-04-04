@@ -10,7 +10,7 @@ import {
   DATE_REQUIRED_ERROR_MESSAGE,
   DISCOUNT_REQUIRED_ERROR_MESSAGE,
   FILE_REQUIRED_ERROR_MESSAGE,
-  INPUT_OPTIONS,
+  PRICE_OPTIONS,
   NAME_CAPITALIZE_ERROR_MESSAGE,
   NAME_REQUIRED_ERROR_MESSAGE,
   NAME_TOO_LONG_ERROR_MESSAGE,
@@ -132,7 +132,7 @@ describe('che', () => {
     await userEvent.click(submitButton);
     expect(screen.getByText(PRICE_REQUIRED_ERROR_MESSAGE)).toBeInTheDocument();
 
-    await userEvent.selectOptions(priceInput, String(INPUT_OPTIONS[0]));
+    await userEvent.selectOptions(priceInput, String(PRICE_OPTIONS[0]));
     await userEvent.click(submitButton);
     expect(screen.queryByText(PRICE_REQUIRED_ERROR_MESSAGE)).not.toBeInTheDocument();
   });

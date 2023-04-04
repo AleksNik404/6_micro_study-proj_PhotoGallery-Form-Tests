@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { formatPrice, subtractPercentage } from '../../../utils/utils';
+import { formatPrice, subtractPercentage } from '../../../utils/priceUtils';
 
 interface PriceProps {
   price: number;

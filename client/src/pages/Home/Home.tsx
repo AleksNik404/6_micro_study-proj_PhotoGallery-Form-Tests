@@ -1,12 +1,14 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 
 import Header from '../../components/Header';
 import { CardsContainer, InputSearch } from './components';
 
-import { data } from '../../data/data';
 import { Main } from '../../styled/styledComponents';
 import { useSearchValueStorage } from '../../utils/hooks';
-import { useEffect, useState } from 'react';
+import { PRICE_OPTIONS } from '../../utils/constants';
+import { getStableDiscountById, getStablePriceById } from '../../utils/priceUtils';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useSearchValueStorage();
@@ -14,16 +16,38 @@ const Home = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    const getadata = async () => {
-      const res = await fetch('http://localhost:3000/api/game');
-      const data = await res.json();
+    const getData = async () => {
+      const {
+        data: { results },
+      } = await axios(
+        'https://api.rawg.io/api/games?key=0c22339f3bcb472597b845804d0dd870&search_exact=true&page=1'
+      );
+
+      const games = results.map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ({ id, name, released: releaseDate, background_image: image }: any) => {
+          image = image.replace(
+            'https://media.rawg.io/media/',
+            'https://media.rawg.io/media/crop/600/400/'
+          );
+
+          return {
+            id,
+            name,
+            image,
+            price: getStablePriceById(id, PRICE_OPTIONS),
+            discountPercentage: getStableDiscountById(id),
+            releaseDate,
+          };
+        }
+      );
 
       setTimeout(() => {
-        setCards(data);
+        setCards(games);
       }, 500);
     };
 
-    getadata();
+    getData();
   }, []);
 
   return (
@@ -44,6 +68,8 @@ const Home = () => {
 const InputContainer = styled.div`
   padding: 20px 0;
   max-width: 20em;
+
+  margin: 0 auto 1rem;
 `;
 
 export default Home;

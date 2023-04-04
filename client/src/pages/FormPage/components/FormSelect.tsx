@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
+
 import { ErrorMessage } from '../../../styled/styledComponents';
 import { FormData } from './Form';
 
@@ -26,11 +27,14 @@ const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) =
         <option value="" hidden>
           {defaultValue}
         </option>
-        {list.map((option, index) => (
-          <option key={index} value={option}>
-            {option} &#8364;
-          </option>
-        ))}
+        {list.map((priceOption, index) => {
+          const price = priceOption.toFixed(2);
+          return (
+            <option key={index} value={price}>
+              {price} &#8364;
+            </option>
+          );
+        })}
       </select>
     </InputBlock>
   );
