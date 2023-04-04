@@ -6,9 +6,25 @@ import { CardsContainer, InputSearch } from './components';
 import { data } from '../../data/data';
 import { Main } from '../../styled/styledComponents';
 import { useSearchValueStorage } from '../../utils/hooks';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useSearchValueStorage();
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const getadata = async () => {
+      const res = await fetch('http://localhost:3000/api/game');
+      const data = await res.json();
+
+      setTimeout(() => {
+        setCards(data);
+      }, 500);
+    };
+
+    getadata();
+  }, []);
 
   return (
     <>
@@ -18,7 +34,7 @@ const Home = () => {
           <InputContainer>
             <InputSearch searchValue={searchValue} handlerSearchValue={setSearchValue} />
           </InputContainer>
-          <CardsContainer cards={data.slice(0, 11)} />
+          <CardsContainer cards={cards} />
         </section>
       </Main>
     </>
