@@ -35,7 +35,7 @@ const SearchContainer = styled.div`
   gap: 10px;
 
   border-radius: 2rem;
-  padding-right: 1.4em;
+  padding-right: 5em;
   background-color: var(--primary-color-400);
 
   transition: all 0.3s;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import Card, { CardItem } from './Card';
 
@@ -8,7 +9,7 @@ export interface Cards {
 
 const CardsContainer = ({ cards }: Cards) => {
   return (
-    <Grid>
+    <Grid type="flex">
       {cards.map((oneCardData) => {
         return <Card key={oneCardData.id} cardData={oneCardData} />;
       })}
@@ -16,17 +17,30 @@ const CardsContainer = ({ cards }: Cards) => {
   );
 };
 
-const Grid = styled.div`
-  /* if want Grid */
-  /* display: grid; */
-  /* grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); */
+const Grid = styled.div<{ type: 'flex' | 'grid' }>`
+  ${({ type }) => {
+    return type === 'flex'
+      ? css`
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
 
-  /* if want Flex */
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+          & > * {
+            max-width: 28rem;
+            flex: 1 1 300px;
+          }
+        `
+      : css`
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-  /* Other */
+          & > * {
+            max-width: 28rem;
+            width: 100%;
+          }
+        `;
+  }}
+
   justify-items: center;
   gap: 3rem 1.6rem;
 `;

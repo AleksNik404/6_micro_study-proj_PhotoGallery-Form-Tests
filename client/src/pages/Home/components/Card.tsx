@@ -40,15 +40,6 @@ const Card = ({ cardData }: CardItemProps) => {
 };
 
 export const GridItem = styled.article`
-  /* for Grid container */
-  /* max-width: 15rem; */
-  /* width: 100%; */
-
-  /* for Flex container */
-  max-width: 450px;
-  flex: 1 1 330px;
-
-  /* other */
   display: flex;
   flex-direction: column;
   gap: 0.4em;
@@ -58,17 +49,12 @@ export const GridItem = styled.article`
   background-color: #18181b;
   transition: all 0.2s;
 
-  &:hover .add-icon {
-    opacity: 1;
-  }
-
+  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
   }
-
-  cursor: pointer;
 
   .image-box {
     overflow: hidden;
@@ -115,6 +101,10 @@ export const GridItem = styled.article`
     color: var(--secondary-color-1000);
     opacity: 0;
     transition: all 0.3s;
+  }
+
+  &:hover .add-icon {
+    opacity: 1;
   }
 
   .text-box {

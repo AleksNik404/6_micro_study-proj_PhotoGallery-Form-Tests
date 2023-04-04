@@ -20,8 +20,9 @@ const Home = () => {
       const {
         data: { results },
       } = await axios(
-        'https://api.rawg.io/api/games?key=0c22339f3bcb472597b845804d0dd870&search_exact=true&page=1'
+        'https://api.rawg.io/api/games?key=0c22339f3bcb472597b845804d0dd870&search_exact=true&page=1&page_size=27'
       );
+      console.log(results.length);
 
       const games = results.map(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,10 +67,10 @@ const Home = () => {
 };
 
 const InputContainer = styled.div`
-  padding: 20px 0;
-  max-width: 20em;
+  /* padding: 20px 0; */
+  max-width: 25em;
 
-  margin: 0 auto 1rem;
+  margin: 1rem auto 2rem;
 `;
 
 export default Home;
