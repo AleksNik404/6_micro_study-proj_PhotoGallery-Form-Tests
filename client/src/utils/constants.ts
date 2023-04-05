@@ -14,3 +14,6 @@ export const FILE_REQUIRED_ERROR_MESSAGE = 'Please provide image';
 export const DISCOUNT_REQUIRED_ERROR_MESSAGE = 'Choose a discount plan';
 export const PRICE_REQUIRED_ERROR_MESSAGE = 'Please select a price option';
 export const TERM_REQUIRED_ERROR_MESSAGE = 'Just agree, it`s not scary';
+
+export const EMPTY_API_IMAGE =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4rh8bvCKO9YGbR0LtWFS_K8Xaeul9is5gtw&usqp=CAU';

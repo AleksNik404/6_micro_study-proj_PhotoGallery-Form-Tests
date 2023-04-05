@@ -8,12 +8,12 @@ export const formatPrice = (price: number, regionCurrency = 'EUR') => {
 export const subtractPercentage = (price: number, percent: number) =>
   price - (price / 100) * percent;
 
-export const getStablePriceById = (id: number, options: number[]) => {
+export const generateStablePriceById = (id: number, options: number[]) => {
   const indexOption = (id * 114) % options.length;
   return options[indexOption];
 };
 
-export const getStableDiscountById = (id: number, salt = 114) => {
+export const generateStableDiscountById = (id: number, salt = 114) => {
   if (id % 2) return 0;
   const rangeDiscountBySaltedId = ((id * salt) % 30) + 15;
 

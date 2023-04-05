@@ -27,12 +27,12 @@ const Grid = styled.div<{ type: 'flex' | 'grid' }>`
 
           & > * {
             max-width: 28rem;
-            flex: 1 1 300px;
+            flex: 1 1 22rem;
           }
         `
       : css`
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 
           & > * {
             max-width: 28rem;

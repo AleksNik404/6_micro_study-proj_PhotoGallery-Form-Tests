@@ -1,19 +1,16 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { addSearchValueToLocalStorage, getSearchValueFromLocalStorage } from './localStorage';
+import { useBeforeUnload } from 'react-router-dom';
 
 export const useSearchValueStorage = (initialValue = '') => {
   const [value, setValue] = useState(initialValue || getSearchValueFromLocalStorage());
   const valueRef = useRef(value);
 
-  useEffect(() => {
-    const handleBeforeUnload = () => addSearchValueToLocalStorage(valueRef.current);
-    window.addEventListener('beforeunload', handleBeforeUnload);
+  useBeforeUnload(() => addSearchValueToLocalStorage(valueRef.current));
 
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      addSearchValueToLocalStorage(valueRef.current);
-    };
+  useEffect(() => {
+    return () => addSearchValueToLocalStorage(valueRef.current);
   }, []);
 
   const updateValue = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {

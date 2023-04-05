@@ -7,38 +7,44 @@ type Props = {
   searchValue: string;
   placeholder?: string;
   handlerSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClick: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 };
 
-const InputSearch = ({ searchValue, handlerSearchValue, placeholder = 'Search' }: Props) => {
+const InputSearch = ({
+  searchValue,
+  handlerSearchValue,
+  placeholder = 'Search',
+  onClick,
+}: Props) => {
   return (
-    <SearchContainer>
-      <IconContainer>
-        <BsSearch />
-      </IconContainer>
-      <Input
-        type="search"
-        placeholder={placeholder}
-        value={searchValue}
-        onChange={handlerSearchValue}
-      />
-    </SearchContainer>
+    <>
+      <SearchContainer>
+        <IconContainer>
+          <BsSearch />
+        </IconContainer>
+        <Input
+          type="search"
+          placeholder={placeholder}
+          value={searchValue}
+          onChange={handlerSearchValue}
+        />
+        <input type="submit" onClick={onClick} />
+      </SearchContainer>
+    </>
   );
 };
 
 export default InputSearch;
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
   display: flex;
   place-items: center;
-
   width: 100%;
   gap: 10px;
-
   border-radius: 2rem;
-  padding-right: 5em;
-  background-color: var(--primary-color-400);
 
   transition: all 0.3s;
+  background-color: var(--primary-color-400);
 
   &:focus-within {
     background-color: var(--primary-color-500);
@@ -48,6 +54,7 @@ const SearchContainer = styled.div`
 const Input = styled.input`
   width: 100%;
   height: 40px;
+  margin-right: 5em;
 
   outline: 0;
   background-color: transparent;
