@@ -52,7 +52,7 @@ const FileBlock = styled.div`
     position: relative;
 
     background-color: #065f46;
-    border-radius: 6px;
+    border-radius: var(--border-radius-md);
     padding: 7px 20px;
     cursor: pointer;
 

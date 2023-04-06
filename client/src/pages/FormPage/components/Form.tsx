@@ -102,7 +102,7 @@ const FormStyled = styled.form`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   align-items: center;
-  border-radius: 2px;
+  border-radius: var(--border-radius-sm);
 
   input,
   select {

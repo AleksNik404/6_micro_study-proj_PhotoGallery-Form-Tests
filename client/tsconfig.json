@@ -18,5 +18,5 @@
     "noImplicitAny": true,
     "composite": true
   },
-  "include": ["src", ".eslintrc.cjs", "vite.config.ts"]
+  "include": ["src", ".eslintrc.cjs", "vite.config.ts", "unusedCode/CardPrice.tsx"]
 }

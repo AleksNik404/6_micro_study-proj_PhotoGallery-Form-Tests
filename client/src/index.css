@@ -20,12 +20,15 @@
   --secondary-color-900: #7bbcff;
   --secondary-color-1000: #93c5fd;
 
+  --text-color-grey: #999;
   --text-color: #cccccc;
   --text-color-hover: #f5f5f5;
 
   --white: #fff;
 
   --min-height-block: 200px;
+  --border-radius-sm: 3px;
+  --border-radius-md: 6px;
 }
 
 html {

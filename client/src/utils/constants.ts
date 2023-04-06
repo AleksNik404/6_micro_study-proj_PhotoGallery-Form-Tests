@@ -17,3 +17,30 @@ export const TERM_REQUIRED_ERROR_MESSAGE = 'Just agree, it`s not scary';
 
 export const EMPTY_API_IMAGE =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4rh8bvCKO9YGbR0LtWFS_K8Xaeul9is5gtw&usqp=CAU';
+
+export const LocationForEmpty = [
+  'Blue Planet',
+  'Terra',
+  'Gaia',
+  'Sphere',
+  'Tellus',
+  'Planet of Life',
+  'Cradle of Humanity',
+  'The Pearl of the Solar System',
+  'Planet of Peace',
+  'Atlantis',
+  'Mother Earth',
+  'Earth',
+  'Earth-21',
+  'Earth-XXI',
+  'Terran',
+  'Homeworld',
+  'Waterworld',
+  'Blue Beauty',
+  'Planet of Oceans',
+  'Metalworld',
+  'Earth-Siren',
+  'Planet of Oxygen',
+  'Earthland',
+  'Flower Planet',
+];

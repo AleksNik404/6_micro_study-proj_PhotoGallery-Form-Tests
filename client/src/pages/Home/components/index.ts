@@ -1,5 +1,5 @@
 import Card from './Card';
-import CardPrice from './CardPrice';
+import CardPrice from '../../../../unusedCode/CardPrice';
 import CardsContainer from './CardsContainer';
 import InputSearch from './InputSearch';
 

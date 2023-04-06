@@ -55,7 +55,7 @@ const SwitchBlock = styled.div`
   padding: 5px 10px;
 
   .switch {
-    border-radius: 6px;
+    border-radius: var(--border-radius-md);
     text-transform: capitalize;
 
     position: relative;

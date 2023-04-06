@@ -42,7 +42,7 @@ const Button = styled.button`
   background-color: var(--secondary-color-300);
   color: var(--text-color);
 
-  border-radius: 4px;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
 
   transition: background-color 0.3s;

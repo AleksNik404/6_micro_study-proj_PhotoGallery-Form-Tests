@@ -22,13 +22,13 @@ const InputSearch = ({
         <IconContainer>
           <BsSearch />
         </IconContainer>
-        <Input
+        <InputText
           type="search"
           placeholder={placeholder}
           value={searchValue}
           onChange={handlerSearchValue}
         />
-        <input type="submit" onClick={onClick} />
+        <InputSubmit type="submit" value="Submit" onClick={onClick} />
       </SearchContainer>
     </>
   );
@@ -39,10 +39,12 @@ export default InputSearch;
 const SearchContainer = styled.form`
   display: flex;
   place-items: center;
+  height: 100%;
   width: 100%;
-  gap: 10px;
-  border-radius: 2rem;
 
+  gap: calc(0.6rem + 0.6vw);
+  padding: 0.3rem 0.3rem 0.3rem 1rem;
+  border-radius: var(--border-radius-sm);
   transition: all 0.3s;
   background-color: var(--primary-color-400);
 
@@ -51,23 +53,46 @@ const SearchContainer = styled.form`
   }
 `;
 
-const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  margin-right: 5em;
-
+const InputText = styled.input`
+  flex: 1 1 100%;
+  height: 100%;
+  min-width: 0%;
   outline: 0;
   background-color: transparent;
   color: var(--text-color-hover);
 
-  &::-webkit-search-cancel-button:hover {
-    cursor: pointer;
+  animation: all 0.3s;
+
+  &::-webkit-search-cancel-button {
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+const InputSubmit = styled.input`
+  padding: 0 15px;
+  align-self: stretch;
+
+  background-color: var(--primary-color-100);
+  border-radius: var(--border-radius-sm);
+  color: var(--primary-color-900);
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #01000497;
+    color: var(--text-color-grey);
   }
 `;
 
 const IconContainer = styled.div`
-  margin-left: 0.8em;
-
+  @media (max-width: 25em) {
+    display: none;
+  }
   svg {
     display: flex;
     position: relative;
