@@ -44,3 +44,8 @@ export const LocationForEmpty = [
   'Earthland',
   'Flower Planet',
 ];
+
+export const ApiKeys = {
+  first: `Client-ID AHFFhJ_VGnu3HYcJvA-Bv1XuMCj7-yFin2u26IGdYP0`,
+  second: 'Client-ID anstdRlwHV1L-833veOEO1InojYv1xIvYqxsqjpjetQ',
+};

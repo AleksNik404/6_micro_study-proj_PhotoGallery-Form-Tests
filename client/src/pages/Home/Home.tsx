@@ -7,19 +7,7 @@ import { CardsContainer, InputSearch } from './components';
 import { Main } from '../../styled/styledComponents';
 
 import { useSearchValueStorage } from '../../utils/hooks';
-import { getLocationWhenEmpty } from '../../utils/utils';
-import { unsplashApi } from '../../utils/Api';
-
-const mappingPhotoAPi = ({ id, urls, created_at, user, links, location }: any) => {
-  return {
-    id,
-    name: location.name || getLocationWhenEmpty(),
-    image: urls.regular,
-    price: 22,
-    discountPercentage: 0,
-    releaseDate: created_at,
-  };
-};
+import { api } from '../../utils/Api';
 
 const Home = () => {
   const [searchValue, setSearchValue] = useSearchValueStorage();
@@ -27,18 +15,10 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const params = {
-        page: 1,
-        count: 14,
-        order_by: 'popular',
-      };
+      const result = await api.photos.random({ count: 14 });
+      const photos = result.map(api.mappingData.random);
 
-      const urlRandom = `photos/random`;
-      const result = await unsplashApi(urlRandom, { params });
-
-      console.log(result);
-
-      setCards(result.data.map(mappingPhotoAPi));
+      setCards(photos);
     };
 
     getData();
@@ -48,18 +28,9 @@ const Home = () => {
     e.preventDefault();
     if (!searchValue) return;
 
-    const params = {
-      page: 1,
-      per_page: 20,
-      order_by: 'relevant',
-      query: searchValue,
-    };
-
-    const urlRandom = `search/photos?`;
-    const { data } = await unsplashApi(urlRandom, { params });
-    console.log(data);
-
-    setCards(data.results.map(mappingPhotoAPi));
+    const results = await api.photos.search({ query: searchValue });
+    const photos = results.map(api.mappingData.search);
+    setCards(photos);
   };
 
   return (
