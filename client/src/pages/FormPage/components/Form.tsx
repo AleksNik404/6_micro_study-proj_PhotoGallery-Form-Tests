@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
-import { CardItem } from '../../Home/components/Card';
+
 import { PRICE_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
 import { SubmitButton } from '../../../styled/styledComponents';
 import { useEffect } from 'react';
+import { CardItem } from '../../../components/Card';
 
 export type FormData = {
   name: string;

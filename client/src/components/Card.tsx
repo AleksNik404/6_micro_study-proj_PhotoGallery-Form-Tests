@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-
-import { formatDate } from '../../../utils/utils';
+import { formatDate } from '../utils/utils';
 
 export interface CardItem {
   id: string;

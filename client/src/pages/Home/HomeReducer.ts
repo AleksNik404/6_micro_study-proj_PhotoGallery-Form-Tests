@@ -1,4 +1,4 @@
-import { CardItem } from './components/Card';
+import { CardItem } from '../../components/Card';
 
 export type State = {
   data: CardItem[];

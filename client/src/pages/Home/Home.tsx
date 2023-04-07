@@ -1,13 +1,14 @@
 import { useEffect, useReducer } from 'react';
 
 import Header from '../../components/Header';
-import { CardsContainer } from './components';
+
 import { Main } from '../../styled/styledComponents';
 
 import SearchForm from './components/SearchForm';
 import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
+import CardsContainer from '../../components/CardsContainer';
 
 const Home = () => {
   const [{ data, submitValue }, dispatch] = useReducer(reducer, {

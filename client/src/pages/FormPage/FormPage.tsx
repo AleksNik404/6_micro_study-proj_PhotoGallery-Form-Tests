@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import Toast from '../../components/Toast';
 import { Main } from '../../styled/styledComponents';
-import { CardItem } from '../Home/components/Card';
-import CardsContainer, { Cards } from '../Home/components/CardsContainer';
 
 import Form from './components/Form';
+import { CardItem } from '../../components/Card';
+import CardsContainer, { Cards } from '../../components/CardsContainer';
 
 const FormPage = () => {
   const [cards, setCards] = useState<Cards['cards']>([]);

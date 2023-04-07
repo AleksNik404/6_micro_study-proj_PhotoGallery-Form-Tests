@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { InputSearch } from '.';
-import { Action } from '../Home';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
+import styled from '@emotion/styled';
+
 import { addSearchValueToLocalStorage } from '../../../utils/localStorage';
+import { Action } from '../HomeReducer';
+import InputSearch from './InputSearch';
 
 type Props = {
   dispatch: React.Dispatch<Action>;
