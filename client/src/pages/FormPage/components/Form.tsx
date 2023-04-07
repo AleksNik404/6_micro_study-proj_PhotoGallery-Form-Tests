@@ -37,11 +37,11 @@ const Form = ({ addOneCard }: FormProps) => {
   }, [isSubmitSuccessful, methods]);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const { price, image: fileList } = data;
+    const { image: fileList } = data;
     const image = URL.createObjectURL(fileList[0]);
     const id = crypto.randomUUID();
 
-    addOneCard({ ...data, price: price, image, id });
+    addOneCard({ ...data, image, id });
   };
 
   return (
@@ -86,7 +86,7 @@ const Form = ({ addOneCard }: FormProps) => {
 export default Form;
 
 const Wrapper = styled.div`
-  max-width: 800px;
+  max-width: 50rem;
   margin: 0 auto;
   margin-bottom: 20px;
 `;
@@ -121,7 +121,7 @@ const FormStyled = styled.form`
     }
   }
 
-  @media (max-width: 710px) {
+  @media (max-width: 45em) {
     grid-template-columns: 1fr;
   }
 `;

@@ -1,42 +1,34 @@
-import { ChangeEvent } from 'react';
 import styled from '@emotion/styled';
 
 import { BsSearch } from 'react-icons/bs';
+import { UseFormRegister } from 'react-hook-form';
+import { SearchData } from './SearchForm';
 
 type Props = {
-  searchValue: string;
   placeholder?: string;
-  handlerSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClick: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  register: UseFormRegister<SearchData>;
 };
-
-const InputSearch = ({
-  searchValue,
-  handlerSearchValue,
-  placeholder = 'Search',
-  onClick,
-}: Props) => {
+// searchValue;
+const InputSearch = ({ placeholder = 'Search', register }: Props) => {
   return (
-    <>
-      <SearchContainer>
-        <IconContainer>
-          <BsSearch />
-        </IconContainer>
-        <InputText
-          type="search"
-          placeholder={placeholder}
-          value={searchValue}
-          onChange={handlerSearchValue}
-        />
-        <InputSubmit type="submit" value="Submit" onClick={onClick} />
-      </SearchContainer>
-    </>
+    <SearchContainer>
+      <Icon>
+        <BsSearch />
+      </Icon>
+      <InputText
+        type="search"
+        placeholder={placeholder}
+        {...register('submitValue')}
+        autoComplete="off"
+      />
+      <InputSubmit type="submit" value="Submit" />
+    </SearchContainer>
   );
 };
 
 export default InputSearch;
 
-const SearchContainer = styled.form`
+const SearchContainer = styled.div`
   display: flex;
   place-items: center;
   height: 100%;
@@ -51,6 +43,19 @@ const SearchContainer = styled.form`
   &:focus-within {
     background-color: var(--primary-color-500);
   }
+`;
+
+const Icon = styled.div`
+  @media (max-width: 25em) {
+    display: none;
+  }
+  svg {
+    display: flex;
+    position: relative;
+    transform: translateY(1px);
+  }
+
+  cursor: pointer;
 `;
 
 const InputText = styled.input`
@@ -87,17 +92,4 @@ const InputSubmit = styled.input`
     background-color: #01000497;
     color: var(--text-color-grey);
   }
-`;
-
-const IconContainer = styled.div`
-  @media (max-width: 25em) {
-    display: none;
-  }
-  svg {
-    display: flex;
-    position: relative;
-    transform: translateY(1px);
-  }
-
-  cursor: pointer;
 `;

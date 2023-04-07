@@ -3,17 +3,6 @@ import calendar from 'dayjs/plugin/calendar';
 import { LocationForEmpty } from './constants';
 dayjs.extend(calendar);
 
-export const formatPrice = (price: number, regionCurrency = 'EUR') => {
-  if (!price) return 'free';
-  return Intl.NumberFormat('ru', {
-    style: 'currency',
-    currency: regionCurrency,
-  }).format(price);
-};
-
-export const subtractPercentage = (price: number, percent: number) =>
-  price - (price / 100) * percent;
-
 export const formatDate = (date: string) => {
   return dayjs(date).calendar(null, {
     sameDay: '[Today at] h:mm A',

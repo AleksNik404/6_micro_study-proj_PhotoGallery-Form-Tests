@@ -13,7 +13,9 @@ import {
   TERM_REQUIRED_ERROR_MESSAGE,
 } from './constants';
 
-const textValidate = (value: string | undefined): string | undefined => {
+type ValidReturn = string | undefined;
+
+const textValidate = (value: string | undefined): ValidReturn => {
   const isEmpty = !value?.length;
   if (isEmpty) return NAME_REQUIRED_ERROR_MESSAGE;
 
@@ -21,7 +23,7 @@ const textValidate = (value: string | undefined): string | undefined => {
   if (notToUpperCase) return NAME_CAPITALIZE_ERROR_MESSAGE;
 };
 
-const dateValidate = (value: string | undefined): string | undefined => {
+const dateValidate = (value: string | undefined): ValidReturn => {
   const isEmpty = !value?.length;
   if (isEmpty) return DATE_REQUIRED_ERROR_MESSAGE;
 
@@ -29,21 +31,21 @@ const dateValidate = (value: string | undefined): string | undefined => {
   if (!isValidYear) return DATE_PERIOD_ERROR_MESSAGE;
 };
 
-const selectValidate = (value: number | undefined): string | undefined => {
+const selectValidate = (value: number | undefined): ValidReturn => {
   const isEmpty = !value;
   if (isEmpty) return PRICE_REQUIRED_ERROR_MESSAGE;
 };
 
-const fileValidate = (value: FileList | undefined): string | undefined => {
+const fileValidate = (value: FileList | undefined): ValidReturn => {
   const isEmpty = !value?.length;
   if (isEmpty) return FILE_REQUIRED_ERROR_MESSAGE;
 };
 
-const discountValidate = (value: number | undefined): string | undefined => {
+const discountValidate = (value: number | undefined): ValidReturn => {
   if (!value) return DISCOUNT_REQUIRED_ERROR_MESSAGE;
 };
 
-const termValidate = (value: boolean | undefined): string | undefined => {
+const termValidate = (value: boolean | undefined): ValidReturn => {
   const isEmpty = !value;
   if (isEmpty) return TERM_REQUIRED_ERROR_MESSAGE;
 };

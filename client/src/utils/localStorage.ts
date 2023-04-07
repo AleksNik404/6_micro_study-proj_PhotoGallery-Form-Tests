@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE_SEARCH } from './constants';
 
-export const addSearchValueToLocalStorage = (value: string) => {
+export const addSearchValueToLocalStorage = async (value: string) => {
   localStorage.setItem(LOCAL_STORAGE_SEARCH, JSON.stringify(value));
 };
 

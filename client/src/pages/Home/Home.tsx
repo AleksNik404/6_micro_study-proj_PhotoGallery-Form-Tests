@@ -1,61 +1,43 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
-import styled from '@emotion/styled';
+import { useEffect, useReducer } from 'react';
 
 import Header from '../../components/Header';
-import { CardsContainer, InputSearch } from './components';
+import { CardsContainer } from './components';
 import { Main } from '../../styled/styledComponents';
 
-import { useSearchValueStorage } from '../../utils/hooks';
-import { api } from '../../utils/Api';
+import SearchForm from './components/SearchForm';
+import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
+import { reducer } from './HomeReducer';
+import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
 
 const Home = () => {
-  const [searchValue, setSearchValue] = useSearchValueStorage();
-  const [cards, setCards] = useState([]);
+  const [{ data, submitValue }, dispatch] = useReducer(reducer, {
+    data: [],
+    loading: false,
+    error: false,
+
+    submitValue: getSearchValueFromLocalStorage(),
+  });
 
   useEffect(() => {
-    const getData = async () => {
-      const result = await api.photos.random({ count: 14 });
-      const photos = result.map(api.mappingData.random);
+    if (submitValue) {
+      getSearchPhoto(dispatch, submitValue);
+      return;
+    }
 
-      setCards(photos);
-    };
-
-    getData();
-  }, []);
-
-  const search = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!searchValue) return;
-
-    const results = await api.photos.search({ query: searchValue });
-    const photos = results.map(api.mappingData.search);
-    setCards(photos);
-  };
+    getRandomPhoto(dispatch);
+  }, [submitValue]);
 
   return (
     <>
       <Header namePage="Home Page" />
       <Main>
         <section className="container">
-          <InputContainer>
-            <InputSearch
-              searchValue={searchValue}
-              handlerSearchValue={setSearchValue}
-              onClick={search}
-            />
-          </InputContainer>
-          <CardsContainer cards={cards} />
+          <SearchForm dispatch={dispatch} submitValue={submitValue} />
+          <CardsContainer cards={data} />
         </section>
       </Main>
     </>
   );
 };
-
-const InputContainer = styled.div`
-  max-width: 25rem;
-  height: 2.8rem;
-  margin: 1rem auto 2rem;
-`;
 
 export default Home;

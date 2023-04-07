@@ -7,8 +7,6 @@ export interface CardItem {
   id: string;
   image: string;
   name: string;
-  price: number;
-  discountPercentage: number;
 
   developer?: string;
   releaseDate?: string;
