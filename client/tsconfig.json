@@ -18,5 +18,11 @@
     "noImplicitAny": true,
     "composite": true
   },
-  "include": ["src", ".eslintrc.cjs", "vite.config.ts", "unusedCode/*/*"]
+  "include": [
+    "src",
+    ".eslintrc.cjs",
+    "vite.config.ts",
+    "unusedCode/*/*",
+    "unusedCode/generalUtils.ts"
+  ]
 }

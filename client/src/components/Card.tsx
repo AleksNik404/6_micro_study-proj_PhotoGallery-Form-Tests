@@ -13,13 +13,15 @@ export interface CardItem {
 
 export type CardItemProps = {
   cardData: CardItem;
+  onClick?: (id: string) => void;
 };
 
-const Card = ({ cardData }: CardItemProps) => {
-  const { image, name, releaseDate = 'soon' } = cardData;
+const Card = ({ cardData, onClick }: CardItemProps) => {
+  const { id, image, name, releaseDate = 'soon' } = cardData;
+  // console.log(cardData.id);
 
   return (
-    <GridItem>
+    <GridItem onClick={onClick && (() => onClick(id))}>
       <div className="image-box">
         <img className="image" src={image} alt={name} />
 

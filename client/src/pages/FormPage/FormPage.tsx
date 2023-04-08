@@ -7,7 +7,7 @@ import { Main } from '../../styled/styledComponents';
 
 import Form from './components/Form';
 import { CardItem } from '../../components/Card';
-import CardsContainer, { Cards } from '../../components/CardsContainer';
+import FormCardsContainer, { Cards } from './components/FormCardsContainer';
 
 const FormPage = () => {
   const [cards, setCards] = useState<Cards['cards']>([]);
@@ -29,9 +29,9 @@ const FormPage = () => {
         <section className="container">
           <FormBlock>
             <Form addOneCard={addOneCard} />
-            {toastMessage && <Toast message={toastMessage} deleteToast={deleteToast} />}
+            <Toast message={toastMessage} deleteToast={deleteToast} />
           </FormBlock>
-          <CardsContainer cards={cards} />
+          <FormCardsContainer cards={cards} />
         </section>
       </Main>
     </>

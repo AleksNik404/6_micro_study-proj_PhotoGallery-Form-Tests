@@ -1,24 +1,8 @@
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import Card, { CardItem } from './Card';
-
-export interface Cards {
-  cards: CardItem[];
-}
-
-const CardsContainer = ({ cards }: Cards) => {
-  return (
-    <Grid type="flex">
-      {cards.map((oneCardData) => {
-        return <Card key={oneCardData.id} cardData={oneCardData} />;
-      })}
-    </Grid>
-  );
-};
-
-const Grid = styled.div<{ type: 'flex' | 'grid' }>`
-  ${({ type }) => {
+export const Grid = styled.div<{ type: 'flex' | 'grid' }>`
+  ${({ type = 'grid' }) => {
     return type === 'flex'
       ? css`
           display: flex;
@@ -44,5 +28,3 @@ const Grid = styled.div<{ type: 'flex' | 'grid' }>`
   justify-items: center;
   gap: 3rem 1.6rem;
 `;
-
-export default CardsContainer;

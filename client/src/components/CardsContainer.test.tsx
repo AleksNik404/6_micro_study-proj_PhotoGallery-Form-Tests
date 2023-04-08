@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import CardsContainer from './CardsContainer';
+import CardsContainer from '../pages/Home/components/HomeCardsContainer';
 
 const oneCard = {
   id: 1,

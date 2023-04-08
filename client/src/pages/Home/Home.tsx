@@ -8,7 +8,7 @@ import SearchForm from './components/SearchForm';
 import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
-import CardsContainer from '../../components/CardsContainer';
+import HomeCardsContainer from './components/HomeCardsContainer';
 
 const Home = () => {
   const [{ data, submitValue }, dispatch] = useReducer(reducer, {
@@ -34,7 +34,10 @@ const Home = () => {
       <Main>
         <section className="container">
           <SearchForm dispatch={dispatch} submitValue={submitValue} />
-          <CardsContainer cards={data} />
+          <HomeCardsContainer
+            cards={data}
+            // modal={true}
+          />
         </section>
       </Main>
     </>

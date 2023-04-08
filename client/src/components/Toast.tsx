@@ -6,6 +6,8 @@ type NewType = {
 };
 
 const Toast = ({ deleteToast, message }: NewType) => {
+  if (!message) return null;
+
   return <ToastBox onAnimationEnd={() => deleteToast()}>{message}</ToastBox>;
 };
 
