@@ -7,7 +7,7 @@ import { CardItem } from '../../components/Card';
 export const unsplashApi = axios.create({
   baseURL: 'https://api.unsplash.com/',
   headers: {
-    Authorization: ApiKeys.first,
+    Authorization: ApiKeys.second,
   },
 });
 

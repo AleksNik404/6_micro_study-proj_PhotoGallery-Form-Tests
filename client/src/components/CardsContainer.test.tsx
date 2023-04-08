@@ -6,10 +6,7 @@ const oneCard = {
   id: 1,
   name: 'TestCard',
   developer: 'Obsidian Entertainment',
-  rating: 4.8,
   image: 'urlImage',
-  price: 47.99,
-  discountPercentage: 20,
 };
 
 const testDataCards = Array.from({ length: 10 }, (_, index) => {

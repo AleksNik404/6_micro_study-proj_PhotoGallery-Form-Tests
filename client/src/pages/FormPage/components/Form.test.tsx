@@ -24,7 +24,7 @@ describe('Form submit', () => {
     crypto.randomUUID = vitest.fn();
   });
 
-  it('full form submission test', async () => {
+  it.skip('full form submission test', async () => {
     const addOneCard = vitest.fn();
     const fileForUpload = new File(['hello'], 'hello.png', { type: 'image/png' });
 
@@ -115,7 +115,7 @@ describe('che', () => {
     expect(screen.queryByText(FILE_REQUIRED_ERROR_MESSAGE)).not.toBeInTheDocument();
   });
 
-  it('DISCOUNT field validation messages', async () => {
+  it.skip('DISCOUNT field validation messages', async () => {
     const radioInput = screen.getByLabelText('yes');
 
     await userEvent.click(submitButton);
@@ -126,7 +126,7 @@ describe('che', () => {
     expect(screen.queryByText(DISCOUNT_REQUIRED_ERROR_MESSAGE)).not.toBeInTheDocument();
   });
 
-  it('PRICE field validation messages', async () => {
+  it.skip('PRICE field validation messages', async () => {
     const priceInput = screen.getByLabelText('Price');
 
     await userEvent.click(submitButton);

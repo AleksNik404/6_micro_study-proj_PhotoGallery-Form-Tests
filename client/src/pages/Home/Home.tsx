@@ -10,9 +10,9 @@ import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
 import HomeCardsContainer from './components/HomeCardsContainer';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { Grid } from '../../styled/Grid';
 
-import 'react-loading-skeleton/dist/skeleton.css';
 import { GridItem } from '../../components/Card';
 
 const Home = () => {
@@ -41,7 +41,6 @@ const Home = () => {
           <section className="container">
             <SearchForm dispatch={dispatch} submitValue={submitValue} />
             {loading ? <Ha /> : <HomeCardsContainer cards={data} />}
-            {/* <HomeCardsContainer cards={data} /> */}
           </section>
         </Main>
       </SkeletonTheme>
