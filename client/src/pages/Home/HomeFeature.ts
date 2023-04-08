@@ -11,6 +11,8 @@ export const getRandomPhoto = async (dispatch: React.Dispatch<Action>) => {
 
     dispatch({ type: 'FETCH_SUCCESS', payload: photos });
   } catch (error) {
+    console.log(error);
+
     dispatch({ type: 'FETCH_ERROR' });
   }
 };
@@ -28,6 +30,7 @@ export const getSearchPhoto = async (dispatch: React.Dispatch<Action>, searchVal
     dispatch({ type: 'ADD_SEARCH_VALUE', payload: searchValue });
     dispatch({ type: 'FETCH_SUCCESS', payload: photos });
   } catch (error) {
+    console.log(error);
     dispatch({ type: 'FETCH_ERROR' });
   }
 };

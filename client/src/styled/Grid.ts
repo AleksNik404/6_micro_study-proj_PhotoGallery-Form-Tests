@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Grid = styled.div<{ type: 'flex' | 'grid' }>`
+export const Grid = styled.div<{ type?: 'flex' | 'grid' }>`
   ${({ type = 'grid' }) => {
     return type === 'flex'
       ? css`

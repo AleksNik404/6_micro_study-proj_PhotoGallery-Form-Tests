@@ -1,53 +1,64 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import styled from '@emotion/styled';
 import ReactDOM from 'react-dom';
-import { GrFormView, GrView } from 'react-icons/gr';
-import { FcLike } from 'react-icons/fc';
-import { RiUserShared2Fill } from 'react-icons/ri';
-import { MdVisibility, MdPerson2 } from 'react-icons/md';
 
-import { formatDate } from '../utils/utils';
+import Loader from '../Loader';
+import { MdVisibility, MdPerson2, MdClose } from 'react-icons/md';
+import { FcLike } from 'react-icons/fc';
+import { formatDate } from '../../utils/utils';
+import { ModalPhotoState } from '../../pages/Home/components/HomeCardsContainer';
 
 type Props = {
-  content: any;
-  id: string;
-  show: boolean;
+  modalState: ModalPhotoState;
   onClose: () => void;
+  onLoadImage: () => void;
 };
 
-export const Modal = ({ content, onClose, show }: Props) => {
-  if (!show) return null;
+export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
+  if (!modalState.isOpen) return null;
 
-  const { created_at, alt_description, likes, urls, user, views, color } = content;
+  if (!modalState.data)
+    return ReactDOM.createPortal(
+      <Overlay onClick={onClose}>
+        <Loader />
+      </Overlay>,
+      document.body
+    );
+
+  const { created_at, alt_description, likes, urls, user, views } = modalState.data;
 
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
-      <Popup>
+      {modalState.loading && <Loader />}
+      <Popup style={{ display: modalState.loading ? 'none' : undefined }}>
         <ImageBox onClick={(e) => e.stopPropagation()}>
-          <Img src={urls.regular} alt="" />
+          <MdClose className="modal-close" onClick={onClose} />
+          <Img src={urls.regular} alt={alt_description} onLoad={onLoadImage} />
         </ImageBox>
-        <Body>
-          <span className="body__date">{formatDate(created_at)}</span>
 
-          <div className="body__name">
-            <MdPerson2 size={'1.5rem'} />
-            <h2>{user.name}</h2>
-          </div>
+        {!modalState.loading && (
+          <Body hidden={modalState.loading}>
+            <span className="body__date">{formatDate(created_at)}</span>
 
-          <p className="body__description">{alt_description}</p>
+            <div className="body__name">
+              <MdPerson2 size={'1.5rem'} />
+              <h2>{user.name}</h2>
+            </div>
 
-          <div className="body__icons">
-            <span className="body__icon">
-              <MdVisibility className="icon icon-views" />
-              {views}
-            </span>
+            <p className="body__description">{alt_description}</p>
 
-            <span className="body__icon">
-              <FcLike className="icon icon-like" />
-              {likes}
-            </span>
-          </div>
-        </Body>
+            <div className="body__icons">
+              <span className="body__icon">
+                <MdVisibility className="icon icon-views" />
+                {views}
+              </span>
+
+              <span className="body__icon">
+                <FcLike className="icon icon-like" />
+                {likes}
+              </span>
+            </div>
+          </Body>
+        )}
       </Popup>
     </Overlay>,
     document.body
@@ -60,13 +71,15 @@ const Body = styled.div`
   display: grid;
   justify-items: space-between;
   align-items: center;
+  column-gap: 1rem;
 
   border-radius: var(--border-radius-sm);
 
   grid-template-areas:
     'date       description'
     'userName   description'
-    'icons          icons';
+    '.          description'
+    '.          icons';
 
   .body__date {
     opacity: 0.7;
@@ -142,12 +155,22 @@ const Popup = styled.div`
   padding: 10px 20px;
   max-width: 800px;
   max-height: 90vh;
-  overflow: hidden;
+  position: relative;
+
+  .modal-close {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+
+    font-size: 3rem;
+    cursor: pointer;
+  }
 `;
 
 const Overlay = styled.div`
   position: fixed;
   inset: 0;
+
   display: flex;
   place-content: center;
   place-items: center;

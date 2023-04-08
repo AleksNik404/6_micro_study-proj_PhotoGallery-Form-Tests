@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { formatDate } from '../utils/utils';
+import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 export interface CardItem {
   id: string;
@@ -13,17 +15,25 @@ export interface CardItem {
 
 export type CardItemProps = {
   cardData: CardItem;
-  onClick?: (id: string) => void;
 };
 
-const Card = ({ cardData, onClick }: CardItemProps) => {
-  const { id, image, name, releaseDate = 'soon' } = cardData;
-  // console.log(cardData.id);
+const Card = ({ cardData }: CardItemProps) => {
+  const [loading, setLoading] = useState(true);
+
+  const { image, name, releaseDate = 'soon' } = cardData;
 
   return (
-    <GridItem onClick={onClick && (() => onClick(id))}>
+    <GridItem>
       <div className="image-box">
-        <img className="image" src={image} alt={name} />
+        {loading && <Skeleton className="image" />}
+
+        <img
+          className="image"
+          src={image}
+          alt={name}
+          style={{ display: loading ? 'none' : undefined }}
+          onLoad={() => setLoading(false)}
+        />
 
         <AiOutlinePlusCircle className="add-icon" />
       </div>
@@ -61,6 +71,7 @@ export const GridItem = styled.article`
     position: relative;
     transition: all 0.5s;
 
+    line-height: 0;
     padding-bottom: calc(2 / 2.2 * 100%);
 
     &::after {

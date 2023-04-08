@@ -48,5 +48,5 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['unusedCode.ts'],
+  ignorePatterns: ['unusedCode'],
 };

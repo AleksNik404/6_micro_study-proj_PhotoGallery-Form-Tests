@@ -48,4 +48,5 @@ export const LocationForEmpty = [
 export const ApiKeys = {
   first: `Client-ID AHFFhJ_VGnu3HYcJvA-Bv1XuMCj7-yFin2u26IGdYP0`,
   second: 'Client-ID anstdRlwHV1L-833veOEO1InojYv1xIvYqxsqjpjetQ',
+  third: 'Client-ID rn8bQXOr_4HuOif34mtvUhr8B79I2c11c5Tc2glA7Vk',
 };

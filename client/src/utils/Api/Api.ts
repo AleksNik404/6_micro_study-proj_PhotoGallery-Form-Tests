@@ -11,6 +11,15 @@ export const unsplashApi = axios.create({
   },
 });
 
+export function sleep(ms = 700): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+unsplashApi.interceptors.response.use(async (response) => {
+  await sleep();
+  return response;
+});
+
 const unsplashMapping = (data: UnsplashPhotoSearch): CardItem => {
   const { id, urls, created_at, user } = data;
   return {
@@ -43,8 +52,4 @@ const apiFetch = async <Data extends SearchResponse | RandomResponse>(
 export const api = {
   photos: apiFetch,
   mappingData: unsplashMapping,
-  // mappingData: {
-  //   random: unsplashRandomMapping,
-  //   search: unsplashSearchMapping,
-  // },
 };

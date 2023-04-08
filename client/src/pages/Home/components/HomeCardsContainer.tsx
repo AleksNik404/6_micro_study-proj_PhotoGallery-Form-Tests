@@ -1,30 +1,52 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-
 import Card, { CardItem } from '../../../components/Card';
-import { ReactNode, useEffect, useState } from 'react';
-import { api, unsplashApi } from '../../../utils/Api/Api';
-import { Modal } from '../../../components/Modal';
+import { useState } from 'react';
+import { unsplashApi } from '../../../utils/Api/Api';
 import { Grid } from '../../../styled/Grid';
+import { Modal } from '../../../components/Modal.tsx/Modal';
 
-const data = {};
+import 'react-loading-skeleton/dist/skeleton.css';
+import { OnePhotoResponse } from '../../../utils/Api/types';
 
 export interface Cards {
   cards: CardItem[];
 }
 
+export type ModalPhotoState = {
+  data: OnePhotoResponse | null;
+  isOpen: boolean;
+  loading: boolean;
+  error: boolean;
+};
+
 const HomeCardsContainer = ({ cards }: Cards) => {
-  const [modalData, setModalData] = useState<any>({});
-  const [modalIsShow, setModalIsShow] = useState(false);
+  const [modalState, setModalState] = useState<ModalPhotoState>({
+    data: null,
+    isOpen: false,
+    loading: false,
+    error: false,
+  });
 
   const fetch = async (id: string) => {
-    const { data } = await unsplashApi(`/photos/${id}`);
-    console.log(data);
+    try {
+      setModalState((prev) => ({ ...prev, isOpen: true, loading: true }));
+      const { data } = await unsplashApi(`/photos/${id}`);
+      setModalState((prev) => ({ ...prev, isOpen: true, data }));
+    } catch (error) {
+      setModalState((prev) => ({ ...prev, isOpen: true, loading: false, data: null, error: true }));
+    }
+  };
 
-    setModalIsShow(true);
-    setModalData(data);
+  const onClose = () => {
+    setModalState({
+      data: null,
+      isOpen: false,
+      loading: false,
+      error: false,
+    });
+  };
+
+  const onLoadImage = () => {
+    setModalState((prev) => ({ ...prev, loading: false }));
   };
 
   return (
@@ -35,14 +57,7 @@ const HomeCardsContainer = ({ cards }: Cards) => {
         </div>
       ))}
 
-      {modalIsShow && (
-        <Modal
-          show={modalIsShow}
-          onClose={() => setModalIsShow(false)}
-          content={modalData}
-          id={''}
-        />
-      )}
+      <Modal onClose={onClose} modalState={modalState} onLoadImage={onLoadImage} />
     </Grid>
   );
 };

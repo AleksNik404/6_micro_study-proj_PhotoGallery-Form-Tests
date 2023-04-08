@@ -44,3 +44,12 @@ export type SearchResponse = {
   total_pages: number;
   results: UnsplashPhotoSearch[];
 };
+
+export interface OnePhotoResponse {
+  user: User;
+  created_at: string;
+  alt_description: string;
+  urls: ImageSizes;
+  likes: number;
+  views: number;
+}
