@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import ReactDOM from 'react-dom';
 
 import Loader from '../../../components/Loader';
 import { MdVisibility, MdPerson2, MdClose } from 'react-icons/md';
 import { FcLike } from 'react-icons/fc';
 import { formatDate } from '../../../utils/utils';
 import { ModalPhotoState } from '../components/HomeCardsContainer';
-import { TEST_DATA_MODAL } from '../../../test/Api/handlers';
+import Portal from '../../../components/Portal';
+import { Popup } from '../../../styled/smallComponents';
 
 type Props = {
   modalState: ModalPhotoState;
@@ -20,18 +20,18 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
   if (!modalState.isOpen) return null;
 
   if (!modalState.data)
-    return ReactDOM.createPortal(
-      <Overlay onClick={onClose}>
+    return (
+      <Portal onClose={onClose}>
         <Loader />
-      </Overlay>,
-      document.body
+      </Portal>
     );
 
   const { created_at, alt_description, likes, urls, user, views } = modalState.data;
 
-  return ReactDOM.createPortal(
-    <Overlay onClick={onClose} data-testid={TEST_DATA_MODAL}>
+  return (
+    <Portal onClose={onClose}>
       {modalState.loading && <Loader />}
+
       <Popup style={{ display: modalState.loading ? 'none' : undefined }} onClick={stopPropagation}>
         <ImageBox>
           <MdClose className="modal-close" onClick={onClose} />
@@ -39,7 +39,7 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
         </ImageBox>
 
         {!modalState.loading && (
-          <Body hidden={modalState.loading} data-testid="bodyys">
+          <Body hidden={modalState.loading}>
             <span className="body__date">{formatDate(created_at)}</span>
 
             <div className="body__name">
@@ -54,7 +54,6 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
                 <MdVisibility className="icon icon-views" />
                 {views}
               </span>
-
               <span className="body__icon">
                 <FcLike className="icon icon-like" />
                 {likes}
@@ -63,8 +62,7 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
           </Body>
         )}
       </Popup>
-    </Overlay>,
-    document.body
+    </Portal>
   );
 };
 
@@ -153,37 +151,4 @@ const Img = styled.img`
   max-width: 100%;
 
   -webkit-user-drag: none;
-`;
-
-const Popup = styled.div`
-  display: grid;
-  grid-template-rows: 1fr max-content;
-  flex-direction: column;
-  gap: 10px;
-
-  padding: 10px 20px;
-  max-width: 800px;
-  max-height: 90vh;
-  position: relative;
-
-  .modal-close {
-    position: absolute;
-    top: -2rem;
-    right: -2rem;
-
-    font-size: 3rem;
-    cursor: pointer;
-  }
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  place-content: center;
-  place-items: center;
-
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.25);
 `;

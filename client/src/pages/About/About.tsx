@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { GiDeathNote } from 'react-icons/gi';
 
 import Header from '../../components/Header';
-import { Main } from '../../styled/styledComponents';
+import { Main } from '../../styled/smallComponents';
 
 const About = () => {
   return (

@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import { FormData } from './Form';
-import { ErrorMessage, InputBlock } from '../../../styled/styledComponents';
+import { ErrorMessage, InputBlock } from '../../../styled/smallComponents';
 import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/constants';
 
 interface InputProps {

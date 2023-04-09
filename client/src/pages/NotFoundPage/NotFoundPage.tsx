@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Main } from '../../styled/styledComponents';
+import { Main } from '../../styled/smallComponents';
 import Header from '../../components/Header';
 
 const NotFoundPage = () => {

@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 
 import Header from '../../components/Header';
 
-import { Main } from '../../styled/styledComponents';
+import { Main } from '../../styled/smallComponents';
 
 import SearchForm from './components/SearchForm';
 import { getSearchValueFromLocalStorage } from '../../utils/localStorage';

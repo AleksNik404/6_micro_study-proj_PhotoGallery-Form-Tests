@@ -1,9 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import { BrowserRouter } from 'react-router-dom';
+
 import Home from '../../pages/Home/Home';
 import { API_COUNT_PHOTOS } from '../../utils/constants';
+import { formatDate } from '../../utils/utils';
+import { server } from '../Api/api.test';
+import { addSearchValueToLocalStorage } from '../../utils/localStorage';
 import {
   TEST_DATA_CARD,
   TEST_DATA_MODAL,
@@ -12,9 +15,6 @@ import {
   randomOneData,
   searchOneData,
 } from '../Api/handlers';
-import { formatDate } from '../../utils/utils';
-import { server } from '../Api/api.test';
-import { addSearchValueToLocalStorage } from '../../utils/localStorage';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -75,7 +75,7 @@ describe('inputSearch', () => {
 
   it('should make a request by id and display MODAL when click card', async () => {
     addSearchValueToLocalStorage('banana');
-    const { debug } = render(<Home />, { wrapper: BrowserRouter });
+    render(<Home />, { wrapper: BrowserRouter });
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
     expect(screen.queryByTestId(TEST_DATA_MODAL)).not.toBeInTheDocument();

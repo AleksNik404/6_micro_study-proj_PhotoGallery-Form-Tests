@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useFormContext } from 'react-hook-form';
 
-import { ErrorMessage } from '../../../styled/styledComponents';
+import { ErrorMessage } from '../../../styled/smallComponents';
 import { FormData } from './Form';
 
 interface SwitchProps {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import Header from '../../components/Header';
 import Toast from '../../components/Toast';
-import { Main } from '../../styled/styledComponents';
+import { Main } from '../../styled/smallComponents';
 
 import Form from './components/Form';
 import { CardItem } from '../../components/Card';

@@ -6,8 +6,8 @@ import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
 
 import { PRICE_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
-import { SubmitButton } from '../../../styled/styledComponents';
 import { CardItem } from '../../../components/Card';
+import { SubmitButton } from '../../../styled/SubmitButton';
 
 export type FormData = {
   name: string;
