@@ -32,35 +32,32 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
     <Portal onClose={onClose}>
       {modalState.loading && <Loader />}
 
-      <Popup style={{ display: modalState.loading ? 'none' : undefined }} onClick={stopPropagation}>
+      <Popup notDisplay={modalState.loading} onClick={stopPropagation}>
         <ImageBox>
           <MdClose className="modal-close" onClick={onClose} />
           <Img src={urls.regular} alt={alt_description} onLoad={onLoadImage} />
         </ImageBox>
 
-        {!modalState.loading && (
-          <Body hidden={modalState.loading}>
-            <span className="body__date">{formatDate(created_at)}</span>
+        <Body>
+          <span className="body__date">{formatDate(created_at)}</span>
+          <div className="body__name">
+            <MdPerson2 size={'1.5rem'} />
+            <h2>{user.name}</h2>
+          </div>
 
-            <div className="body__name">
-              <MdPerson2 size={'1.5rem'} />
-              <h2>{user.name}</h2>
-            </div>
+          <p className="body__description">{alt_description}</p>
 
-            <p className="body__description">{alt_description}</p>
-
-            <div className="body__icons">
-              <span className="body__icon">
-                <MdVisibility className="icon icon-views" />
-                {views}
-              </span>
-              <span className="body__icon">
-                <FcLike className="icon icon-like" />
-                {likes}
-              </span>
-            </div>
-          </Body>
-        )}
+          <div className="body__icons">
+            <span className="body__icon">
+              <MdVisibility className="icon icon-views" />
+              {views}
+            </span>
+            <span className="body__icon">
+              <FcLike className="icon icon-like" />
+              {likes}
+            </span>
+          </div>
+        </Body>
       </Popup>
     </Portal>
   );

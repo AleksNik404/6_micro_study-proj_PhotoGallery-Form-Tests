@@ -32,8 +32,8 @@ const Card = ({ cardData }: CardItemProps) => {
           className="image"
           src={image}
           alt={name}
-          style={{ display: loading ? 'none' : undefined }}
           onLoad={() => setLoading(false)}
+          hidden={loading}
         />
 
         <AiOutlinePlusCircle className="add-icon" />

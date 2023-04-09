@@ -23,8 +23,8 @@ export const InputBlock = styled.div`
   position: relative;
 `;
 
-export const Popup = styled.div`
-  display: grid;
+export const Popup = styled.div<{ notDisplay: boolean }>`
+  display: ${({ notDisplay }) => (notDisplay ? 'none' : 'grid')};
   grid-template-rows: 1fr max-content;
   flex-direction: column;
   gap: 10px;
