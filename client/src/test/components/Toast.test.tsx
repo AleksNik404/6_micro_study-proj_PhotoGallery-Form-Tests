@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import Toast from './Toast';
+import Toast from '../../components/Toast';
 
 describe('Toast component', () => {
   it('calls the `deleteToast` prop function after the animation ends ', async () => {

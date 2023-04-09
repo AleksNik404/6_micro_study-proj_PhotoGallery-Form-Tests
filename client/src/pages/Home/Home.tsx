@@ -9,9 +9,9 @@ import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
 import HomeCardsContainer from './components/HomeCardsContainer';
+import { Grid } from '../../styled/Grid';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { Grid } from '../../styled/Grid';
 
 import { GridItem } from '../../components/Card';
 

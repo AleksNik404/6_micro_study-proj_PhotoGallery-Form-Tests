@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Form } from '.';
+import { Form } from '../../pages/FormPage/components';
 import { describe, vitest } from 'vitest';
 
 import {
@@ -16,7 +16,7 @@ import {
   NAME_TOO_LONG_ERROR_MESSAGE,
   PRICE_REQUIRED_ERROR_MESSAGE,
   TERM_REQUIRED_ERROR_MESSAGE,
-} from '../../../utils/constants';
+} from '../../utils/constants';
 
 describe('Form submit', () => {
   beforeEach(() => {

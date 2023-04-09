@@ -1,10 +1,9 @@
-import Card, { CardItem } from '../../../components/Card';
 import { useState } from 'react';
-import { unsplashApi } from '../../../utils/Api/Api';
-import { Grid } from '../../../styled/Grid';
-import { Modal } from '../../../components/Modal.tsx/Modal';
 
-import 'react-loading-skeleton/dist/skeleton.css';
+import Card, { CardItem } from '../../../components/Card';
+import { api } from '../../../utils/Api/Api';
+import { Grid } from '../../../styled/Grid';
+import { Modal } from '../Modal.tsx/Modal';
 import { OnePhotoResponse } from '../../../utils/Api/types';
 
 export interface Cards {
@@ -29,13 +28,14 @@ const HomeCardsContainer = ({ cards }: Cards) => {
   const fetch = async (id: string) => {
     try {
       setModalState((prev) => ({ ...prev, isOpen: true, loading: true }));
-      const { data } = await unsplashApi(`/photos/${id}`);
+      const data = await api.getPhotoByID(id);
       setModalState((prev) => ({ ...prev, isOpen: true, data }));
     } catch (error) {
       setModalState((prev) => ({ ...prev, isOpen: true, loading: false, data: null, error: true }));
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClose = () => {
     setModalState({
       data: null,

@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
 import ReactDOM from 'react-dom';
 
-import Loader from '../Loader';
+import Loader from '../../../components/Loader';
 import { MdVisibility, MdPerson2, MdClose } from 'react-icons/md';
 import { FcLike } from 'react-icons/fc';
-import { formatDate } from '../../utils/utils';
-import { ModalPhotoState } from '../../pages/Home/components/HomeCardsContainer';
+import { formatDate } from '../../../utils/utils';
+import { ModalPhotoState } from '../components/HomeCardsContainer';
+import { TEST_DATA_MODAL } from '../../../test/Api/handlers';
 
 type Props = {
   modalState: ModalPhotoState;
-  onClose: () => void;
+  onClose: (e: React.MouseEvent<HTMLDivElement | SVGElement>) => void;
   onLoadImage: () => void;
 };
+
+const stopPropagation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation();
 
 export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
   if (!modalState.isOpen) return null;
@@ -27,16 +30,16 @@ export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
   const { created_at, alt_description, likes, urls, user, views } = modalState.data;
 
   return ReactDOM.createPortal(
-    <Overlay onClick={onClose}>
+    <Overlay onClick={onClose} data-testid={TEST_DATA_MODAL}>
       {modalState.loading && <Loader />}
-      <Popup style={{ display: modalState.loading ? 'none' : undefined }}>
-        <ImageBox onClick={(e) => e.stopPropagation()}>
+      <Popup style={{ display: modalState.loading ? 'none' : undefined }} onClick={stopPropagation}>
+        <ImageBox>
           <MdClose className="modal-close" onClick={onClose} />
           <Img src={urls.regular} alt={alt_description} onLoad={onLoadImage} />
         </ImageBox>
 
         {!modalState.loading && (
-          <Body hidden={modalState.loading}>
+          <Body hidden={modalState.loading} data-testid="bodyys">
             <span className="body__date">{formatDate(created_at)}</span>
 
             <div className="body__name">
@@ -72,6 +75,9 @@ const Body = styled.div`
   justify-items: space-between;
   align-items: center;
   column-gap: 1rem;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
   border-radius: var(--border-radius-sm);
 
@@ -136,6 +142,7 @@ const ImageBox = styled.div`
   overflow: hidden;
 
   background-color: #0a0a0aba;
+  box-shadow: 0px 5px 15px 4px rgba(0, 0, 0, 0.35);
 
   border-radius: var(--border-radius-sm);
 `;
@@ -144,6 +151,8 @@ const Img = styled.img`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   height: 100%;
   max-width: 100%;
+
+  -webkit-user-drag: none;
 `;
 
 const Popup = styled.div`

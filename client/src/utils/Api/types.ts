@@ -1,32 +1,14 @@
 type User = {
-  id: string;
-  username: string;
   name: string;
-  location: string | null;
 };
 
 type ImageSizes = {
-  raw: string;
-  full: string;
   regular: string;
-  small: string;
-  thumb: string;
 };
 
 export type RandomResponse = Array<{
   id: string;
   created_at: string;
-
-  location: {
-    name: string;
-    city: string;
-    country: string;
-    position: {
-      latitude: number;
-      longitude: number;
-    };
-  } | null;
-
   urls: ImageSizes;
   user: User;
 }>;
@@ -34,7 +16,6 @@ export type RandomResponse = Array<{
 export type UnsplashPhotoSearch = {
   id: string;
   created_at: string;
-
   urls: ImageSizes;
   user: User;
 };
@@ -48,8 +29,20 @@ export type SearchResponse = {
 export interface OnePhotoResponse {
   user: User;
   created_at: string;
-  alt_description: string;
   urls: ImageSizes;
+
+  alt_description: string;
   likes: number;
   views: number;
 }
+
+type RandomParams = { count?: number };
+type SearchParams = {
+  query: string;
+  page?: number;
+  per_page?: number;
+  order_by?: 'relevant' | 'latest ';
+};
+
+export type Params<T> = T extends SearchResponse ? SearchParams : RandomParams;
+export type Url<T> = T extends SearchResponse ? `search/photos` : `photos/random`;

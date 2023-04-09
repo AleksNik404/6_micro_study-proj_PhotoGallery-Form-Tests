@@ -50,3 +50,5 @@ export const ApiKeys = {
   second: 'Client-ID anstdRlwHV1L-833veOEO1InojYv1xIvYqxsqjpjetQ',
   third: 'Client-ID rn8bQXOr_4HuOif34mtvUhr8B79I2c11c5Tc2glA7Vk',
 };
+
+export const API_COUNT_PHOTOS = 14;

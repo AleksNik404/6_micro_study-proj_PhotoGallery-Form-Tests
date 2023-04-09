@@ -3,6 +3,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { formatDate } from '../utils/utils';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { TEST_DATA_CARD } from '../test/Api/handlers';
 
 export interface CardItem {
   id: string;
@@ -23,7 +24,7 @@ const Card = ({ cardData }: CardItemProps) => {
   const { image, name, releaseDate = 'soon' } = cardData;
 
   return (
-    <GridItem>
+    <GridItem data-testid={TEST_DATA_CARD}>
       <div className="image-box">
         {loading && <Skeleton className="image" />}
 

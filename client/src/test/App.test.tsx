@@ -1,8 +1,8 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { AppWrapper } from './App';
-import Header from './components/Header';
+import { AppWrapper } from '../App';
+import Header from '../components/Header';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import NotFoundPage from './NotFoundPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 describe('NotFound', () => {
   it('check render heading error page', () => {

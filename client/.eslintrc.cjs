@@ -48,5 +48,5 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['unusedCode'],
+  ignorePatterns: ['unusedCode', 'public/mockServiceWorker.js'],
 };
