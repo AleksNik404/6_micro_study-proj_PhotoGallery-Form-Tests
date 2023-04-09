@@ -4,12 +4,13 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import Header from '../../components/Header';
 import SearchForm from './components/SearchForm';
 import HomeCardsContainer from './components/HomeCardsContainer';
-import { SkeletonContainer } from './components/SkeletonContainer';
 
 import { Main } from '../../styled/smallComponents';
 import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
 import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
+
+import MessageWrapper from './components/MessageWrapper';
 
 const Home = () => {
   const [{ data, submitValue, loading, error }, dispatch] = useReducer(reducer, {
@@ -35,7 +36,10 @@ const Home = () => {
       <Main>
         <section className="container">
           <SearchForm dispatch={dispatch} submitValue={submitValue} />
-          {loading ? <SkeletonContainer /> : <HomeCardsContainer cards={data} error={error} />}
+
+          <MessageWrapper error={error} loading={loading} notEmpty={data.length}>
+            <HomeCardsContainer cards={data} />
+          </MessageWrapper>
         </section>
       </Main>
     </SkeletonTheme>

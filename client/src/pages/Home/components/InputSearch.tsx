@@ -8,7 +8,7 @@ type Props = {
   placeholder?: string;
   register: UseFormRegister<SearchData>;
 };
-// searchValue;
+
 const InputSearch = ({ placeholder = 'Search', register }: Props) => {
   return (
     <SearchContainer>

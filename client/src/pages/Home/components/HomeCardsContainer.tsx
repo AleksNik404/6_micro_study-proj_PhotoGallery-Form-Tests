@@ -1,17 +1,13 @@
 import { useState } from 'react';
-import styled from '@emotion/styled';
-import { RiEmotionSadFill } from 'react-icons/ri';
 
 import Card, { CardItem } from '../../../components/Card';
 import { api } from '../../../utils/Api/Api';
 import { Grid } from '../../../styled/Grid';
 import { Modal } from '../Modal.tsx/Modal';
 import { OnePhotoResponse } from '../../../utils/Api/types';
-import { BiCommentError } from 'react-icons/bi';
 
 export interface Cards {
   cards: CardItem[];
-  error?: boolean;
 }
 
 export type ModalPhotoState = {
@@ -21,29 +17,13 @@ export type ModalPhotoState = {
   modalError: boolean;
 };
 
-const HomeCardsContainer = ({ cards, error }: Cards) => {
+const HomeCardsContainer = ({ cards }: Cards) => {
   const [modalState, setModalState] = useState<ModalPhotoState>({
     data: null,
     isOpen: false,
     loading: false,
     modalError: false,
   });
-
-  if (error)
-    return (
-      <ErrorMessage>
-        Oops, something went wrong. Please try again later or reach out to the developer for help
-        <BiCommentError size={'2rem'} />
-      </ErrorMessage>
-    );
-
-  if (!cards.length)
-    return (
-      <NoDataMessage>
-        Oops, it looks like we couldn`t find any photos that match your search query{' '}
-        <RiEmotionSadFill size={'2rem'} />
-      </NoDataMessage>
-    );
 
   const fetch = async (id: string) => {
     try {
@@ -88,23 +68,3 @@ const HomeCardsContainer = ({ cards, error }: Cards) => {
 };
 
 export default HomeCardsContainer;
-
-const NoDataMessage = styled.p`
-  height: 200px;
-  text-align: center;
-
-  display: flex;
-  gap: 1rem;
-  place-content: center;
-  place-items: center;
-`;
-
-const ErrorMessage = styled.p`
-  height: 200px;
-  text-align: center;
-
-  display: flex;
-  gap: 1rem;
-  place-content: center;
-  place-items: center;
-`;
