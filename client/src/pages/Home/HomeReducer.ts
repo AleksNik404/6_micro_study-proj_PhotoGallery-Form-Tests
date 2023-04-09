@@ -17,7 +17,7 @@ export type Action =
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'FETCH_START':
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: false, data: [] };
     case 'FETCH_SUCCESS':
       return { ...state, loading: false, data: action.payload };
     case 'FETCH_ERROR':

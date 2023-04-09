@@ -14,7 +14,7 @@ import {
 export const unsplashApi = axios.create({
   baseURL: 'https://api.unsplash.com/',
   headers: {
-    Authorization: ApiKeys.second,
+    Authorization: ApiKeys.first,
   },
 });
 

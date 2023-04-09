@@ -1,22 +1,18 @@
 import { useEffect, useReducer } from 'react';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 import Header from '../../components/Header';
+import SearchForm from './components/SearchForm';
+import HomeCardsContainer from './components/HomeCardsContainer';
+import { SkeletonContainer } from './components/SkeletonContainer';
 
 import { Main } from '../../styled/smallComponents';
-
-import SearchForm from './components/SearchForm';
-import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 import { reducer } from './HomeReducer';
 import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
-import HomeCardsContainer from './components/HomeCardsContainer';
-import { Grid } from '../../styled/Grid';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-
-import { GridItem } from '../../components/Card';
+import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 
 const Home = () => {
-  const [{ data, submitValue, loading }, dispatch] = useReducer(reducer, {
+  const [{ data, submitValue, loading, error }, dispatch] = useReducer(reducer, {
     data: [],
     loading: false,
     error: false,
@@ -34,30 +30,15 @@ const Home = () => {
   }, [submitValue]);
 
   return (
-    <>
-      <SkeletonTheme baseColor="#202020" highlightColor="#444">
-        <Header namePage="Home Page" />
-        <Main>
-          <section className="container">
-            <SearchForm dispatch={dispatch} submitValue={submitValue} />
-            {loading ? <Ha /> : <HomeCardsContainer cards={data} />}
-          </section>
-        </Main>
-      </SkeletonTheme>
-    </>
-  );
-};
-
-const Ha = ({ size = 14 }: { size?: number }) => {
-  const skeletItems = Array.from({ length: size });
-  return (
-    <Grid type="flex">
-      {skeletItems.map((_, i) => (
-        <GridItem key={i}>
-          <Skeleton style={{ paddingBottom: 'calc(2 / 2.2 * 100%)', lineHeight: 2 }} />
-        </GridItem>
-      ))}
-    </Grid>
+    <SkeletonTheme baseColor="#202020" highlightColor="#444">
+      <Header namePage="Home Page" />
+      <Main>
+        <section className="container">
+          <SearchForm dispatch={dispatch} submitValue={submitValue} />
+          {loading ? <SkeletonContainer /> : <HomeCardsContainer cards={data} error={error} />}
+        </section>
+      </Main>
+    </SkeletonTheme>
   );
 };
 
