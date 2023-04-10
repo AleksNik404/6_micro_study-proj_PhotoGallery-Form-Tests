@@ -4,8 +4,8 @@ import CardsContainer from '../../pages/Home/components/HomeCardsContainer';
 
 const oneCard = {
   id: 1,
-  name: 'TestCard',
-  developer: 'Obsidian Entertainment',
+  userName: 'TestCard',
+  created_at: '27/07/1993',
   image: 'urlImage',
 };
 

@@ -5,11 +5,11 @@ import { ErrorMessage } from '../../../styled/smallComponents';
 import { FormData } from './Form';
 
 interface SwitchProps {
-  name: keyof Pick<FormData, 'discountPercentage'>;
+  name: keyof Pick<FormData, 'useDateFormatting'>;
   label?: string;
   value?: number;
 
-  validate?: (value: number | undefined) => string | undefined;
+  validate?: (value: string | undefined) => string | undefined;
 }
 
 const FormSwitcher = ({ name, label, validate }: SwitchProps) => {
@@ -24,7 +24,7 @@ const FormSwitcher = ({ name, label, validate }: SwitchProps) => {
           {...register(name, { validate })}
           type="radio"
           id="no"
-          value={0}
+          value="false"
           name={name}
           className="hide-behind-page"
         />
@@ -34,7 +34,7 @@ const FormSwitcher = ({ name, label, validate }: SwitchProps) => {
           {...register(name, { validate })}
           type="radio"
           id="yes"
-          value={25}
+          value="true"
           name={name}
           className="hide-behind-page"
         />

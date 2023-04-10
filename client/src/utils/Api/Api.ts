@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getLocationWhenEmpty } from '../utils';
+import { formatDate, getLocationWhenEmpty } from '../utils';
 import { ApiKeys } from '../constants';
 import { CardItem } from '../../components/Card';
 import {
@@ -31,9 +31,9 @@ const unsplashMapping = (data: UnsplashPhotoSearch): CardItem => {
   const { id, urls, created_at, user } = data;
   return {
     id,
-    name: user.name || getLocationWhenEmpty(),
+    userName: user.name || getLocationWhenEmpty(),
     image: urls.regular,
-    releaseDate: created_at,
+    created_at: formatDate(created_at),
   };
 };
 

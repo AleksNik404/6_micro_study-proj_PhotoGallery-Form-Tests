@@ -5,7 +5,7 @@ import { ErrorMessage, InputBlock } from '../../../styled/smallComponents';
 import { NAME_TOO_LONG_ERROR_MESSAGE } from '../../../utils/constants';
 
 interface InputProps {
-  name: keyof Pick<FormData, 'name' | 'releaseDate'>;
+  name: keyof Pick<FormData, 'userName' | 'createdAt'>;
   label?: string;
   type?: string;
   placeholder?: string;

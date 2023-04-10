@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { formatDate } from '../utils/utils';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { TEST_DATA_CARD } from '../test/Api/handlers';
@@ -8,22 +7,20 @@ import { TEST_DATA_CARD } from '../test/Api/handlers';
 export interface CardItem {
   id: string;
   image: string;
-  name: string;
+  userName: string;
+  created_at: string;
 
-  developer?: string;
-  releaseDate?: string;
+  imageAspectRatio?: [number, number];
 }
 
 export type CardItemProps = {
   cardData: CardItem;
-
-  imageAspectRatio?: [number, number];
 };
 
-const Card = ({ cardData, imageAspectRatio }: CardItemProps) => {
+const Card = ({ cardData }: CardItemProps) => {
   const [loading, setLoading] = useState(true);
 
-  const { image, name, releaseDate = 'soon' } = cardData;
+  const { image, userName, created_at, imageAspectRatio } = cardData;
 
   return (
     <GridItem data-testid={TEST_DATA_CARD} imageAspectRatio={imageAspectRatio}>
@@ -33,7 +30,7 @@ const Card = ({ cardData, imageAspectRatio }: CardItemProps) => {
         <img
           className="image"
           src={image}
-          alt={name}
+          alt={userName}
           onLoad={() => setLoading(false)}
           hidden={loading}
         />
@@ -42,8 +39,8 @@ const Card = ({ cardData, imageAspectRatio }: CardItemProps) => {
       </div>
       <div className="text-box">
         <div>
-          <p className="maker">{formatDate(releaseDate)}</p>
-          <h1 className="name">{name}</h1>
+          <p className="maker">{created_at}</p>
+          <h1 className="name">{userName}</h1>
         </div>
       </div>
     </GridItem>
@@ -54,8 +51,6 @@ export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
   display: flex;
   flex-direction: column;
   gap: 0.4em;
-
-  height: 100%;
 
   overflow: hidden;
   border-radius: var(--border-radius-sm);
@@ -77,7 +72,7 @@ export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
     transition: all 0.5s;
 
     line-height: 0;
-    padding-bottom: ${({ imageAspectRatio = [2, 2.2] }) => {
+    padding-bottom: ${({ imageAspectRatio = [1, 1.2] }) => {
       const [x, y] = imageAspectRatio;
       return `calc(${x} / ${y} * 100%)`;
     }};

@@ -65,7 +65,7 @@ describe('Form submit', () => {
   });
 });
 
-describe('che', () => {
+describe('field tests', () => {
   let submitButton: HTMLElement;
 
   beforeEach(() => {
@@ -78,7 +78,7 @@ describe('che', () => {
   });
 
   it('TEXT field validation messages', async () => {
-    const textInput = screen.getByLabelText('Title');
+    const textInput = screen.getByLabelText('User Name');
 
     await userEvent.click(submitButton);
     expect(screen.getByText(NAME_REQUIRED_ERROR_MESSAGE)).toBeInTheDocument();
@@ -89,7 +89,7 @@ describe('che', () => {
   });
 
   it('DATE field validation messages', async () => {
-    const dateInput = screen.getByLabelText('Release Date');
+    const dateInput = screen.getByLabelText('Image creation date');
 
     await userEvent.click(submitButton);
     expect(screen.getByText(DATE_REQUIRED_ERROR_MESSAGE)).toBeInTheDocument();
