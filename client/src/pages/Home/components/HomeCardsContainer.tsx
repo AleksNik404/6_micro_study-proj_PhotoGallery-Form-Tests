@@ -17,17 +17,19 @@ export type ModalPhotoState = {
   modalError: boolean;
 };
 
+const initialState = {
+  data: null,
+  isOpen: false,
+  loading: false,
+  modalError: false,
+};
+
 const HomeCardsContainer = ({ cards }: Cards) => {
-  const [modalState, setModalState] = useState<ModalPhotoState>({
-    data: null,
-    isOpen: false,
-    loading: false,
-    modalError: false,
-  });
+  const [modalState, setModalState] = useState<ModalPhotoState>(initialState);
 
   const fetch = async (id: string) => {
     try {
-      setModalState((prev) => ({ ...prev, isOpen: true, loading: true }));
+      setModalState({ ...initialState, isOpen: true, loading: true });
       const data = await api.getPhotoByID(id);
       setModalState((prev) => ({ ...prev, isOpen: true, data }));
     } catch (error) {
@@ -42,12 +44,7 @@ const HomeCardsContainer = ({ cards }: Cards) => {
   };
 
   const onClose = () => {
-    setModalState({
-      data: null,
-      isOpen: false,
-      loading: false,
-      modalError: false,
-    });
+    setModalState(initialState);
   };
 
   const onLoadImage = () => {

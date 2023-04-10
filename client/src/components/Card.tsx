@@ -16,15 +16,17 @@ export interface CardItem {
 
 export type CardItemProps = {
   cardData: CardItem;
+
+  imageAspectRatio?: [number, number];
 };
 
-const Card = ({ cardData }: CardItemProps) => {
+const Card = ({ cardData, imageAspectRatio }: CardItemProps) => {
   const [loading, setLoading] = useState(true);
 
   const { image, name, releaseDate = 'soon' } = cardData;
 
   return (
-    <GridItem data-testid={TEST_DATA_CARD}>
+    <GridItem data-testid={TEST_DATA_CARD} imageAspectRatio={imageAspectRatio}>
       <div className="image-box">
         {loading && <Skeleton className="image" />}
 
@@ -47,11 +49,13 @@ const Card = ({ cardData }: CardItemProps) => {
     </GridItem>
   );
 };
-
-export const GridItem = styled.article`
+/* calc(2 / 2.2 * 100%) */
+export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
   display: flex;
   flex-direction: column;
   gap: 0.4em;
+
+  height: 100%;
 
   overflow: hidden;
   border-radius: var(--border-radius-sm);
@@ -73,7 +77,10 @@ export const GridItem = styled.article`
     transition: all 0.5s;
 
     line-height: 0;
-    padding-bottom: calc(2 / 2.2 * 100%);
+    padding-bottom: ${({ imageAspectRatio = [2, 2.2] }) => {
+      const [x, y] = imageAspectRatio;
+      return `calc(${x} / ${y} * 100%)`;
+    }};
 
     &::after {
       content: '';
@@ -124,9 +131,8 @@ export const GridItem = styled.article`
   }
 
   .text-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    align-items: flex-end;
 
     gap: 30px;
     height: 100%;
