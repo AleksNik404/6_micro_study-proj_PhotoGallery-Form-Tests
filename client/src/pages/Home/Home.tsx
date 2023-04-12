@@ -1,4 +1,3 @@
-import { useEffect, useReducer } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 import Header from '../../components/Header';
@@ -6,38 +5,25 @@ import SearchForm from './components/SearchForm';
 import HomeCardsContainer from './components/HomeCardsContainer';
 
 import { Main } from '../../styled/smallComponents';
-import { reducer } from './HomeReducer';
-import { getRandomPhoto, getSearchPhoto } from './HomeFeature';
-import { getSearchValueFromLocalStorage } from '../../utils/localStorage';
 
 import MessageWrapper from './components/MessageWrapper';
+import { useGetRandomPhotosQuery } from '../../features/api/apiSlice';
+
+import { useAppSelector } from '../../app/hooks';
 
 const Home = () => {
-  const [{ data, submitValue, loading, error }, dispatch] = useReducer(reducer, {
-    data: [],
-    loading: false,
-    error: false,
-
-    submitValue: getSearchValueFromLocalStorage(),
-  });
-
-  useEffect(() => {
-    if (submitValue) {
-      getSearchPhoto(dispatch, submitValue);
-      return;
-    }
-
-    getRandomPhoto(dispatch);
-  }, [submitValue]);
+  const { params } = useAppSelector((state) => state.homeSearch);
+  const { data = [], isLoading, isError } = useGetRandomPhotosQuery(params);
+  console.log(data);
 
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <Header namePage="Home Page" />
       <Main>
         <section className="container">
-          <SearchForm dispatch={dispatch} submitValue={submitValue} />
+          <SearchForm submitValue={params.query} />
 
-          <MessageWrapper error={error} loading={loading} notEmpty={data.length}>
+          <MessageWrapper error={isError} loading={isLoading} notEmpty={data.length}>
             <HomeCardsContainer cards={data} />
           </MessageWrapper>
         </section>

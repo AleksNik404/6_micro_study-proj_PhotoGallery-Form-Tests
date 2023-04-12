@@ -1,65 +1,39 @@
-import { useState } from 'react';
-
 import Card, { CardItem } from '../../../components/Card';
-import { api } from '../../../utils/Api/Api';
 import { Grid } from '../../../styled/Grid';
 import { Modal } from '../Modal.tsx/Modal';
-import { OnePhotoResponse } from '../../../utils/Api/types';
+import { useLazyGetPhotoByIDQuery } from '../../../features/api/apiSlice';
+import { useAppDispatch } from '../../../app/hooks';
+import { closeModal, onLoad, openModal } from '../../../features/HomeSearch/HomeSearchSlice';
 
 export interface Cards {
   cards: CardItem[];
 }
 
-export type ModalPhotoState = {
-  data: OnePhotoResponse | null;
-  isOpen: boolean;
-  loading: boolean;
-  modalError: boolean;
-};
-
-const initialState = {
-  data: null,
-  isOpen: false,
-  loading: false,
-  modalError: false,
-};
-
 const HomeCardsContainer = ({ cards }: Cards) => {
-  const [modalState, setModalState] = useState<ModalPhotoState>(initialState);
+  const dispatch = useAppDispatch();
 
-  const fetch = async (id: string) => {
-    try {
-      setModalState({ ...initialState, isOpen: true, loading: true });
-      const data = await api.getPhotoByID(id);
-      setModalState((prev) => ({ ...prev, isOpen: true, data }));
-    } catch (error) {
-      setModalState((prev) => ({
-        ...prev,
-        isOpen: true,
-        loading: false,
-        data: null,
-        modalError: true,
-      }));
-    }
-  };
-
-  const onClose = () => {
-    setModalState(initialState);
-  };
-
-  const onLoadImage = () => {
-    setModalState((prev) => ({ ...prev, loading: false }));
-  };
+  const [fetchSearch, { data, isFetching }] = useLazyGetPhotoByIDQuery();
 
   return (
     <Grid type="flex">
       {cards.map((oneCardData) => (
-        <div key={oneCardData.id} onClick={() => fetch(oneCardData.id)}>
+        <div
+          key={oneCardData.id}
+          onClick={() => {
+            fetchSearch({ id: oneCardData.id });
+            dispatch(openModal());
+          }}
+        >
           <Card cardData={oneCardData} />
         </div>
       ))}
 
-      <Modal onClose={onClose} modalState={modalState} onLoadImage={onLoadImage} />
+      <Modal
+        data={data}
+        loading={isFetching}
+        onClose={() => dispatch(closeModal())}
+        onLoad={() => dispatch(onLoad())}
+      />
     </Grid>
   );
 };

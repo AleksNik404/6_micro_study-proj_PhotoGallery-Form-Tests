@@ -4,38 +4,41 @@ import Loader from '../../../components/Loader';
 import { MdVisibility, MdPerson2, MdClose } from 'react-icons/md';
 import { FcLike } from 'react-icons/fc';
 import { formatDate } from '../../../utils/utils';
-import { ModalPhotoState } from '../components/HomeCardsContainer';
 import Portal from '../../../components/Portal';
 import { Popup } from '../../../styled/smallComponents';
+import { OnePhotoResponse } from '../../../utils/Api/types';
+import { useAppSelector } from '../../../app/hooks';
 
 type Props = {
-  modalState: ModalPhotoState;
-  onClose: (e: React.MouseEvent<HTMLDivElement | SVGElement>) => void;
-  onLoadImage: () => void;
+  data: OnePhotoResponse | undefined;
+  loading: boolean;
+  onClose: () => void;
+  onLoad: () => void;
 };
 
 const stopPropagation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => e.stopPropagation();
 
-export const Modal = ({ modalState, onClose, onLoadImage }: Props) => {
-  if (!modalState.isOpen) return null;
+export const Modal = ({ data, loading, onClose, onLoad }: Props) => {
+  const { isOpen, ImageIsLoading } = useAppSelector((state) => state.homeSearch.modal);
 
-  if (!modalState.data)
+  if (!isOpen) return null;
+  if (!data || loading)
     return (
       <Portal onClose={onClose}>
         <Loader />
       </Portal>
     );
 
-  const { created_at, alt_description, likes, urls, user, views } = modalState.data;
+  const { created_at, alt_description, likes, urls, user, views } = data;
 
   return (
     <Portal onClose={onClose}>
-      {modalState.loading && <Loader />}
+      {ImageIsLoading && <Loader />}
 
-      <Popup notDisplay={modalState.loading} onClick={stopPropagation}>
+      <Popup notDisplay={ImageIsLoading} onClick={stopPropagation}>
         <ImageBox>
           <MdClose className="modal-close" onClick={onClose} />
-          <Img src={urls.regular} alt={alt_description} onLoad={onLoadImage} />
+          <Img src={urls.regular} alt={alt_description} onLoad={onLoad} />
         </ImageBox>
 
         <Body>

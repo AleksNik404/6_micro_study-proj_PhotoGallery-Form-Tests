@@ -17,5 +17,21 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
     css: true,
+
+    // coverage: {
+    //   enabled: true,
+    //   provider: 'istanbul',
+    //   reporter: ['text'],
+    //   all: true,
+    // },
+
+    // coverage: {
+    //   enabled: true,
+    //   provider: 'c8',
+    //   reporter: ['text'],
+    //   all: true,
+    //   include: ['src'],
+    //   exclude: ['src/types'],
+    // },
   },
 });

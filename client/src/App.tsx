@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { About, FormPage, Home, NotFoundPage } from './pages';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 export const App = () => {
   return (
@@ -16,9 +18,13 @@ export const App = () => {
 };
 
 export const AppWrapper = () => {
+  console.log(store);
+
   return (
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   );
 };

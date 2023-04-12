@@ -36,8 +36,8 @@ export interface OnePhotoResponse {
   views: number;
 }
 
-type RandomParams = { count?: number };
-type SearchParams = {
+export type RandomParams = { count?: number };
+export type SearchParams = {
   query: string;
   page?: number;
   per_page?: number;
@@ -46,3 +46,10 @@ type SearchParams = {
 
 export type Params<T> = T extends SearchResponse ? SearchParams : RandomParams;
 export type Url<T> = T extends SearchResponse ? `search/photos` : `photos/random`;
+
+//////////////////////////////////
+
+export type PhotoParams = {
+  count: number;
+  query?: string;
+};

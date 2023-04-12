@@ -46,7 +46,7 @@ const Card = ({ cardData }: CardItemProps) => {
     </GridItem>
   );
 };
-/* calc(2 / 2.2 * 100%) */
+
 export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
   display: flex;
   flex-direction: column;
