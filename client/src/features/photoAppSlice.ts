@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { API_COUNT_PHOTOS } from '../../utils/constants';
+import { API_COUNT_PHOTOS } from '../utils/constants';
+import { CardItem } from '../components/Card';
 
 type HomeSearchState = {
   params: {
@@ -11,6 +12,8 @@ type HomeSearchState = {
     isOpen: boolean;
     ImageIsLoading: boolean;
   };
+
+  formCards: CardItem[];
 };
 
 const initialState: HomeSearchState = {
@@ -23,6 +26,8 @@ const initialState: HomeSearchState = {
     isOpen: false,
     ImageIsLoading: false,
   },
+
+  formCards: [],
 };
 
 const homeSearchSlice = createSlice({
@@ -45,9 +50,13 @@ const homeSearchSlice = createSlice({
     onLoad: (state) => {
       state.modal.ImageIsLoading = false;
     },
+
+    addFormCard: (state, action: PayloadAction<CardItem>) => {
+      state.formCards.push(action.payload);
+    },
   },
 });
 
-export const { updateQuery, openModal, closeModal, onLoad } = homeSearchSlice.actions;
+export const { updateQuery, openModal, closeModal, onLoad, addFormCard } = homeSearchSlice.actions;
 
 export default homeSearchSlice.reducer;

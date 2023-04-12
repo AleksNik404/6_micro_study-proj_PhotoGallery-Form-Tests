@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import InputSearch from './InputSearch';
 import { useAppDispatch } from '../../../app/hooks';
-import { updateQuery } from '../../../features/HomeSearch/HomeSearchSlice';
+import { updateQuery } from '../../../features/photoAppSlice';
 
 type Props = {
   submitValue: string | undefined;

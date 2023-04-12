@@ -1,9 +1,9 @@
 import Card, { CardItem } from '../../../components/Card';
 import { Grid } from '../../../styled/Grid';
 import { Modal } from '../Modal.tsx/Modal';
-import { useLazyGetPhotoByIDQuery } from '../../../features/api/apiSlice';
+import { useLazyGetPhotoByIDQuery } from '../../../features/apiSlice';
 import { useAppDispatch } from '../../../app/hooks';
-import { closeModal, onLoad, openModal } from '../../../features/HomeSearch/HomeSearchSlice';
+import { closeModal, onLoad, openModal } from '../../../features/photoAppSlice';
 
 export interface Cards {
   cards: CardItem[];

@@ -7,7 +7,7 @@ import HomeCardsContainer from './components/HomeCardsContainer';
 import { Main } from '../../styled/smallComponents';
 
 import MessageWrapper from './components/MessageWrapper';
-import { useGetRandomPhotosQuery } from '../../features/api/apiSlice';
+import { useGetRandomPhotosQuery } from '../../features/apiSlice';
 
 import { useAppSelector } from '../../app/hooks';
 

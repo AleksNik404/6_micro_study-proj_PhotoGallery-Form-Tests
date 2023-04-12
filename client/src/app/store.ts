@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import HomeSearchReducer from '../features/HomeSearch/HomeSearchSlice';
-import { unsplashApi } from '../features/api/apiSlice';
+import HomeSearchReducer from '../features/photoAppSlice';
+import { unsplashApi } from '../features/apiSlice';
 
 export const store = configureStore({
   reducer: {
