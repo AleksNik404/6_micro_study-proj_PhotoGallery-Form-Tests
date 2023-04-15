@@ -71,8 +71,8 @@ export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
     transition: all 0.5s;
 
     line-height: 0;
-    padding-bottom: ${({ imageAspectRatio = [1, 1.2] }) => {
-      const [x, y] = imageAspectRatio;
+    padding-bottom: ${({ imageAspectRatio = [1.3, 1] }) => {
+      const [y, x] = imageAspectRatio;
       return `calc(${x} / ${y} * 100%)`;
     }};
 
