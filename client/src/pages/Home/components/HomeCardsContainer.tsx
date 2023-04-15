@@ -4,7 +4,7 @@ import { Modal } from '../Modal.tsx/Modal';
 import { useLazyGetPhotoByIDQuery } from '../../../features/apiSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import { closeModal, onLoad, openModal } from '../../../features/photoAppSlice';
-import { TEST_DATA_CARD } from '../../../test/constants';
+import { TEST_DATA_CARD } from '../../../test/test.constants';
 
 export interface Cards {
   cards: CardItem[];

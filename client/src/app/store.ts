@@ -1,10 +1,10 @@
 import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import HomeSearchReducer from '../features/photoAppSlice';
+import photoAppReducer from '../features/photoAppSlice';
 import { unsplashApi } from '../features/apiSlice';
 
 export const rootReducer = combineReducers({
-  homeSearch: HomeSearchReducer,
+  photoApp: photoAppReducer,
   [unsplashApi.reducerPath]: unsplashApi.reducer,
 });
 

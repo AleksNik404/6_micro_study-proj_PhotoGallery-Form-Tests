@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import Header from '../../components/Header';
 import Toast from '../../components/Toast';
@@ -8,23 +7,21 @@ import { Main } from '../../styled/smallComponents';
 import Form from './components/Form';
 import { CardItem } from '../../components/Card';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addFormCard } from '../../features/photoAppSlice';
+import { addFormCard, setToastCardMessage } from '../../features/photoAppSlice';
 import FormCardsContainer from './components/FormCardsContainer';
 
 const FormPage = () => {
-  const [toastMessage, setToastMessage] = useState('');
-
-  const { formCards } = useAppSelector((state) => state.homeSearch);
+  const { formCards, toastMessage } = useAppSelector((state) => state.photoApp);
 
   const dispatch = useAppDispatch();
 
   const addOneCard = (cardData: CardItem) => {
     dispatch(addFormCard(cardData));
-    setToastMessage('Card successfully created');
+    dispatch(setToastCardMessage('Card successfully created'));
   };
 
   const deleteToast = () => {
-    setToastMessage('');
+    dispatch(setToastCardMessage(''));
   };
 
   return (

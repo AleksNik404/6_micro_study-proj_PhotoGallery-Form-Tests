@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { NavLinks } from '../data/LinksNav';
+import { NavLinks } from '../utils/constants';
 
 interface HeaderProps {
   namePage?: string;

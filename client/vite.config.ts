@@ -16,22 +16,14 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
-    // css: true,
 
-    // coverage: {
-    //   enabled: true,
-    //   provider: 'istanbul',
-    //   reporter: ['text'],
-    //   all: true,
-    // },
-
-    // coverage: {
-    //   enabled: true,
-    //   provider: 'c8',
-    //   reporter: ['text'],
-    //   all: true,
-    //   include: ['src'],
-    //   exclude: ['src/types'],
-    // },
+    coverage: {
+      enabled: true,
+      provider: 'c8',
+      reporter: ['text'],
+      all: true,
+      include: ['src'],
+      exclude: ['src/*/**types.ts', 'src/index.tsx', 'src/vite-env.d.ts'],
+    },
   },
 });

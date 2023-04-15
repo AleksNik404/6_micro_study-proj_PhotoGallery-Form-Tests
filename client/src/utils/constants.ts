@@ -52,4 +52,10 @@ export const ApiKeys = {
   last: 'Client-ID 1hv92swQf7ztp35OwBS9fg-qR9b73LLTzbERFdWpOos',
 };
 
+export const NavLinks = [
+  { path: '/', title: 'Home', name: 'Home Page' },
+  { path: '/about', title: 'About', name: 'About Us Page' },
+  { path: '/form', title: 'Form', name: 'Form Page' },
+];
+
 export const API_COUNT_PHOTOS = 14;

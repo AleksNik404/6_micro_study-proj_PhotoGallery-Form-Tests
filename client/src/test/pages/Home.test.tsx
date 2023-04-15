@@ -8,8 +8,8 @@ import { updateQuery } from '../../features/photoAppSlice';
 import { formatDate } from '../../utils/utils';
 import { renderWithReduxAndRoute } from '../../utils/test.utils';
 import { API_COUNT_PHOTOS } from '../../utils/constants';
-import { TEST_DATA_CARD, randomOneData, TEST_RANDOM_NAME } from '../constants';
-import { TEST_SEARCH_NAME, TEST_DATA_MODAL, searchOneData } from '../constants';
+import { TEST_DATA_CARD, randomOneData, TEST_RANDOM_NAME } from '../test.constants';
+import { TEST_SEARCH_NAME, TEST_DATA_MODAL, searchOneData } from '../test.constants';
 
 describe('Home Page', () => {
   it('should make a request and display RANDOM cards when search field is empty', async () => {

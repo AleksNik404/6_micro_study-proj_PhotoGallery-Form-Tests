@@ -14,9 +14,10 @@ type HomeSearchState = {
   };
 
   formCards: CardItem[];
+  toastMessage: string;
 };
 
-const initialState: HomeSearchState = {
+export const initialState: HomeSearchState = {
   params: {
     count: API_COUNT_PHOTOS,
     query: undefined,
@@ -28,14 +29,19 @@ const initialState: HomeSearchState = {
   },
 
   formCards: [],
+  toastMessage: '',
 };
 
-const homeSearchSlice = createSlice({
+const photoAppSlice = createSlice({
   name: 'homeSearch',
   initialState,
   reducers: {
     updateQuery: (state, action: PayloadAction<string>) => {
       state.params.query = action.payload || undefined;
+    },
+
+    setToastCardMessage: (state, action: PayloadAction<string>) => {
+      state.toastMessage = action.payload;
     },
 
     openModal: (state) => {
@@ -57,6 +63,7 @@ const homeSearchSlice = createSlice({
   },
 });
 
-export const { updateQuery, openModal, closeModal, onLoad, addFormCard } = homeSearchSlice.actions;
+export const { updateQuery, openModal, closeModal, onLoad, addFormCard, setToastCardMessage } =
+  photoAppSlice.actions;
 
-export default homeSearchSlice.reducer;
+export default photoAppSlice.reducer;

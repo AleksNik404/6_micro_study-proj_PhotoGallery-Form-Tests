@@ -9,7 +9,7 @@ import { useGetRandomPhotosQuery } from '../../features/apiSlice';
 import { useAppSelector } from '../../app/hooks';
 
 const Home = () => {
-  const { params } = useAppSelector((state) => state.homeSearch);
+  const { params } = useAppSelector((state) => state.photoApp);
   const { data = [], isLoading, isError } = useGetRandomPhotosQuery(params);
 
   return (

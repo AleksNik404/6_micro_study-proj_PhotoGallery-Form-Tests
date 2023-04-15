@@ -23,16 +23,6 @@ export interface OnePhotoResponse {
   views: number;
 }
 
-export type RandomParams = { count?: number };
-export type SearchParams = {
-  query: string;
-  page?: number;
-  per_page?: number;
-  order_by?: 'relevant' | 'latest ';
-};
-
-//////////////////////////////////
-
 export type PhotoParams = {
   count: number;
   query?: string;

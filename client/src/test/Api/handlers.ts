@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { OnePhotoResponse, RandomResponse } from '../../utils/types';
-import { onePhotoByIdResponse, randomOneData, searchOneData } from '../constants';
+import { onePhotoByIdResponse, randomOneData, searchOneData } from '../test.constants';
 
 export const handlers = [
   rest.get('https://api.unsplash.com/photos/random', (req, res, ctx) => {

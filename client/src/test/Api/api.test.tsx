@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { OnePhotoResponse, RandomResponse } from '../../utils/types';
-import { randomOneData, onePhotoByIdResponse, searchOneData } from '../constants';
+import { randomOneData, onePhotoByIdResponse, searchOneData } from '../test.constants';
 
 describe('simple check that api utils work', () => {
   it('[API - random] - Check that the API request for random photos returns data', async () => {

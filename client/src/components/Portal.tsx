@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Overlay } from '../styled/smallComponents';
-import { TEST_DATA_MODAL } from '../test/constants';
+import { TEST_DATA_MODAL } from '../test/test.constants';
 
 type Props = {
   onClose: (e: React.MouseEvent<HTMLDivElement | SVGElement>) => void;

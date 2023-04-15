@@ -14,7 +14,7 @@ const testDataCards = Array.from({ length: 10 }, (_, index) => {
   return { ...oneCard, id: String(index) };
 });
 
-describe('CardsContainer', () => {
+describe('HomeCardsContainer', () => {
   it('Render ten cards', () => {
     renderWithReduxAndRoute(<HomeCardsContainer cards={testDataCards} />);
 
