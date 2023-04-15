@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Card from '../../components/Card';
+import { renderWithProviders } from '../../utils/test.utils';
 
 const firstCard = {
   id: '5',
@@ -11,7 +12,7 @@ const firstCard = {
 
 describe('CardsContainer', () => {
   it('Display a card with a developer property', async () => {
-    render(<Card cardData={firstCard} />);
+    renderWithProviders(<Card cardData={firstCard} />);
 
     expect(screen.getByText(firstCard.userName)).toBeInTheDocument();
     expect(screen.getByAltText(firstCard.userName)).toHaveAttribute('src', firstCard.image);

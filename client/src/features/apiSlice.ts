@@ -1,9 +1,9 @@
-import { OnePhotoResponse, PhotoParams } from '../utils/Api/types';
+import { OnePhotoResponse, PhotoParams } from '../utils/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ApiKeys } from '../utils/constants';
-import { RandomResponse } from '../utils/Api/types';
+import { RandomResponse } from '../utils/types';
 import { CardItem } from '../components/Card';
-import { api } from '../utils/Api/Api';
+import { unsplashMapping } from '../utils/utils';
 
 export const unsplashApi = createApi({
   reducerPath: 'unsplashApi',
@@ -21,7 +21,7 @@ export const unsplashApi = createApi({
         params,
       }),
       transformResponse: (response: RandomResponse) => {
-        return response.map(api.mappingData);
+        return response.map(unsplashMapping);
       },
     }),
 
@@ -33,21 +33,3 @@ export const unsplashApi = createApi({
 
 export const { useGetRandomPhotosQuery, useLazyGetRandomPhotosQuery, useLazyGetPhotoByIDQuery } =
   unsplashApi;
-
-// getRandomPhotos: builder.query<RandomResponse, RandomParams>({
-//   query: (params) => ({
-//     url: '/photos/random',
-//     params,
-//   }),
-// }),
-
-// getSearchPhotos: builder.query<SearchResponse, SearchParams>({
-//   query: (params) => ({
-//     url: '/search/photos',
-//     params,
-//   }),
-// }),
-
-// getPhotoByID: builder.query<OnePhotoResponse, { id: string }>({
-//   query: (id) => `/photos/${id}`,
-// }),

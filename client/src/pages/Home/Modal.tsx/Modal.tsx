@@ -6,7 +6,7 @@ import { FcLike } from 'react-icons/fc';
 import { formatDate } from '../../../utils/utils';
 import Portal from '../../../components/Portal';
 import { Popup } from '../../../styled/smallComponents';
-import { OnePhotoResponse } from '../../../utils/Api/types';
+import { OnePhotoResponse } from '../../../utils/types';
 import { useAppSelector } from '../../../app/hooks';
 
 type Props = {

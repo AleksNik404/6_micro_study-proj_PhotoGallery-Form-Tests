@@ -24,7 +24,8 @@
     "vite.config.ts",
     "unusedCode/HomeFeature.ts",
     "unusedCode/HomeReducer.ts",
-    "unusedCode/localStorage.ts"
+    "unusedCode/localStorage.ts",
+    "unusedCode/Api.ts"
   ],
   "exclude": ["public/*", "unusedCode/*"]
 }

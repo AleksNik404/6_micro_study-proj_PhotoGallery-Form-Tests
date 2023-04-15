@@ -1,6 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
 
 import Home from '../../pages/Home/Home';
 import { API_COUNT_PHOTOS } from '../../utils/constants';
@@ -14,6 +13,7 @@ import {
   randomOneData,
   searchOneData,
 } from '../Api/handlers';
+import { renderWithProviders } from '../../utils/test.utils';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -21,13 +21,13 @@ afterAll(() => server.close());
 
 describe('inputSearch', () => {
   it('checking the field search display', () => {
-    render(<Home />, { wrapper: BrowserRouter });
+    renderWithProviders(<Home />);
 
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument;
   });
 
   it('onChange InputSearch works', async () => {
-    render(<Home />, { wrapper: BrowserRouter });
+    renderWithProviders(<Home />);
 
     const text = `await await`;
     const input = screen.getByRole('searchbox');
@@ -37,9 +37,7 @@ describe('inputSearch', () => {
   });
 
   it('should make a request and display RANDOM cards when localStorage is empty', async () => {
-    localStorage.clear();
-
-    render(<Home />, { wrapper: BrowserRouter });
+    renderWithProviders(<Home />);
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
 
@@ -56,7 +54,7 @@ describe('inputSearch', () => {
   });
 
   it.skip('should make a request and display SEARCH cards when localStorage is NOT empty', async () => {
-    render(<Home />, { wrapper: BrowserRouter });
+    renderWithProviders(<Home />);
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
 
@@ -71,7 +69,7 @@ describe('inputSearch', () => {
   });
 
   it.skip('should make a request by id and display MODAL when click card', async () => {
-    render(<Home />, { wrapper: BrowserRouter });
+    renderWithProviders(<Home />);
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
     expect(screen.queryByTestId(TEST_DATA_MODAL)).not.toBeInTheDocument();

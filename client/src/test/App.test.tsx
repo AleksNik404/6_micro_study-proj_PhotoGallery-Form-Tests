@@ -1,15 +1,16 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { AppWrapper } from '../App';
 import Header from '../components/Header';
 import { BrowserRouter } from 'react-router-dom';
+import { renderWithProviders } from '../utils/test.utils';
+import { App } from '../App';
 
 describe('App', () => {
   it('check the main tags of the page', () => {
-    render(<AppWrapper />);
+    renderWithProviders(<App />);
 
-    expect(screen.getByRole('banner')).toBeInTheDocument(); // <header>
+    expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
 

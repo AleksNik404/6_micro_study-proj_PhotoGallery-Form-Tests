@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { SearchResponse, OnePhotoResponse, RandomResponse } from '../../utils/Api/types';
+import { SearchResponse, OnePhotoResponse, RandomResponse } from '../../utils/types';
 import { API_COUNT_PHOTOS } from '../../utils/constants';
 
 const photos = [

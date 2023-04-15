@@ -1,18 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 import 'normalize.css';
 import './index.css';
 
-import { AppWrapper } from './App';
+import { App } from './App';
+import { setupStore } from './app/store';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-// if (process.env.NODE_ENV === 'development') {
-//   const { worker } = await import('./test/Api/browser');
-//   worker.start();
-// }
+const store = setupStore({});
+setupListeners(store.dispatch);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
-  <AppWrapper />
-  // {/* </React.StrictMode> */}
+  <React.StrictMode>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </React.StrictMode>
 );

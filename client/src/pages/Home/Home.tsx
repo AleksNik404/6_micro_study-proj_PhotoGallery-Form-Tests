@@ -14,7 +14,6 @@ import { useAppSelector } from '../../app/hooks';
 const Home = () => {
   const { params } = useAppSelector((state) => state.homeSearch);
   const { data = [], isLoading, isError } = useGetRandomPhotosQuery(params);
-  console.log(data);
 
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
