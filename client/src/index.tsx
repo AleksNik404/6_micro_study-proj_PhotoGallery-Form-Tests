@@ -6,7 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import 'normalize.css';
 import './index.css';
 
-import { App } from './App';
+import App from './App';
 import { setupStore } from './app/store';
 import { BrowserRouter as Router } from 'react-router-dom';
 

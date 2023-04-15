@@ -10,7 +10,7 @@ export const unsplashApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.unsplash.com',
     headers: {
-      Authorization: ApiKeys.second,
+      Authorization: ApiKeys.first,
     },
   }),
 

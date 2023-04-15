@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import { LocationForEmpty } from './constants';
-import { UnsplashPhotoSearch } from './types';
 import { CardItem } from '../components/Card';
+import { RandomResponse } from './types';
 dayjs.extend(calendar);
 
 export const formatDate = (date: string) => {
@@ -21,7 +21,7 @@ export const getLocationWhenEmpty = () => {
   return LocationForEmpty[index];
 };
 
-export const unsplashMapping = (data: UnsplashPhotoSearch): CardItem => {
+export const unsplashMapping = (data: RandomResponse[number]): CardItem => {
   const { id, urls, created_at, user } = data;
   return {
     id,

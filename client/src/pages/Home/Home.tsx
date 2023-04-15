@@ -3,12 +3,9 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import Header from '../../components/Header';
 import SearchForm from './components/SearchForm';
 import HomeCardsContainer from './components/HomeCardsContainer';
-
-import { Main } from '../../styled/smallComponents';
-
 import MessageWrapper from './components/MessageWrapper';
+import { Main } from '../../styled/smallComponents';
 import { useGetRandomPhotosQuery } from '../../features/apiSlice';
-
 import { useAppSelector } from '../../app/hooks';
 
 const Home = () => {
@@ -22,7 +19,7 @@ const Home = () => {
         <section className="container">
           <SearchForm submitValue={params.query} />
 
-          <MessageWrapper error={isError} loading={isLoading} notEmpty={data.length}>
+          <MessageWrapper error={isError} loading={isLoading} isEmpty={!data.length}>
             <HomeCardsContainer cards={data} />
           </MessageWrapper>
         </section>

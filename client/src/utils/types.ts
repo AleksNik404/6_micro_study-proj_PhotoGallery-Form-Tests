@@ -13,19 +13,6 @@ export type RandomResponse = Array<{
   user: User;
 }>;
 
-export type UnsplashPhotoSearch = {
-  id: string;
-  created_at: string;
-  urls: ImageSizes;
-  user: User;
-};
-
-export type SearchResponse = {
-  total: number;
-  total_pages: number;
-  results: UnsplashPhotoSearch[];
-};
-
 export interface OnePhotoResponse {
   user: User;
   created_at: string;
@@ -43,9 +30,6 @@ export type SearchParams = {
   per_page?: number;
   order_by?: 'relevant' | 'latest ';
 };
-
-export type Params<T> = T extends SearchResponse ? SearchParams : RandomParams;
-export type Url<T> = T extends SearchResponse ? `search/photos` : `photos/random`;
 
 //////////////////////////////////
 

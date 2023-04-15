@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { TEST_DATA_CARD } from '../test/Api/handlers';
 
 export interface CardItem {
   id: string;
@@ -23,7 +22,7 @@ const Card = ({ cardData }: CardItemProps) => {
   const { image, userName, created_at, imageAspectRatio } = cardData;
 
   return (
-    <GridItem data-testid={TEST_DATA_CARD} imageAspectRatio={imageAspectRatio}>
+    <GridItem imageAspectRatio={imageAspectRatio}>
       <div className="image-box">
         {loading && <Skeleton className="image" />}
 

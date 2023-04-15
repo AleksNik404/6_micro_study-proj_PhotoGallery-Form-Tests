@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../../utils/test.utils';
+import { renderWithReduxAndRoute } from '../../utils/test.utils';
 import HomeCardsContainer from '../../pages/Home/components/HomeCardsContainer';
 
 const oneCard = {
@@ -16,7 +16,7 @@ const testDataCards = Array.from({ length: 10 }, (_, index) => {
 
 describe('CardsContainer', () => {
   it('Render ten cards', () => {
-    renderWithProviders(<HomeCardsContainer cards={testDataCards} />);
+    renderWithReduxAndRoute(<HomeCardsContainer cards={testDataCards} />);
 
     expect(screen.getAllByRole('heading', { level: 1, name: 'TestCard' }).length).toBe(10);
   });

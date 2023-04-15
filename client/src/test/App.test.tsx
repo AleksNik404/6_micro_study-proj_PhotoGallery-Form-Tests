@@ -1,21 +1,19 @@
-import { describe } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
+import App from '../App';
 import Header from '../components/Header';
-import { BrowserRouter } from 'react-router-dom';
-import { renderWithProviders } from '../utils/test.utils';
-import { App } from '../App';
+import { renderWithReduxAndRoute } from '../utils/test.utils';
 
 describe('App', () => {
   it('check the main tags of the page', () => {
-    renderWithProviders(<App />);
+    renderWithReduxAndRoute(<App />);
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
 
   it('checking the availability of links for routing', () => {
-    render(<Header />, { wrapper: BrowserRouter });
+    renderWithReduxAndRoute(<Header />);
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();

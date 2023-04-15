@@ -2,45 +2,20 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Home from '../../pages/Home/Home';
-import { API_COUNT_PHOTOS } from '../../utils/constants';
+import { setupStore } from '../../app/store';
+import { updateQuery } from '../../features/photoAppSlice';
+
 import { formatDate } from '../../utils/utils';
-import { server } from '../Api/api.test';
-import {
-  TEST_DATA_CARD,
-  TEST_DATA_MODAL,
-  TEST_RANDOM_NAME,
-  TEST_SEARCH_NAME,
-  randomOneData,
-  searchOneData,
-} from '../Api/handlers';
-import { renderWithProviders } from '../../utils/test.utils';
+import { renderWithReduxAndRoute } from '../../utils/test.utils';
+import { API_COUNT_PHOTOS } from '../../utils/constants';
+import { TEST_DATA_CARD, randomOneData, TEST_RANDOM_NAME } from '../constants';
+import { TEST_SEARCH_NAME, TEST_DATA_MODAL, searchOneData } from '../constants';
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+describe('Home Page', () => {
+  it('should make a request and display RANDOM cards when search field is empty', async () => {
+    renderWithReduxAndRoute(<Home />);
 
-describe('inputSearch', () => {
-  it('checking the field search display', () => {
-    renderWithProviders(<Home />);
-
-    expect(screen.getByPlaceholderText('Search')).toBeInTheDocument;
-  });
-
-  it('onChange InputSearch works', async () => {
-    renderWithProviders(<Home />);
-
-    const text = `await await`;
-    const input = screen.getByRole('searchbox');
-
-    await userEvent.type(input, text);
-    expect(input).toHaveValue(text);
-  });
-
-  it('should make a request and display RANDOM cards when localStorage is empty', async () => {
-    renderWithProviders(<Home />);
-
-    const cards = await screen.findAllByTestId(TEST_DATA_CARD);
-
+    const cards = await screen.findAllByTestId('home-card');
     const dateCards = await screen.findAllByText(formatDate(randomOneData.created_at));
     const nameCards = await screen.findAllByRole('heading', {
       name: randomOneData.user.name,
@@ -53,23 +28,27 @@ describe('inputSearch', () => {
     expect(nameCards[0]).not.toHaveTextContent(TEST_SEARCH_NAME);
   });
 
-  it.skip('should make a request and display SEARCH cards when localStorage is NOT empty', async () => {
-    renderWithProviders(<Home />);
+  it('should make a request and display SEARCH cards when search field is NOT empty', async () => {
+    const store = setupStore();
+    store.dispatch(updateQuery('set query for search response'));
+
+    renderWithReduxAndRoute(<Home />, { store });
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
-
+    const dateCards = await screen.findAllByText(formatDate(searchOneData.created_at));
     const nameCards = await screen.findAllByRole('heading', {
-      name: searchOneData.results[0].user.name,
+      name: searchOneData.user.name,
     });
 
     expect(cards.length).toBe(API_COUNT_PHOTOS);
+    expect(dateCards[0]).toBeInTheDocument();
     expect(nameCards[0]).toBeInTheDocument();
     expect(nameCards[0]).toHaveTextContent(TEST_SEARCH_NAME);
     expect(nameCards[0]).not.toHaveTextContent(TEST_RANDOM_NAME);
   });
 
-  it.skip('should make a request by id and display MODAL when click card', async () => {
-    renderWithProviders(<Home />);
+  it('should make a request by id and display MODAL when click card', async () => {
+    renderWithReduxAndRoute(<Home />);
 
     const cards = await screen.findAllByTestId(TEST_DATA_CARD);
     expect(screen.queryByTestId(TEST_DATA_MODAL)).not.toBeInTheDocument();

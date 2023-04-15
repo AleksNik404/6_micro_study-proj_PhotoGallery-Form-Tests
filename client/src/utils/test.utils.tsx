@@ -12,7 +12,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   route?: string;
 }
 
-export function renderWithProviders(
+export function renderWithReduxAndRoute(
   component: React.ReactElement,
   {
     preloadedState = {},

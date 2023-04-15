@@ -1,5 +1,5 @@
 export const LOCAL_STORAGE_SEARCH = 'griz-search';
-export const PRICE_OPTIONS = ['1:1', '1:1.2', '4:3', '3:2', '2:3'];
+export const ASPECT_RATION_OPTIONS = ['1:1', '1:1.2', '4:3', '3:2', '2:3'];
 
 export const REQUIRED_ERROR_MESSAGE = 'This field is required';
 
@@ -11,8 +11,8 @@ export const NAME_TOO_LONG_ERROR_MESSAGE = 'Maximum length of 15 characters';
 export const NAME_CAPITALIZE_ERROR_MESSAGE = 'Please capitalize the title';
 
 export const FILE_REQUIRED_ERROR_MESSAGE = 'Please provide image';
-export const DISCOUNT_REQUIRED_ERROR_MESSAGE = 'Choose a discount plan';
-export const PRICE_REQUIRED_ERROR_MESSAGE = 'Please select a price option';
+export const DATE_FORMAT_REQUIRED_ERROR_MESSAGE = 'Should the date be formatted?';
+export const IMAGE_RATIO_REQUIRED_ERROR_MESSAGE = 'Please select a Aspect Ratio option';
 export const TERM_REQUIRED_ERROR_MESSAGE = 'Just agree, it`s not scary';
 
 export const EMPTY_API_IMAGE =

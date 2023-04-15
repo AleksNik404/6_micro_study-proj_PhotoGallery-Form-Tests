@@ -4,7 +4,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
 
-import { PRICE_OPTIONS } from '../../../utils/constants';
+import { ASPECT_RATION_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
 import { CardItem } from '../../../components/Card';
 import { SubmitButton } from '../../../styled/SubmitButton';
@@ -70,7 +70,7 @@ const Form = ({ addOneCard }: FormProps) => {
             name="imageAspectRatio"
             label="Image Aspect Ratio"
             defaultValue="Select Aspect Ratio"
-            list={PRICE_OPTIONS}
+            list={ASPECT_RATION_OPTIONS}
             validate={validation.aspectRatio}
           />
           <FormSwitcher

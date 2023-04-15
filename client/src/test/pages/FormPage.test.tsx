@@ -1,20 +1,17 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../../utils/test.utils';
-import { App } from '../../App';
+import App from '../../App';
+import { renderWithReduxAndRoute } from '../../utils/test.utils';
 
 describe('inputSearch', () => {
   it('check display form page', async () => {
-    const { debug } = renderWithProviders(
-      // <MemoryRouter initialEntries={['/form']}>
-      <App />
-      // </MemoryRouter>
-    );
-    debug();
+    renderWithReduxAndRoute(<App />, { route: '/form' });
+
     expect(
       screen.getByRole('heading', {
+        name: /form page/i,
         level: 1,
       })
-    ).toHaveTextContent(/form page/i);
+    ).toBeInTheDocument();
   });
 });

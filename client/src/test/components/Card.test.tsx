@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import Card from '../../components/Card';
-import { renderWithProviders } from '../../utils/test.utils';
+import { renderWithReduxAndRoute } from '../../utils/test.utils';
 
 const firstCard = {
   id: '5',
@@ -12,7 +12,7 @@ const firstCard = {
 
 describe('CardsContainer', () => {
   it('Display a card with a developer property', async () => {
-    renderWithProviders(<Card cardData={firstCard} />);
+    renderWithReduxAndRoute(<Card cardData={firstCard} />);
 
     expect(screen.getByText(firstCard.userName)).toBeInTheDocument();
     expect(screen.getByAltText(firstCard.userName)).toHaveAttribute('src', firstCard.image);

@@ -4,6 +4,7 @@ import { Modal } from '../Modal.tsx/Modal';
 import { useLazyGetPhotoByIDQuery } from '../../../features/apiSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import { closeModal, onLoad, openModal } from '../../../features/photoAppSlice';
+import { TEST_DATA_CARD } from '../../../test/constants';
 
 export interface Cards {
   cards: CardItem[];
@@ -14,15 +15,18 @@ const HomeCardsContainer = ({ cards }: Cards) => {
 
   const [fetchSearch, { data, isFetching }] = useLazyGetPhotoByIDQuery();
 
+  const handlerClick = (id: string) => {
+    fetchSearch({ id });
+    dispatch(openModal());
+  };
+
   return (
-    <Grid type="flex">
+    <Grid type="flex" data-testid="grid">
       {cards.map((oneCardData) => (
         <div
           key={oneCardData.id}
-          onClick={() => {
-            fetchSearch({ id: oneCardData.id });
-            dispatch(openModal());
-          }}
+          onClick={() => handlerClick(oneCardData.id)}
+          data-testid={TEST_DATA_CARD}
         >
           <Card cardData={oneCardData} />
         </div>
