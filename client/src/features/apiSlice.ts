@@ -20,13 +20,20 @@ export const unsplashApi = createApi({
         url: '/photos/random',
         params,
       }),
-      transformResponse: (response: RandomResponse) => {
+      transformResponse: async (response: RandomResponse) => {
+        await new Promise((resolve) => setTimeout(() => resolve(response), 800));
+
         return response.map(unsplashMapping);
       },
     }),
 
     getPhotoByID: builder.query<OnePhotoResponse, { id: string }>({
       query: ({ id }) => `/photos/${id}`,
+      transformResponse: async (response: OnePhotoResponse) => {
+        await new Promise((resolve) => setTimeout(() => resolve(response), 600));
+
+        return response;
+      },
     }),
   }),
 });
