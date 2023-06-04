@@ -1,5 +1,5 @@
 export const LOCAL_STORAGE_SEARCH = 'griz-search';
-export const ASPECT_RATION_OPTIONS = ['1:1', '1.3:1', '4:3', '3:2', '2:3', '16:9'];
+export const ASPECT_RATION_OPTIONS = ['1:1', '1.2:1', '4:3', '3:2', '2:3', '16:9'];
 
 export const REQUIRED_ERROR_MESSAGE = 'This field is required';
 

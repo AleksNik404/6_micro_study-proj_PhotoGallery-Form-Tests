@@ -10,7 +10,7 @@ import { useAppSelector } from '../../app/hooks';
 
 const Home = () => {
   const { params } = useAppSelector((state) => state.photoApp);
-  const { data = [], isLoading, isError } = useGetRandomPhotosQuery(params);
+  const { data = [], isFetching, isError } = useGetRandomPhotosQuery(params);
 
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -19,7 +19,7 @@ const Home = () => {
         <section className="container">
           <SearchForm submitValue={params.query} />
 
-          <MessageWrapper error={isError} loading={isLoading} isEmpty={!data.length}>
+          <MessageWrapper error={isError} loading={isFetching} isEmpty={!data.length}>
             <HomeCardsContainer cards={data} />
           </MessageWrapper>
         </section>
