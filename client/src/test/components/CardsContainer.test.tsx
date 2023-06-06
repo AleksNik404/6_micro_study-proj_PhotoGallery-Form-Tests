@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import CardsContainer from '../../pages/Home/components/HomeCardsContainer';
+import { renderWithReduxAndRoute } from '../../utils/test.utils';
+import HomeCardsContainer from '../../pages/Home/components/HomeCardsContainer';
 
 const oneCard = {
   id: 1,
-  name: 'TestCard',
-  developer: 'Obsidian Entertainment',
+  userName: 'TestCard',
+  created_at: '27/07/1993',
   image: 'urlImage',
 };
 
@@ -13,9 +14,9 @@ const testDataCards = Array.from({ length: 10 }, (_, index) => {
   return { ...oneCard, id: String(index) };
 });
 
-describe('CardsContainer', () => {
+describe('HomeCardsContainer', () => {
   it('Render ten cards', () => {
-    render(<CardsContainer cards={testDataCards} />);
+    renderWithReduxAndRoute(<HomeCardsContainer cards={testDataCards} />);
 
     expect(screen.getAllByRole('heading', { level: 1, name: 'TestCard' }).length).toBe(10);
   });

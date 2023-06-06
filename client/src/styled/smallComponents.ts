@@ -23,7 +23,7 @@ export const InputBlock = styled.div`
   position: relative;
 `;
 
-export const Popup = styled.div<{ notDisplay: boolean }>`
+export const Popup = styled.div<{ notDisplay?: boolean }>`
   display: ${({ notDisplay }) => (notDisplay ? 'none' : 'grid')};
   grid-template-rows: 1fr max-content;
   flex-direction: column;
@@ -41,6 +41,13 @@ export const Popup = styled.div<{ notDisplay: boolean }>`
 
     font-size: 3rem;
     cursor: pointer;
+
+    transition: all 0.3s;
+
+    @media (max-width: 60em) {
+      right: 1rem;
+      top: -2.5rem;
+    }
   }
 `;
 

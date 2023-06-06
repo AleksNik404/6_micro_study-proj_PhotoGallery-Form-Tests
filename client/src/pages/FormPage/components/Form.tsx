@@ -4,17 +4,19 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormCheckBox, FormFile, FormInput, FormSelect, FormSwitcher } from '.';
 
-import { PRICE_OPTIONS } from '../../../utils/constants';
+import { ASPECT_RATION_OPTIONS } from '../../../utils/constants';
 import { validation } from '../../../utils/validations';
 import { CardItem } from '../../../components/Card';
 import { SubmitButton } from '../../../styled/SubmitButton';
+import { formatDate } from '../../../utils/utils';
 
 export type FormData = {
-  name: string;
-  releaseDate: string;
-  price: number;
-  discountPercentage: number;
   image: FileList;
+  userName: string;
+  createdAt: string;
+  imageAspectRatio: string;
+  useDateFormatting: string;
+
   check: boolean;
 };
 
@@ -38,11 +40,14 @@ const Form = ({ addOneCard }: FormProps) => {
   }, [isSubmitSuccessful, methods]);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const { image: fileList } = data;
+    const { image: fileList, imageAspectRatio: ratio, useDateFormatting, createdAt } = data;
+    const created_at = useDateFormatting === 'true' ? formatDate(createdAt) : createdAt;
+
     const image = URL.createObjectURL(fileList[0]);
     const id = crypto.randomUUID();
+    const [x, y] = ratio.split(':').map(Number);
 
-    addOneCard({ ...data, image, id });
+    addOneCard({ ...data, image, id, imageAspectRatio: [x, y], created_at });
   };
 
   return (
@@ -50,29 +55,29 @@ const Form = ({ addOneCard }: FormProps) => {
       <Wrapper>
         <FormStyled onSubmit={methods.handleSubmit(onSubmit)}>
           <FormInput
-            name="name"
-            label="Title"
-            placeholder="Product Name"
+            name="userName"
+            label="User Name"
+            placeholder="Author Name"
             validate={validation.name}
           />
           <FormInput
-            name="releaseDate"
-            label="Release Date"
+            name="createdAt"
+            label="Image creation date"
             type="date"
             validate={validation.releaseDate}
           />
           <FormSelect
-            name="price"
-            label="Price"
-            defaultValue="Select price"
-            list={PRICE_OPTIONS}
-            validate={validation.price}
+            name="imageAspectRatio"
+            label="Image Aspect Ratio"
+            defaultValue="Select Aspect Ratio"
+            list={ASPECT_RATION_OPTIONS}
+            validate={validation.aspectRatio}
           />
           <FormSwitcher
-            label="Make a 25% discount"
-            name="discountPercentage"
+            label="Format date for image?"
+            name="useDateFormatting"
             value={25}
-            validate={validation.discountPercentage}
+            validate={validation.useDateFormatting}
           />
           <FormFile name="image" label="Select image" validate={validation.image} />
           <FormCheckBox name="check" label="i agree to the xdd Terms" validate={validation.check} />

@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { formatDate } from '../utils/utils';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { TEST_DATA_CARD } from '../test/Api/handlers';
 
 export interface CardItem {
   id: string;
   image: string;
-  name: string;
+  userName: string;
+  created_at: string;
 
-  developer?: string;
-  releaseDate?: string;
+  imageAspectRatio?: [number, number];
 }
 
 export type CardItemProps = {
@@ -21,17 +19,17 @@ export type CardItemProps = {
 const Card = ({ cardData }: CardItemProps) => {
   const [loading, setLoading] = useState(true);
 
-  const { image, name, releaseDate = 'soon' } = cardData;
+  const { image, userName, created_at, imageAspectRatio } = cardData;
 
   return (
-    <GridItem data-testid={TEST_DATA_CARD}>
+    <GridItem imageAspectRatio={imageAspectRatio}>
       <div className="image-box">
         {loading && <Skeleton className="image" />}
 
         <img
           className="image"
           src={image}
-          alt={name}
+          alt={userName}
           onLoad={() => setLoading(false)}
           hidden={loading}
         />
@@ -40,15 +38,15 @@ const Card = ({ cardData }: CardItemProps) => {
       </div>
       <div className="text-box">
         <div>
-          <p className="maker">{formatDate(releaseDate)}</p>
-          <h1 className="name">{name}</h1>
+          <p className="maker">{created_at}</p>
+          <h1 className="name">{userName}</h1>
         </div>
       </div>
     </GridItem>
   );
 };
 
-export const GridItem = styled.article`
+export const GridItem = styled.article<{ imageAspectRatio?: [number, number] }>`
   display: flex;
   flex-direction: column;
   gap: 0.4em;
@@ -73,7 +71,10 @@ export const GridItem = styled.article`
     transition: all 0.5s;
 
     line-height: 0;
-    padding-bottom: calc(2 / 2.2 * 100%);
+    padding-bottom: ${({ imageAspectRatio = [1.2, 1] }) => {
+      const [y, x] = imageAspectRatio;
+      return `calc(${x} / ${y} * 100%)`;
+    }};
 
     &::after {
       content: '';
@@ -124,9 +125,8 @@ export const GridItem = styled.article`
   }
 
   .text-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    align-items: flex-end;
 
     gap: 30px;
     height: 100%;

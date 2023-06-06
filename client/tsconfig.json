@@ -18,6 +18,7 @@
     "noImplicitAny": true,
     "composite": true
   },
-  "include": ["src", ".eslintrc.cjs", "vite.config.ts"],
-  "exclude": ["public/*", "unusedCode/*"]
+  "include": ["src", ".eslintrc.cjs", "vite.config.ts", "tsconfig.node.json"],
+  "exclude": ["public/*", "unusedCode/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

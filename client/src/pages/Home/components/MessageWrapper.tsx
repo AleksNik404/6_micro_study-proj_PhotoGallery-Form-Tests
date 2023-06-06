@@ -7,11 +7,11 @@ import { css, keyframes } from '@emotion/react';
 type MessageProps = {
   error: boolean;
   loading: boolean;
-  notEmpty: number;
+  isEmpty: boolean;
   children: React.ReactNode;
 };
 
-const MessageWrapper = ({ error, loading, notEmpty, children }: MessageProps): JSX.Element => {
+const MessageWrapper = ({ error, loading, isEmpty, children }: MessageProps): JSX.Element => {
   if (error)
     return (
       <ErrorMessage>
@@ -22,7 +22,7 @@ const MessageWrapper = ({ error, loading, notEmpty, children }: MessageProps): J
 
   if (loading) return <SkeletonContainer />;
 
-  if (!loading && !notEmpty)
+  if (!loading && isEmpty)
     return (
       <NoDataMessage>
         Oops, it looks like we couldn`t find any photos that match your search query{' '}

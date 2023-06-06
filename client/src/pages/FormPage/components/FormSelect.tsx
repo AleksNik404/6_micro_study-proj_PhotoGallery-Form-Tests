@@ -5,12 +5,12 @@ import { ErrorMessage } from '../../../styled/smallComponents';
 import { FormData } from './Form';
 
 interface InputProps {
-  name: keyof Pick<FormData, 'price'>;
+  name: keyof Pick<FormData, 'imageAspectRatio'>;
   label?: string;
-  list: number[];
+  list: string[];
   defaultValue: string;
 
-  validate?: (value: number | undefined) => string | undefined;
+  validate?: (value: string | undefined) => string | undefined;
 }
 
 const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) => {
@@ -28,10 +28,9 @@ const FormSelect = ({ name, label, defaultValue, list, validate }: InputProps) =
           {defaultValue}
         </option>
         {list.map((priceOption, index) => {
-          const price = priceOption.toFixed(2);
           return (
-            <option key={index} value={price}>
-              {price} &#8364;
+            <option key={index} value={priceOption}>
+              {priceOption}
             </option>
           );
         })}

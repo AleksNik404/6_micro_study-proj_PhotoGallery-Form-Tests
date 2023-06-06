@@ -1,24 +1,23 @@
-import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
 
-import { addSearchValueToLocalStorage } from '../../../utils/localStorage';
-import { Action } from '../HomeReducer';
 import InputSearch from './InputSearch';
+import { useAppDispatch } from '../../../app/hooks';
+import { updateQuery } from '../../../features/photoAppSlice';
 
 type Props = {
-  dispatch: React.Dispatch<Action>;
-  submitValue: string;
+  submitValue: string | undefined;
 };
 
 export type SearchData = {
   submitValue: string;
 };
 
-const SearchForm = ({ dispatch, submitValue }: Props) => {
+const SearchForm = ({ submitValue }: Props) => {
+  const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<SearchData> = async ({ submitValue }) => {
-    await addSearchValueToLocalStorage(submitValue);
-    dispatch({ type: 'ADD_SEARCH_VALUE', payload: submitValue });
+    dispatch(updateQuery(submitValue));
   };
 
   const { register, handleSubmit } = useForm<SearchData>({

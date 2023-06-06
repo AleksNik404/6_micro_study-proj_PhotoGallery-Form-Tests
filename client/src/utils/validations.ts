@@ -7,9 +7,9 @@ import {
   NAME_CAPITALIZE_ERROR_MESSAGE,
   DATE_REQUIRED_ERROR_MESSAGE,
   DATE_PERIOD_ERROR_MESSAGE,
-  PRICE_REQUIRED_ERROR_MESSAGE,
+  IMAGE_RATIO_REQUIRED_ERROR_MESSAGE,
   FILE_REQUIRED_ERROR_MESSAGE,
-  DISCOUNT_REQUIRED_ERROR_MESSAGE,
+  DATE_FORMAT_REQUIRED_ERROR_MESSAGE,
   TERM_REQUIRED_ERROR_MESSAGE,
 } from './constants';
 
@@ -31,9 +31,9 @@ const dateValidate = (value: string | undefined): ValidReturn => {
   if (!isValidYear) return DATE_PERIOD_ERROR_MESSAGE;
 };
 
-const selectValidate = (value: number | undefined): ValidReturn => {
+const selectValidate = (value: string | undefined): ValidReturn => {
   const isEmpty = !value;
-  if (isEmpty) return PRICE_REQUIRED_ERROR_MESSAGE;
+  if (isEmpty) return IMAGE_RATIO_REQUIRED_ERROR_MESSAGE;
 };
 
 const fileValidate = (value: FileList | undefined): ValidReturn => {
@@ -41,8 +41,8 @@ const fileValidate = (value: FileList | undefined): ValidReturn => {
   if (isEmpty) return FILE_REQUIRED_ERROR_MESSAGE;
 };
 
-const discountValidate = (value: number | undefined): ValidReturn => {
-  if (!value) return DISCOUNT_REQUIRED_ERROR_MESSAGE;
+const radioValidate = (value: string | undefined): ValidReturn => {
+  if (!value) return DATE_FORMAT_REQUIRED_ERROR_MESSAGE;
 };
 
 const termValidate = (value: boolean | undefined): ValidReturn => {
@@ -53,8 +53,8 @@ const termValidate = (value: boolean | undefined): ValidReturn => {
 export const validation = {
   name: textValidate,
   releaseDate: dateValidate,
-  price: selectValidate,
-  discountPercentage: discountValidate,
+  aspectRatio: selectValidate,
+  useDateFormatting: radioValidate,
   image: fileValidate,
   check: termValidate,
 };

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import Header from '../../components/Header';
 import Toast from '../../components/Toast';
@@ -7,19 +6,22 @@ import { Main } from '../../styled/smallComponents';
 
 import Form from './components/Form';
 import { CardItem } from '../../components/Card';
-import FormCardsContainer, { Cards } from './components/FormCardsContainer';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { addFormCard, setToastCardMessage } from '../../features/photoAppSlice';
+import FormCardsContainer from './components/FormCardsContainer';
 
 const FormPage = () => {
-  const [cards, setCards] = useState<Cards['cards']>([]);
-  const [toastMessage, setToastMessage] = useState('');
+  const { formCards, toastMessage } = useAppSelector((state) => state.photoApp);
+
+  const dispatch = useAppDispatch();
 
   const addOneCard = (cardData: CardItem) => {
-    setCards((prev) => [...prev, cardData]);
-    setToastMessage('Card successfully created');
+    dispatch(addFormCard(cardData));
+    dispatch(setToastCardMessage('Card successfully created'));
   };
 
   const deleteToast = () => {
-    setToastMessage('');
+    dispatch(setToastCardMessage(''));
   };
 
   return (
@@ -31,7 +33,7 @@ const FormPage = () => {
             <Form addOneCard={addOneCard} />
             <Toast message={toastMessage} deleteToast={deleteToast} />
           </FormBlock>
-          <FormCardsContainer cards={cards} />
+          <FormCardsContainer cards={formCards} />
         </section>
       </Main>
     </>

@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { About, FormPage, Home, NotFoundPage } from './pages';
 
-export const App = () => {
+const App = () => {
   return (
     <div className="wrapper">
       <Routes>
@@ -15,10 +15,4 @@ export const App = () => {
   );
 };
 
-export const AppWrapper = () => {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-};
+export default App;
